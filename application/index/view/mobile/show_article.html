@@ -1,0 +1,16 @@
+{include file="public/m_header" /}
+{include file="public/m_page_header" /}
+<section class="content-inner">
+    <h1 class="title">{$d.title}</h1>
+    <div class="copyform">
+        <img src="{$d.logo}" style="background: #ccc;border-radius: 50%;width: 40px;height: 40px" >
+        <div class="desc-info">
+            <div class="info-left" style="font-size: 16px;color: #333333;margin-bottom: 5px;">{$d.form}</div>
+            <div class="info-right">{$d.addtime}&nbsp;&nbsp;&nbsp;&nbsp;{$d.hits} 阅读</div>
+        </div>
+    </div>
+    <div class="content">
+        {$d.content|raw}
+    </div>
+</section>
+{include file="public/m_footer" /}

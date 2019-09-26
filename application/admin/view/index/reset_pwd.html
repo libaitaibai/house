@@ -1,0 +1,69 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="node-name">修改密码</div>
+                        </div>
+                        <el-form :model="dataForm" :rules="rules" ref="dataForm" label-width="100px">
+                            <el-form-item label="新密码" prop="password">
+                                <el-input type="password" v-model="dataForm.password"></el-input>
+                            </el-form-item>
+                            <el-form-item label="确认密码" prop="password_confirm">
+                                <el-input type="password" v-model="dataForm.password_confirm"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="postForm(1)">提交</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            //密码确认
+            var _this = this;
+            var pwdConfirm = function (rule, value, callback) {
+                if (_this.dataForm.password != value && (_this.dataForm.password || value)) {
+                    return callback(new Error('两次密码不一致'));
+                }
+                callback();
+            };
+            return {
+                xs: _xs,    //固定格式
+                loading: false, //固定格式
+                apiData: {},    //固定格式
+                dataForm: {},   //固定格式
+                rules: {
+                    password: [
+                        {required: true, message: '请输入密码', trigger: 'blur'},
+                        {min: 8, max: 20, message: '长度在 8 到 20 个字符', trigger: 'blur'}
+                    ],
+                    password_confirm: [
+                        {validator: pwdConfirm, trigger: 'blur'}
+                    ],
+                }
+            }
+        },
+        methods: {},
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {},
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

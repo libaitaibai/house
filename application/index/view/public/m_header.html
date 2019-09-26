@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="referrer" content="never">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="UTF-8">
+    <title>{$SEO.title|default=''}</title>
+    <meta name="keywords" content="{$SEO.keywords|default=''}">
+    <meta name="description" content="{$SEO.description|default=''}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+    <link rel="stylesheet" href="__RES__/m/css/main.css">
+    <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
+    <script>
+        if (device.desktop()) {
+            window.location.href="http://www.{:request()->rootDomain()}{:request()->url()}"
+        }
+    </script>
+</head>
+<body>

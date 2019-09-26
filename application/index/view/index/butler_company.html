@@ -1,0 +1,86 @@
+{include file="public/header" /}
+{include file="public/nav" /}
+<div class="checkin-big-wapper" style="background: none;">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">美国房屋管理公司</h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>9,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
+            ?>
+            {volist name="list" id="v"}
+            <li style="margin-bottom: 30px;width: 191px">
+                <a target="_Blank" {if $v.url}href="{$v.url}"{/if}>
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+<!-- 精选房源 -->
+<div class="page-national-house">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">奥兰多精选房源</h5>
+            <div class="info-sub">执照经纪人为您精挑细选</div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="house-list-wrap content-block">
+        <div class="house-list">
+            <?php
+                $houseDb= new \app\admin\model\CmsHouse();
+                $list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(4)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li class="mod-house-item">
+                <a target="_blank" href="{:url('index/index/showHouse',['id'=>$v.id])}" class="link-block">
+                    <div class="mod-house-item-top">
+                        <img class="house-item-pic" src="{:thumb($v.thumb,280,162)}" alt="">
+                        <div class="house-item-price">
+                            <span class="house-item-price_big">￥{:round($v.price*$rate,1)}万</span><span>起</span>
+                        </div>
+                        <div class="house-item-cover">
+                            <div class="house-item-cover-block">
+                                <div style="white-space: normal;">{$v.sub_title}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mod-house-item-bottom">
+                        <div class="house-item-title" title="{$v.title}">
+                            {$v.title}
+                        </div>
+                        <div class="house-item-feature">
+                            {:implode(',',$v.type)} · {:implode(',',$v.room)}
+                        </div>
+                        <div class="house-item-trend">
+                            <div class="house-item-trend-item">
+                                最近一年涨幅<span class="trend_num">{$v.rent}</span>
+                            </div>
+                            <div class="house-item-trend-item">
+                                平均租金收益<span class="trend_num">{$v.gain}</span>
+                            </div>
+                        </div>
+                        <div class="house-item-subtext text-ellipsis" title="{$v.sub_title}">
+                            {$v.sub_title}
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+        </div>
+    </div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}" title="查看更多房源">查看更多房源</a></div>
+</div>
+{include file="public/footer" /}

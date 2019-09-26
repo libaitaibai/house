@@ -1,0 +1,79 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="node-name">{$NODE.name}：{$ROLE.name}</div>
+                        </div>
+                        <el-tree
+                                :data="dataForm"
+                                show-checkbox
+                                node-key="id"
+                                ref="tree"
+                                :default-expand-all="true"
+                                :default-checked-keys="keys"
+                                :props="defaultProps">
+                        </el-tree>
+                        <div style="margin-top: 20px">
+                            <el-button @click="setCheckedNodes">全选</el-button>
+                            <el-button @click="resetChecked">取消</el-button>
+                            <el-button type="primary" @click="onSubmit">设置</el-button>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                loading: false,
+                defaultProps: {
+                    children: 'children',
+                    label: 'name'
+                },
+                keys: [],
+                dataForm: [],
+            }
+        },
+        methods: {
+            setCheckedNodes: function () {
+                this.$refs.tree.setCheckedNodes(this.dataForm);
+            },
+            resetChecked: function () {
+                this.$refs.tree.setCheckedKeys([]);
+            },
+            onSubmit: function () {
+                var _this = this;
+                axios.post(vm.hash, {
+                    nids: _this.$refs.tree.getCheckedKeys()
+                }).then(function (res) {
+                });
+            },
+        },
+        beforeMount: function () {
+            var _this = this;
+            axios.get(vm.hash).then(function (res) {
+                if (res.code == 1) {
+                    for (var _i in res.data) {
+                        _this[_i] = res.data[_i];
+                    }
+                }
+            });
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

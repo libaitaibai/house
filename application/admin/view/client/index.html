@@ -1,0 +1,158 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="left-info">
+                                <a href="#{:url('client/add')}">
+                                    <el-button type="primary" icon="el-icon-plus">添加客户</el-button>
+                                </a>
+                            </div>
+                            <div class="search">
+                                <el-form :inline="true" :model="search">
+                                    <el-form-item label="">
+                                        <el-input v-model="search.q" placeholder="用户名"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="onSearch">查询</el-button>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </div>
+
+                        <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                            <el-table-column type="expand" v-if="_xs">
+                                <template slot-scope="props">
+                                    <el-form label-position="left" inline class="table-expand">
+                                        <el-form-item label="登录名">
+                                            <span>{{ props.row.username }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="姓名">
+                                            <span>{{ props.row.name }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="手机">
+                                            <span>{{ props.row.phone }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="添加时间">
+                                            <span>{{ props.row.addtime }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="上次改密">
+                                            <span>{{ props.row.edit_password_time }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="状态">
+                                            <el-tag size="small" v-if="props.row.lock==0" type="success">激活</el-tag>
+                                            <el-tag size="small" v-else type="danger">锁定</el-tag>
+                                        </el-form-item>
+                                        <el-form-item label="锁定原因">
+                                            <span>{{ props.row.lock_msg }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="操作">
+                                            <el-button size="mini" type="text" @click="house(props.row)">查看</el-button>
+                                            <el-button size="mini" type="text" @click="tongji(props.row)">统计</el-button>
+                                            <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
+                                            <el-button size="mini" type="text" @click="del(props.row)">删除</el-button>
+                                        </el-form-item>
+                                    </el-form>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                            <el-table-column prop="username" label="用户名" :width="xs ? '' : 150"></el-table-column>
+                            <el-table-column prop="name" label="姓名" width="120" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column prop="phone" label="手机" width="140" v-if="!xs"></el-table-column>
+                            <el-table-column prop="addtime" label="添加时间" width="160" v-if="!xs"></el-table-column>
+                            <el-table-column prop="edit_password_time" label="上次改密" width="160" v-if="!xs"></el-table-column>
+                            <el-table-column label="状态" width="120" v-if="!xs">
+                                <template slot-scope="props">
+                                    <el-tag size="small" v-if="props.row.lock==0" type="success">激活</el-tag>
+                                    <el-tag size="small" v-else type="danger">锁定</el-tag>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="lock_msg" label="锁定原因" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column fixed="right" label="操作" width="180" v-if="!xs">
+                                <template slot-scope="props">
+                                    <el-button size="mini" type="text" @click="house(props.row)">房产</el-button>
+                                    <el-button size="mini" type="text" @click="tongji(props.row)">统计</el-button>
+                                    <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
+                                    <el-button size="mini" type="text" @click="del(props.row)">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div id="pages" v-if="total">
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page="currentPage"
+                                    :page-sizes="pageConfig.pageSizes"
+                                    :page-size="pageConfig.pageSize"
+                                    :pager-count="pageConfig.pageCount"
+                                    :layout="pageConfig.layout"
+                                    :total="total">
+                            </el-pagination>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                total: 0,
+                search: {
+                    q: '',
+                },
+                pageConfig: _pageConfig,
+                currentPage: 1,
+                list: [],
+                multipleSelection: []
+            }
+        },
+        methods: {
+            house: function (row) {
+                window.location.hash = '{:url("house/index")}?client_id=' + row.id;
+            },
+            tongji: function (row) {
+                window.location.hash = '{:url("task/tongji")}?client_id=' + row.id;
+            },
+            edit: function (row) {
+                window.location.hash = '{:url("client/edit")}?id=' + row.id;
+            },
+            del: function (row) {
+                var _this = this;
+                this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function (res) {
+                    axios.post('{:url("client/del")}', {
+                        id: row.id
+                    }).then(function (res) {
+                        if (res.code == 1) {
+                            _this.currentPage = 1;
+                            _this.getList();
+                        }
+                    });
+                }).catch(function () {
+                });
+            },
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getList();
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

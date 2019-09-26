@@ -1,0 +1,20 @@
+{include file="public/m_header" /}
+{include file="public/m_page_header" /}
+<section style="background: #FFFFFF;padding: 30px 15px;">
+    <ul class="checkin-wappers">
+        <?php
+            $list=db('ads_data')->where(['aid'=>8,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
+        ?>
+        {volist name="list" id="v"}
+        <li>
+            <a {if $v.url}href="{$v.url}"{/if}>
+            <div class="checkin-img-wapper">
+                <img src="{$v.thumb}">
+            </div>
+            <p>{$v.title}</p>
+            </a>
+        </li>
+        {/volist}
+    </ul>
+</section>
+{include file="public/m_footer" /}

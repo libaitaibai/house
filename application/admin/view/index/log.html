@@ -1,0 +1,80 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="left-info">
+                                <div class="node-name">登录日志</div>
+                            </div>
+                            <div class="search">
+                                <el-form :inline="true" :model="search">
+                                    <el-form-item label="">
+                                        <el-date-picker
+                                                v-model="search.daterange"
+                                                type="daterange"
+                                                range-separator="至"
+                                                start-placeholder="开始日期"
+                                                end-placeholder="结束日期"
+                                                value-format="yyyy-MM-dd">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="onSearch">查询</el-button>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </div>
+
+                        <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                            <el-table-column prop="time" label="时间" width="160"></el-table-column>
+                            <el-table-column prop="ip" label="IP" show-overflow-tooltip></el-table-column>
+                        </el-table>
+                        <div id="pages" v-if="total">
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page="currentPage"
+                                    :page-sizes="pageConfig.pageSizes"
+                                    :page-size="pageConfig.pageSize"
+                                    :pager-count="pageConfig.pageCount"
+                                    :layout="pageConfig.layout"
+                                    :total="total">
+                            </el-pagination>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                total: 0,
+                search: {},
+                pageConfig: _pageConfig,
+                currentPage: 1,
+                list: [],
+                multipleSelection: []
+            }
+        },
+        methods: {},
+        beforeMount: function () {
+            _init(this);
+            this.getList();
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

@@ -1,0 +1,118 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        <div class="main dashboard">
+            <el-row :gutter="xs ? 5 : 20">
+                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                    <el-card shadow="hover">
+                        <div class="box-card">
+                            <div class="icon"><i class="fas fa-users" style="color: #ed3f14"></i></div>
+                            <div class="info">
+                                <div class="title">客户</div>
+                                <div class="num">{{myinfo.data.client}}</div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                    <el-card shadow="hover">
+                        <div class="box-card">
+                            <div class="icon"><i class="far fa-newspaper" style="color: #ff9900"></i></div>
+                            <div class="info">
+                                <div class="title">公共文章</div>
+                                <div class="num">{{myinfo.data.news}}</div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                    <el-card shadow="hover">
+                        <div class="box-card">
+                            <div class="icon"><i class="fas fa-city" style="color: #2d8cf0"></i></div>
+                            <div class="info">
+                                <div class="title">公共房源</div>
+                                <div class="num">{{myinfo.data.house}}</div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                    <el-card shadow="hover">
+                        <div class="box-card">
+                            <div class="icon"><i class="fas fa-house-damage" style="color: #19be6b"></i></div>
+                            <div class="info">
+                                <div class="title">客户房源</div>
+                                <div class="num">{{myinfo.data.client_house}}</div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                    <el-card shadow="hover">
+                        <div class="box-card">
+                            <div class="icon"><i class="fas fa-newspaper" style="color: #e46cbb"></i></div>
+                            <div class="info">
+                                <div class="title">我的文章</div>
+                                <div class="num">{{myinfo.data.agent_news}}</div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                    <el-card shadow="hover">
+                        <div class="box-card">
+                            <div class="icon"><i class="fas fa-hotel" style="color: #9a66e4"></i></div>
+                            <div class="info">
+                                <div class="title">我的房源</div>
+                                <div class="num">{{myinfo.data.agent_house}}</div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+            <el-row :gutter="20" style="margin-bottom: 20px">
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="clearfix">
+                            <span>个人信息</span>
+                        </div>
+                        <div class="my-info">
+                            <el-table
+                                    :data="myinfo.info"
+                                    :show-header="false"
+                                    stripe
+                                    style="width: 100%">
+                                <el-table-column prop="key" label="" width="120" align="right">
+                                </el-table-column>
+                                <el-table-column prop="value" label="">
+                                </el-table-column>
+                            </el-table>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                myinfo: {
+                    info: [],
+                    data: []
+                },
+            }
+        },
+        methods: {},
+        beforeMount: function () {
+            var _this = this;
+            axios.get('{:url("index/getUinfo")}').then(function (res) {
+                _this.myinfo = res;
+            });
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>

@@ -1,0 +1,176 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <el-form :model="dataForm" :rules="rules" ref="dataForm" label-width="100px">
+                            <el-form-item label="用户名" prop="username">
+                                <el-input v-model="dataForm.username"></el-input>
+                            </el-form-item>
+                            <el-form-item label="姓名" prop="name">
+                                <el-input v-model="dataForm.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="照片" prop="photo">
+                                <el-upload
+                                        class="avatar-uploader"
+                                        action="{:url('sys/upImg')}"
+                                        :show-file-list="false"
+                                        :on-success="function(res, file, fileList){return handleUploadImgSuccess(res, file, fileList,'photo')}"
+                                        :before-upload="function(file){return beforeUploadImg(file, 2)}"
+                                        accept="image/*">
+                                    <img v-if="dataForm.photo" :src="dataForm.photo" class="avatar">
+                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                </el-upload>
+                            </el-form-item>
+                            <el-form-item label="联系电话" prop="phone">
+                                <el-input v-model="dataForm.phone"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Email" prop="email">
+                                <el-input v-model="dataForm.email"></el-input>
+                            </el-form-item>
+                            <el-form-item label="住址" prop="address">
+                                <el-input v-model="dataForm.address"></el-input>
+                            </el-form-item>
+                            <el-form-item label="执照号" prop="license">
+                                <el-input v-model="dataForm.license"></el-input>
+                            </el-form-item>
+                            <el-form-item label="语言" prop="lang">
+                                <el-select v-model="dataForm.lang" multiple filterable allow-create placeholder="请选择">
+                                    <el-option v-for="item in apiData.lang" :key="item" :label="item" :value="item">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="简介" prop="introduction" style="position: relative;z-index: 2000">
+                                <div ref="introduction" class="editor"></div>
+                            </el-form-item>
+                            <el-form-item label="上线主页" prop="build_page">
+                                <el-date-picker v-model="dataForm.build_page" align="right" type="date" placeholder="选择过期日期" :picker-options="pickerOptions"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="创建客户" prop="build_client">
+                                <el-input v-model="dataForm.build_client"></el-input>
+                            </el-form-item>
+                            <el-form-item label="经纪后台" prop="build_admin">
+                                <el-date-picker v-model="dataForm.build_admin" align="right" type="date" placeholder="选择过期日期" :picker-options="pickerOptions"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="锁定" prop="lock">
+                                <el-switch v-model="dataForm.lock" :inactive-value="0" :active-value="1"></el-switch>
+                            </el-form-item>
+                            <el-form-item label="原因" prop="lock_msg">
+                                <el-input type="textarea" v-model="dataForm.lock_msg"></el-input>
+                            </el-form-item>
+                            <el-form-item label="新密码" prop="password">
+                                <el-input type="password" v-model="dataForm.password" placeholder="不修改,则不填写"></el-input>
+                            </el-form-item>
+                            <el-form-item label="确认密码" prop="password_confirm">
+                                <el-input type="password" v-model="dataForm.password_confirm"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="postForm()">提交</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            //密码确认
+            var _this = this;
+            var pwdConfirm = function (rule, value, callback) {
+                if (_this.dataForm.password != value && (_this.dataForm.password || value)) {
+                    return callback(new Error('两次密码不一致'));
+                }
+                callback();
+            };
+            return {
+                xs: _xs,
+                loading: false,
+                apiData: {},    //固定格式
+                dataForm: {},
+                pickerOptions: {
+                    shortcuts: [{
+                        text: '一个月',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() + 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '三个月',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() + 3600 * 1000 * 24 * 30 * 3);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '六个月',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() + 3600 * 1000 * 24 * 30 * 6);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '一年',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() + 3600 * 1000 * 24 * 30 * 12);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '二年',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() + 3600 * 1000 * 24 * 30 * 12 * 2);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '三年',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() + 3600 * 1000 * 24 * 30 * 12 * 3);
+                            picker.$emit('pick', date);
+                        }
+                    }]
+                },
+                rules: {
+                    username: [
+                        {required: true, message: '请输入用户名', trigger: 'blur'},
+                        {min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur'}
+                    ],
+                    password: [
+                        {min: 8, max: 20, message: '长度在 8 到 20 个字符', trigger: 'blur'}
+                    ],
+                    password_confirm: [
+                        {validator: pwdConfirm, trigger: 'blur'}
+                    ],
+                    name: [
+                        {required: true, message: '请输入真实姓名', trigger: 'blur'},
+                    ],
+                    phone: [
+                        {required: true, message: '请输入联系电话', trigger: 'blur'}
+                    ],
+                    email: [
+                        {required: true, type: 'email', message: '请输入email', trigger: 'blur'}
+                    ],
+                }
+            }
+        },
+        methods: {},
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {},
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

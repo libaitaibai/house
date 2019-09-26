@@ -1,0 +1,472 @@
+{include file="public/header" /}
+<div class="transparent-navbar">
+    <div class="content-block clearfix" style="width: 98%!important;margin: 0 auto">
+        <div class="index-nav_left" style="margin-left: 28px;">
+            <div class="index-nav-item_logo">
+                <a href="/"><span class="nav-logo"></span></a>
+            </div>
+            <div class="index-nav-item ">
+                <a class="link-nav" href="/" title="首页">奥兰多房产首页</a>
+            </div>
+            <div class="index-nav-item hover-show">
+                <a href="{:url('index/index/listHouse')}">精选房源</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="/house____%E6%96%B0%E6%88%BF_.html" class="link-block">奥兰多新房源</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="/house____%E4%BA%8C%E6%89%8B%E6%88%BF_.html" class="link-block">奥兰多二手房源</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="/house____%E5%9C%9F%E5%9C%B0_.html" class="link-block">土地投资</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="index-nav-item">
+                <a href="{:url('index/index/listAgent')}">房产经纪</a>
+            </div>
+            <div class="index-nav-item">
+                <a href="{:url('index/index/butlerCompany')}">房屋管理</a>
+            </div>
+            <div class="index-nav-item hover-show ">
+                <a href="javascript:;">房屋装修</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/index/decorationCompany')}" class="link-block">度假屋装修</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/index/listDecorator')}" class="link-block">装修工人</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show ">
+                <a href="{:url('index/index/listArticle')}">房产资讯</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    {volist name="articleTag" id="v"}
+                    <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show ">
+                <a href="javascript:;">奥兰多生活助手</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">奥兰多介绍</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">奥兰多街景</a>
+                    </li>
+                    <!--<li class="index-dropdown-item ">-->
+                    <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
+                    <!--</li>-->
+                    <!--<li class="index-dropdown-item ">-->
+                    <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
+                    <!--</li>-->
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/index/developerCompany')}" class="link-block">美国开发商</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show ">
+                <a href="javascript:;">关于我们</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <?php
+                        $list=db('ads_data')->where('aid',11)->where('show',1)->select();
+                    ?>
+                    {volist name="list" id="v"}
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/index/page?id='.$v['id'])}" class="link-block">{$v.title}</a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <form action="{:url('index/index/listHouse')}">
+            <div class="index-nav_right" style="margin-right: 28px">
+                <div class=" uoolu-search search-group " id="houseListSearch">
+                        <input class="search-input" name="q" autocomplete="off" type="text" placeholder="房源查询">
+                        <a href="javascript:;" class="search-btn" id="sbtn">
+                            <img src="__RES__/images/search.png" alt="">
+                        </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="index-banner">
+    <div class="swiper-container banner_swiper">
+        <?php
+            $list=db('ads_data')->where(['aid'=>1,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(5)->select();
+        ?>
+        <!-- 导航按钮 -->
+        <div class="swiper-navigation-wrapper">
+            <ul class="swiper-navigation content-block">
+                {volist name="$list" id="v"}
+                <li class="navigation-item">
+                    {$v.title}
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <!-- 左右滑动按钮 -->
+        <div class="banner-button_prev">
+            <span class="iconfont icon-youluPC_common_arrow_th"></span>
+        </div>
+        <div class="banner-button_next">
+            <span class="iconfont icon-youluPC_common_arrow_th1"></span>
+        </div>
+        <div class="swiper-wrapper">
+            {volist name="$list" id="v"}
+            <div class="swiper_item swiper-slide" style="background-image: url({$v.thumb})">
+                {if $v.url}<a target="_blank" href="{$v.url}" class="link-block"></a>{/if}
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+</div>
+<div class="index-status-bar">
+    <ul class="content-block status-bar-content">
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_user"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">靠谱</div>
+                <div>顾问一对一服务最大化保障您的利益</div>
+            </div>
+        </li>
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_city"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">真实房源</div>
+                <div>执照经纪人推荐房源</div>
+            </div>
+        </li>
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_partn"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">专业团队</div>
+                <div>实时咨询执照经纪人</div>
+            </div>
+        </li>
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_house"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">房产管理</div>
+                <div>一站式托管不在为租房卖房琐事烦心</div>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- 精选房源 -->
+<div class="page-national-house">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">奥兰多精选房源</h5>
+            <div class="info-sub">执照经纪人为您精挑细选</div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="house-list-wrap content-block">
+        <div class="house-list">
+            <?php
+                $houseDb= new \app\admin\model\CmsHouse();
+                $list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(8)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li class="mod-house-item">
+                <a target="_blank" href="{:url('index/index/showHouse',['id'=>$v.id])}" class="link-block">
+                    <div class="mod-house-item-top">
+                        <img class="house-item-pic" src="{:thumb($v.thumb,280,162)}" alt="">
+                        <div class="house-item-price">
+                            <span class="house-item-price_big">￥{:round($v.price*$rate,1)}万</span><span>起</span>
+                        </div>
+                        <div class="house-item-cover">
+                            <div class="house-item-cover-block">
+                                <div style="white-space: normal;">{$v.sub_title}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mod-house-item-bottom">
+                        <div class="house-item-title" title="{$v.title}">
+                            {$v.title}
+                        </div>
+                        <div class="house-item-feature">
+                            {:implode(',',$v.type)} · {:implode(',',$v.room)}
+                        </div>
+                        <div class="house-item-trend">
+                            <div class="house-item-trend-item">
+                                最近一年涨幅<span class="trend_num">{$v.rent}</span>
+                            </div>
+                            <div class="house-item-trend-item">
+                                平均租金收益<span class="trend_num">{$v.gain}</span>
+                            </div>
+                        </div>
+                        <div class="house-item-subtext text-ellipsis" title="{$v.sub_title}">
+                            {$v.sub_title}
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+        </div>
+    </div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}" title="查看更多房源">查看更多房源</a></div>
+</div>
+<div class="page-national-guide" style="background: none">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">推荐经纪人</h5>
+            <div class="info-sub">美国执照经纪人，资深房源管理专家，为您提供专业服务</div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="house-list-wrap content-block">
+        <div class="house-list agent">
+            <?php
+                $cmsAgentDb= new \app\admin\model\CmsAgent();
+                $list=$cmsAgentDb->where(['show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(4)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li class="mod-house-item">
+                <a target="_blank" href="{:url('index/index/showAgent',['id'=>$v.id])}" class="link-block">
+                    <div class="mod-house-item-top">
+                        <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
+                        <div class="qr">
+                            <img src="{$v.qr}" alt="">
+                            <p>微信扫一扫</p>
+                        </div>
+                    </div>
+                    <div class="mod-house-item-bottom">
+                        <div class="house-item-title">
+                            {$v.title}
+                        </div>
+                        <div class="house-item-subtext">
+                            {$v.description}
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+        </div>
+    </div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listAgent')}" title="查看经纪人">查看经纪人</a></div>
+</div>
+<div class="checkin-big-wapper">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">房屋管理</h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>9,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(6)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li>
+                <a target="_Blank" href="javascript:;">
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+<div class="checkin-big-wapper">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">度假屋装修</h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>10,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(6)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li>
+                <a target="_Blank" href="javascript:;">
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+<div class="checkin-big-wapper">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">美国开发商</h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>8,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(6)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li>
+                <a target="_Blank" href="javascript:;">
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+<div class="page-national-guide">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">奥兰多房产资讯</h5>
+            <div class="info-sub">生活、旅游、移民、教育等你想知道的，这里都有</div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="content-block">
+        <div class="guide-pic-list">
+            <?php
+                $cmsArticleDb= new \app\admin\model\CmsArticle();
+                $list=$cmsArticleDb->where(['show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(7)->select();
+            ?>
+            {volist name="list" id="v" length='3'}
+            <a target="_blank" class="list-item" href="{:url('index/index/showArticle',['id'=>$v.id])}">
+                <img src="{:thumb($v.thumb,385,205)}" alt="{$v.title}">
+                <div class="item-desc">
+                    <div class="desc-inner">{$v.title}</div>
+                </div>
+            </a>
+            {/volist}
+        </div>
+        <div class="guide-text-list">
+            {volist name="list" id="v" offset='3'}
+            <div class="list-item">
+                <a target="_blank" class="item-pic" href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{:thumb($v.thumb,165,115)}" alt="{$v.title}"></a>
+                <div class="item-info">
+                    <a class="info-title" href="{:url('index/index/showArticle',['id'=>$v.id])}">{$v.title}</a>
+                    <div class="info-desc">{$v.description}</div>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <div class="page-national-more-btn"><a target="_blank" class="link-btn" href="{:url('index/index/listArticle')}" title="查看更多资讯">查看更多资讯</a></div>
+    </div>
+</div>
+<div class="index-remark">
+    <div class="content-block">
+        <div class="page-national-title" style="color: #ffffff;">
+            <span>用户评价</span>
+        </div>
+        <div class="remark-swiper-container">
+            <!-- Slider main container -->
+            <div class="swiper-container remark-swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <?php
+                        $list=db('ads_data')->where(['aid'=>2,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
+                    ?>
+                    {volist name="list" id="v"}
+                    <div class="swiper-slide remark-slide">
+                        <a href="javascript:;"><img class="remark-house-pic" src="{$v.thumb}" alt=""></a>
+                        <div class="remark-user">
+                            <div class="remark-info">
+                                <img src="__RES__/images/avatar/{$key}.gif" alt="" class="remark-avartar">
+                                <div class="remark-user-info">
+                                    <div class="remark-username">&nbsp; </div>
+                                    <div class="remark-review">{$v.title}</div>
+                                </div>
+                            </div>
+                            <div class="remark-comment">
+                                {$v.content|raw}
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <!-- If we need navigation buttons -->
+            <div class="remark-button_prev">
+                <span class="iconfont icon-youluPC_common_arrow_th"></span>
+            </div>
+            <div class="remark-button_next">
+                <span class="iconfont icon-youluPC_common_arrow_th1"></span>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination remark-swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+<div class="page-national-guide">
+    <div class="site_layout">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">购房流程</h5>
+                <div class="info-sub">一站式海外置业为您保驾护航</div>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <div class="content-block">
+            <img src="__RES__/images/guide-process.jpg">
+        </div>
+    </div>
+</div>
+{if !empty($hide)}
+<div class="checkin-big-wapper">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">合作品牌</h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>3,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(6)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li>
+                <a target="_Blank" href="javascript:;">
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+{/if}
+{include file="public/footer" /}

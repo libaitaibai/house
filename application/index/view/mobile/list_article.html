@@ -1,0 +1,47 @@
+{include file="public/m_header" /}
+{include file="public/m_page_header" /}
+<section class="sub-nav">
+    {volist name="articleTag" id="v"}
+    <a class="{if input('param.tag')==$v}on{/if}" href="{:url('index/mobile/listArticle',['tag'=>$v])}">{$v}</a>
+    {/volist}
+</section>
+<section class="section-card page-list-section" style="margin-top: 0">
+    <div id="page-list" class="swiper-container">
+        <div class="swiper-wrapper">
+            {volist name="listArticle" id="v" length="5"}
+            <div class="swiper-slide">
+                <a href="{:url('index/mobile/showArticle',['id'=>$v.id])}">
+                    <img src="{:thumb($v.thumb,750,400)}">
+                    <div class="text"><p uigs="lunbo_txt0">{$v.title}</p></div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+    <div class="section-tab-content">
+        <div class="list-inner dropload" data-url="{:url('index/api/listArticle?tag='.input('param.tag'))}">
+            <div class="ajax-box">
+                {volist name="listArticle" id="v" offset="5"}
+                <div class="list-item">
+                    <a href="{:url('index/mobile/showArticle',['id'=>$v.id])}">
+                        <div class="item-pic"><img src="{:thumb($v.thumb,300,200)}" alt="{$v.title}"></div>
+                        <div class="item-info">
+                            <div class="info-title">{$v.title}</div>
+                            <div class="item-desc">
+                                <div class="desc-info">
+                                    <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M512 346.112c-91.136 0-165.376 74.24-165.376 165.376s74.24 165.376 165.376 165.376 165.376-74.24 165.376-165.376-74.24-165.376-165.376-165.376z m0 269.312c-57.344 0-103.936-46.592-103.936-103.936 0-57.344 46.592-103.936 103.936-103.936s103.936 46.592 103.936 103.936-46.592 103.936-103.936 103.936z m437.76-119.296c-73.728-139.776-247.296-281.088-437.76-281.088s-364.032 141.312-437.248 281.088l-8.704 15.872 8.704 15.872c73.216 139.776 246.784 281.088 437.248 281.088s364.032-141.824 437.76-281.088l8.192-15.872-8.192-15.872z m-437.76 247.296c-156.672 0-305.664-116.736-373.248-231.424 68.096-115.2 216.576-231.424 373.248-231.424s305.664 116.224 373.248 231.424c-67.584 114.688-216.576 231.424-373.248 231.424z"></path>
+                                    </svg>
+                                    <i>{$v.hits}</i>
+                                </div>
+                                <div class="desc-info">{$v.addtime}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {/volist}
+            </div>
+        </div>
+    </div>
+</section>
+{include file="public/m_footer" /}

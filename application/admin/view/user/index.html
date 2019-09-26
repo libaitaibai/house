@@ -1,0 +1,236 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="left-info">
+                                <a href="#{:url('user/add')}">
+                                    <el-button type="primary" icon="el-icon-plus">添加用户</el-button>
+                                </a>
+                                <el-dropdown @command="handleCommand" trigger="click">
+                                    <el-button>
+                                        更多操作<i class="el-icon-arrow-down el-icon--right"></i>
+                                    </el-button>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item command="delUser">删除用户</el-dropdown-item>
+                                        <el-dropdown-item command="lockUser">锁定用户</el-dropdown-item>
+                                        <el-dropdown-item command="activeUser">激活用户</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </div>
+                            <div class="search">
+                                <el-form :inline="true" :model="search">
+                                    <el-form-item label="">
+                                        <el-input v-model="search.q" placeholder="用户名"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="onSearch">查询</el-button>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </div>
+
+                        <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                            <el-table-column type="expand" v-if="_xs">
+                                <template slot-scope="props">
+                                    <el-form label-position="left" inline class="table-expand">
+                                        <el-form-item label="登录名">
+                                            <span>{{ props.row.username }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="姓名">
+                                            <span>{{ props.row.name }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="手机">
+                                            <span>{{ props.row.mobile }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="添加时间">
+                                            <span>{{ props.row.addtime }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="上次改密">
+                                            <span>{{ props.row.edit_password_time }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="状态">
+                                            <el-tag size="small" v-if="props.row.lock==0" type="success">激活</el-tag>
+                                            <el-tag size="small" v-else type="danger">锁定</el-tag>
+                                        </el-form-item>
+                                        <el-form-item label="锁定原因">
+                                            <span>{{ props.row.lock_msg }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="操作">
+                                            <el-button size="mini" type="text" @click="edit(props.row)" :disabled="props.row.id > 1 ? false : true">编辑</el-button>
+                                            <el-button size="mini" type="text" @click="del(props.row)" :disabled="props.row.id > 1 ? false : true">删除</el-button>
+                                        </el-form-item>
+                                    </el-form>
+                                </template>
+                            </el-table-column>
+                            <el-table-column type="selection" width="40"></el-table-column>
+                            <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                            <el-table-column prop="username" label="用户名" :width="xs ? '' : 150"></el-table-column>
+                            <el-table-column prop="name" label="姓名" width="120" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column prop="mobile" label="手机" width="140" v-if="!xs"></el-table-column>
+                            <el-table-column prop="addtime" label="添加时间" width="160" v-if="!xs"></el-table-column>
+                            <el-table-column prop="edit_password_time" label="上次改密" width="160" v-if="!xs"></el-table-column>
+                            <el-table-column prop="role_name" label="角色组" width="180" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column label="状态" width="120" v-if="!xs">
+                                <template slot-scope="props">
+                                    <el-tag size="small" v-if="props.row.lock==0" type="success">激活</el-tag>
+                                    <el-tag size="small" v-else type="danger">锁定</el-tag>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="lock_msg" label="锁定原因" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column fixed="right" label="操作" width="100" v-if="!xs">
+                                <template slot-scope="props">
+                                    <el-button size="mini" type="text" @click="edit(props.row)" :disabled="props.row.id > 1 ? false : true">编辑</el-button>
+                                    <el-button size="mini" type="text" @click="del(props.row)" :disabled="props.row.id > 1 ? false : true">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div id="pages" v-if="total">
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page="currentPage"
+                                    :page-sizes="pageConfig.pageSizes"
+                                    :page-size="pageConfig.pageSize"
+                                    :pager-count="pageConfig.pageCount"
+                                    :layout="pageConfig.layout"
+                                    :total="total">
+                            </el-pagination>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                total: 0,
+                search: {
+                    q: ''
+                },
+                pageConfig: _pageConfig,
+                currentPage: 1,
+                list: [],
+                multipleSelection: []
+            }
+        },
+        methods: {
+            edit: function (row) {
+                window.location.hash = '{:url("user/edit")}?id=' + row.id;
+            },
+            del: function (row) {
+                var _this = this;
+                this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function (res) {
+                    axios.post('{:url("user/del")}', {
+                        id: row.id
+                    }).then(function (res) {
+                        if (res.code == 1) {
+                            _this.currentPage = 1;
+                            _this.getData();
+                        }
+                    });
+                }).catch(function () {
+                });
+            },
+            delUser: function () { //批量删除
+                var _this = this;
+                var _ids = [];
+                for (var _i in this.multipleSelection) {
+                    var _item = _this.multipleSelection[_i]['id'];
+                    _ids.push(_item);
+                }
+                if (_ids.length == 0) {
+                    _this.$message.error('未勾选任何数据');
+                    return;
+                }
+                this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function (res) {
+                    axios.post('{:url("user/del")}', {
+                        ids: _ids
+                    }).then(function (res) {
+                        _this.currentPage = 1;
+                        _this.getData();
+                    });
+                }).catch(function () {
+                });
+            },
+            lockUser: function () { //批量锁定用户
+                var _this = this;
+                var _ids = [];
+                for (var _i in this.multipleSelection) {
+                    var _item = _this.multipleSelection[_i]['id'];
+                    _ids.push(_item);
+                }
+                if (_ids.length == 0) {
+                    _this.$message.error('未勾选任何数据');
+                    return;
+                }
+                _this.$prompt('请输入锁定原因', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                }).then(function (R) {
+                    axios.post('{:url("user/lock")}', {
+                        ids: _ids,
+                        lock: 1,
+                        lock_msg: R.value
+                    }).then(function (res) {
+                        _this.getData();
+                    });
+                }).catch(function () {
+                });
+            },
+            activeUser: function () { //批量激活用户
+                var _this = this;
+                var _ids = [];
+                for (var _i in this.multipleSelection) {
+                    var _item = _this.multipleSelection[_i]['id'];
+                    _ids.push(_item);
+                }
+                if (_ids.length == 0) {
+                    _this.$message.error('未勾选任何数据');
+                    return;
+                }
+                _this.$confirm('此操作将激活所选用户, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function () {
+                    axios.post('{:url("user/lock")}', {
+                        ids: _ids,
+                        lock: 0,
+                        lock_msg: ''
+                    }).then(function (res) {
+                        _this.getList();
+                    });
+                }).catch(function () {
+                });
+            },
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getList();
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

@@ -1,0 +1,356 @@
+{include file="public/header" /}
+{include file="public/nav" /}
+<div class="uoolu-housing-detail-wrap">
+    <!-- 房源信息概览 -->
+    <div class="housing-detail-banner ">
+        <div class="content-block">
+            <div class="uoolu-housing-detail-crumbs">
+                <a class="crumbs-item IMtag" href="/" title="奥兰多房产首页">奥兰多房产首页</a>
+                <a class="crumbs-item" href="{:url('index/index/listHouse')}" title="全球房产">精选房源</a>
+                <a class="crumbs-item" style="color:#878787;" title="{$d.title}">{$d.title}</a>
+            </div>
+            <div class="uoolu-housing-detail-intro-wrap">
+                <div class="housing-detail-intro">
+
+                    <div class="intro-title" style="line-height: 1.5;position: relative;overflow: inherit;margin-bottom: 5px;">
+                        {$d.title}
+                    </div>
+                    <div class="intro-other clearfix">
+                        <div class="other-left-wrap">
+                            <div class="intro-subtitle" style="max-width: 700px;">{$d.sub_title}</div>
+                        </div>
+                        <div class="other-right-wrap">
+
+                            <div class="intro-tip">
+                                {volist name="d.tag" id="v"}
+                                <span class="tip-item tip-item-style-01">{$v}</span>
+                                {/volist}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="housing-detail-pic clearfix">
+                    <div class="pic-left-wrap" style="position: relative;">
+                        <div class="pic-left-top-wrap">
+                            <div id="pic-banner" class="swiper-container" style="height: 100%;">
+                                <div class="swiper-wrapper">
+                                    {volist name="d.photo" id="v"}
+                                    <div class="swiper-slide" style="text-align: center;">
+                                        <a class="img_m"><img class="swiper-lazy img_m" data-src="{$v.url}"></a>
+                                        <div class="swiper-lazy-preloader"></div>
+                                    </div>
+                                    {/volist}
+                                </div>
+                                <!-- 控制箭头 -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                        <div class="pic-left-bottom-wrap">
+                            <div id="pic-thumbnail" class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    {volist name="d.photo" id="v"}
+                                    <div class="swiper-slide swiper-thumbnail {if $key==0}active{/if}" data="{$key}">
+                                        <img class="img_m" src="{:thumb($v.url,145,90)}">
+                                    </div>
+                                    {/volist}
+                                </div>
+                                <!-- 控制箭头 -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pic-right-wrap">
+                        <div class="pic-title">
+                            <div>
+                                <span class="title-main">   ￥<span style="font-weight: bold">{:round($d.price*$rate,1)}{if $d.hprice}~{:round($d.hprice*$rate,1)}{/if}</span><strong>万</strong>  </span>
+
+                            </div>
+
+                            <div class="item-title">约为 {$d.price}{if $d.hprice}~{$d.hprice} 万美元{else /} 万美元起{/if}</div>
+                        </div>
+                        <div class="pic-info">
+                            <div class="info-item-wrap info-item-wrap-section-01">
+                                <div class="item-list">
+                                    <div class="item-num"> {$d.rent}</div>
+                                    <div class="item-title">年均租金</div>
+                                </div>
+                                <div class="item-list">
+                                    <div class="item-num">{$d.gain}</div>
+                                    <div class="item-title">近一年房价涨幅</div>
+                                </div>
+                                <div class="item-list">
+                                    <div class="item-num">{$d.payment}</div>
+                                    <div class="item-title">首付</div>
+                                </div>
+                                {if $d.yuegong}
+                                <div class="item-list">
+                                    <div class="item-num">${$d.yuegong}起</div>
+                                    <div class="item-title">月供</div>
+                                </div>
+                                {/if}
+                            </div>
+                            <div class="info-item-wrap info-item-wrap-section-02">
+                                <div class="item-list-section-02">
+                                    <i class="housing-detail-icon housing-detail-icon-point-01"></i>
+                                    <span class="item-title">
+                                        {volist name="d.type" id="v"}
+                                        {$v}
+                                        {/volist}
+                                    </span>
+                                </div>
+                                <div class="item-list-section-02">
+                                    <i class="housing-detail-icon housing-detail-icon-point-02"></i>
+                                    <span class="item-title">{$d.decoration}</span>
+                                </div>
+                                <div class="item-list-section-02">
+                                    <i class="housing-detail-icon housing-detail-icon-point-03"></i>
+                                    <span class="item-title">{$d.property}</span>
+                                </div>
+                                <div class="item-list-section-02">
+                                    <i class="housing-detail-icon housing-detail-icon-point-04"></i>
+                                    <span class="item-title">
+                                        {volist name="d.purpose" id="v"}
+                                        {$v}
+                                        {/volist}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="info-item-wrap info-item-wrap-section-03">
+                                <div class="item-list-section-03">
+                                    <span class="item-title">项目地址</span>
+                                    <span class="item-desc">
+                                        {$d.address}
+                                        <a class="link-desc event_maodian" href="https://www.google.com/maps/search/{$d.address}" target="_blank" title="[地图]">[地图]</a>
+                                    </span>
+                                </div>
+                                <div class="item-list-section-03">
+                                    <span class="item-title">主力户型</span>
+                                    <span class="item-desc">
+                                        {$d.huxing}
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="info-item-wrap info-item-wrap-section-06" style="padding: 0px;">
+                                <span class="title-tip tip-pin mt15" style="display: flex;"><i>微信添加房产经纪人</i><span
+                                        class="like"></span><i style="flex: 1">快人一步锁定优惠活动和投资方案</i></span>
+                                <div class="consultation-wapper mt10">
+                                    <div class="consultation-left">
+                                        <p style="color: #e81f00;">
+                                            <svg style="vertical-align: middle;height: 20px;margin-right: 5px;" aria-hidden="true" focusable="false" data-prefix="fas"
+                                                 data-icon="mobile-alt" class="svg-inline--fa fa-mobile-alt fa-w-10"
+                                                 role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                                <path fill="currentColor"
+                                                      d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"></path>
+                                            </svg>
+                                            <span style="vertical-align: middle;">(+1) 3216660992</span>
+                                        </p>
+                                        <a href="mailto:info@usahousecenter.com" class="js-show-float btn-consult" title="给我发邮件">给我发邮件</a>
+                                    </div>
+                                    <div class="consultation-right">
+                                        <img src="/uploads/20190313/c85ef4e3b3fd25eb7cdc60a863019f89.png" style="border-radius: 0">
+                                        <p>微信添加经纪人</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 房源步骤 -->
+    <div class="housing-detail-step event_aim ">
+        <div class="step-title">五大步骤轻松做房东</div>
+        <div class="step-list">
+            <div class="list-item">
+                <div class="item-num">1</div>
+                <div class="item-info">
+                    <div class="info-main-title">选择置业项目</div>
+
+                    <div class="info-sub-title"> 100%认证真房源</div>
+
+
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="item-num">2</div>
+                <div class="item-info">
+                    <div class="info-main-title">预约咨询交订金</div>
+                    <div class="info-sub-title">专业顾问一对一服务</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="item-num">3</div>
+                <div class="item-info">
+                    <div class="info-main-title">认购交首付</div>
+                    <div class="info-sub-title">多种资金汇款方式</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="item-num">4</div>
+                <div class="item-info">
+                    <div class="info-main-title">交易过户</div>
+                    <div class="info-sub-title">资金监管，律师解读合同</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="item-num">5</div>
+                <div class="item-info">
+                    <div class="info-main-title">房屋托管</div>
+                    <div class="info-sub-title">委托出租出售</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 房源详情 -->
+    <div class="housing-detail-col-2 clearfix event_content mt30 mb30">
+        <div class="col-2-left" id="house-content">
+            <ul class="h-nav">
+                <li class="menuItem on"><a href="#xmjs">项目介绍</a></li>
+                <li class="menuItem" {if !$d.video}style="display: none"{/if}><a href="#sqsp">社区视频</a></li>
+                <li class="menuItem" {if !$d.vr}style="display: none"{/if}><a href="#vr">VR看房</a></li>
+                <li class="menuItem"><a href="#dkjs">贷款计算</a></li>
+            </ul>
+            <div class="qbox">
+                <div class="cbox" id="xmjs">
+                    <div class="ctitle">项目介绍</div>
+                    <div>{$d.content|raw}</div>
+                    <?php
+                        $realtor=json_decode($d['realtor'],true);
+                        $cs=$realtor['features'];
+                        if(!empty($realtor['features_zh'])) $cs=$realtor['features_zh'];
+                    ?>
+                    {if !empty($realtor)}
+                    <div style="margin-top: 30px">
+                        {volist name="$cs" id="v"}
+                        {volist name="v" id="vv"}
+                        {if $key!='photos'}
+                        <h4 class="title-subsection"> {$key} </h4>
+                        <ul class="list-default">
+                            {volist name="vv" id="vvv"}
+                            <li>{$vvv}</li>
+                            {/volist}
+                        </ul>
+                        {/if}
+                        {/volist}
+                        {/volist}
+                    </div>
+                    {/if}
+                </div>
+                <div class="cbox" id="sqsp" {if !$d.video}style="height:0;overflow: hidden;"{/if}>
+                    <div class="ctitle">社区视频</div>
+                    <div>{if (strpos($d.video,'iframe') !== false)}{$d.video|raw}{else /}<iframe frameborder="0" width="100%" height="400" src="{$d.video|raw}" allowFullScreen="true"></iframe>{/if}</div>{/if}
+                </div>
+                <div class="cbox" id="vr" {if !$d.vr}style="height:0;overflow: hidden;"{/if}>
+                    <div class="ctitle">VR看房</div>
+                    <div>{if (strpos($d.vr,'iframe') !== false)}{$d.vr|raw}{else /}<iframe frameborder="0" width="100%" height="400" src="{$d.vr|raw}" allowFullScreen="true"></iframe>{/if}</div>
+                </div>
+                <div class="cbox" id="dkjs">
+                    <div class="ctitle">贷款计算</div>
+                    <div class="dkbox">
+                        <div class="dk-l">
+                            <p style="font-size: 24px;font-weight: bold;color: #e81f52;">$ <span id="ygjg">--</span><span style="font-size: 14px;color: #666666"> / 月供</span></p>
+                            <p style="font-size: 24px;font-weight: bold;color: #e81f52;">$ <span id="sfjg">--</span><span style="font-size: 14px;color: #666666"> / 首付</span></p>
+                        </div>
+                        <div class="dk-r">
+                            <div class="dk-item">
+                                <div class="lable">房屋总价</div>
+                                <div class="input-box">
+                                    <div class="my"><input type="text" id="zj" value="{$d.price*10000}"></div>
+                                </div>
+                            </div>
+                            <div class="dk-item dk-item-flex">
+                                <div class="dk-item">
+                                    <div class="lable">贷款计划</div>
+                                    <div class="input-box">
+                                        <div class="xzk">
+                                            <select id="jh">
+                                                <option value="30">30年</option>
+                                                <option value="20">20年</option>
+                                                <option value="15">15年</option>
+                                                <option value="10">10年</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dk-item">
+                                    <div class="lable">首付比例</div>
+                                    <div class="input-box">
+                                        <div class="bfb"><input type="text" id="sf" value="20"></div>
+                                    </div>
+                                </div>
+                                <div class="dk-item">
+                                    <div class="lable">利率</div>
+                                    <div class="input-box">
+                                        <div class="bfb"><input type="text" id="lx" value="4.247"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dk-item"><span id="tips"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2-right">
+            {include file="public/side" /}
+        </div>
+
+    </div>
+</div>
+{include file="public/footer" /}
+<script>
+    $(".col-2-right").pin({
+        containerSelector: ".housing-detail-col-2"
+    });
+    var _isZx;
+    $(".dkbox input").bind("input propertychange",function(){
+        $("#tips").html('');
+        clearTimeout(_isZx);
+        _isZx = setTimeout(jsdk, 1000);
+    });
+    $("#jh").change(function () {
+        $("#tips").html('');
+        clearTimeout(_isZx);
+        _isZx = setTimeout(jsdk, 100);
+    });
+    function jsdk() {
+        //总价
+        var _zj = parseFloat($("#zj").val());
+        if (_zj < 10000 || !_zj) {
+            $("#tips").html('房屋总价必须大于1万');
+            return;
+        }
+        //首付
+        var _sf = parseFloat($("#sf").val());
+        if (_sf < 20 || _sf >= 100 || !_sf) {
+            $("#tips").html('首付比例必须大于20小于100');
+            return;
+        }
+        //计划
+        var _jh = parseFloat($("#jh").val());
+        var _lx = parseFloat($("#lx").val());
+        if (_lx < 1 || _lx > 10 || !_lx) {
+            $("#tips").html('利率不能大于10小于1');
+            return;
+        }
+        //贷款本金
+        var _dbj = _zj - (_zj * _sf / 100);
+        //还款月数
+        var _ys = _jh * 12;
+        //月利率
+        var _yll = _lx / 12 / 100;
+        var _yg = _dbj * (_yll * Math.pow((1 + _yll), _ys)) / (Math.pow((1 + _yll), _ys) - 1);
+        $("#ygjg").html(Math.floor(_yg));
+        $("#sfjg").html(Math.floor(_zj - _dbj));
+    }
+
+    jsdk();
+</script>

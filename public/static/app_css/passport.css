@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+    /*background: #2d3a4b;*/
+    /*color: #EEEEEE;*/
+}
+.title{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 100px 0 30px;
+    color: #333333;
+}
+.login .el-input-group__append{
+    padding: 0;
+}
+@media screen and (max-width: 768px) {
+    .el-message-box {
+        max-width: 90%;
+    }
+    .el-message{
+        max-width: 90%;
+        min-width: 300px;
+    }
+}

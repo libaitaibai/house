@@ -1,0 +1,32 @@
+<div class="section-wx-new-code">
+    <div class="wx-img-wapper">
+        <img src="__RES__/images/xcx.jpg">
+        <p>微信小程序</p>
+    </div>
+</div>
+<!-- 相关资讯 -->
+<div class="section-05">
+    <div class="section-title clearfix">
+        <div class="title-info">奥兰多资讯</div>
+        <div class="title-more"><a href="{:url('index/index/listArticle')}" title="更多">更多&gt;</a></div>
+    </div>
+    <div class="section-list">
+        <?php
+            $list=db('cms_article')->where('show',1)->where('thumb','<>','')->order(['sort'=>'desc','id'=>'desc'])->limit(5)->select();
+        ?>
+        {volist name="list" id="v"}
+        <div class="list-item">
+            <div class="item-pic">
+                <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank">
+                    <img src="{:thumb($v.thumb,100,100)}" alt="{$v.title}">
+                </a>
+            </div>
+            <div class="item-info">
+                <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank">
+                    {$v.title}
+                </a>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>

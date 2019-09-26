@@ -1,0 +1,85 @@
+{include file="public/header" /}
+{include file="public/nav" /}
+<div class="content-block">
+    <div class="housing-detail-col-2 clearfix event_content mt10 mb10">
+        <div class="col-2-left left-menu">
+            <div class="m-title">奥兰多资讯</div>
+            <ul>
+                {volist name="articleTag" id="v"}
+                <li><a href="{:url('index/index/listArticle',['tag'=>$v])}" class="{if input('param.tag')==$v}on{/if}">{$v}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="col-2-left left-news">
+            {if !input('?param.page') || input('param.page')==1}
+            <div class="news-swiper">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {volist name="listArticle" id="v" length="5"}
+                        <div class="swiper-slide"><a href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{$v.thumb}" alt="{$v.title}">
+                            <div class="desc"><p>{$v.title}</p></div>
+                        </a></div>
+                        {/volist}
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            {/if}
+            <div class="news clearfix">
+                {if !input('?param.page') || input('param.page')==1}
+                {volist name="listArticle" id="v" offset="5"}
+                <li>
+                    {if $v.thumb}
+                    <div class="thumb">
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{:thumb($v.thumb,160,120)}"></a>
+                    </div>
+                    {/if}
+                    <div class="item-txt">
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank"><p class="tit">{$v.title}</p></a>
+                        <div class="mini-tit">
+                            <span class="card" style="margin-right: 5px">{$v.form}</span>
+                            <span class="hot">热度：<span class="c1">{$v.hits}℃</span></span>
+                            <span class="time">{$v.addtime}</span>
+                        </div>
+                        <div class="txt-main">
+                            {$v.description}
+                        </div>
+                    </div>
+                </li>
+                {/volist}
+                {else}
+                {volist name="listArticle" id="v"}
+                <li>
+                    {if $v.thumb}
+                    <div class="thumb">
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{:thumb($v.thumb,160,120)}"></a>
+                    </div>
+                    {/if}
+                    <div class="item-txt">
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank"><p class="tit">{$v.title}</p></a>
+                        <div class="mini-tit">
+                            {volist name="v.tag" id="tag"}
+                            <span class="card" style="margin-right: 5px">{$tag}</span>
+                            {/volist}
+                            <span class="hot">热度：<span class="c1">{$v.hits}℃</span></span>
+                            <span class="time">{$v.addtime}</span>
+                        </div>
+                        <div class="txt-main">
+                            {$v.description}
+                        </div>
+                    </div>
+                </li>
+                {/volist}
+                {/if}
+            </div>
+            <div class="pt30">
+                <div class="mod_page" align="center">{$listArticle|raw}</div>
+            </div>
+        </div>
+        <div class="col-2-right">
+            {include file="public/side" /}
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}

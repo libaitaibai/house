@@ -1,0 +1,136 @@
+{include file="public/header" /}
+{include file="public/nav" /}
+
+<!-- 快捷入口 开始 -->
+<div class="search-index-suggest" style="background-image: url('__RES__/images/weather_1_10.jpg');">
+    <!-- 搜索 -->
+    <div class="suggest-inner clearfix">
+        <div class="suggest-input">
+            <div class="suggest-input-title">房产搜索</div>
+            <div class="uoolu-ask-search clearfix">
+                <div class="ask_banner_input">
+                    <div class="fix_dib pr">
+                        <form>
+                            <input class="ask_input" name="q" value="{:input('param.q','')}" type="text" placeholder="请输入房产名称">
+                            <a class="ask_search" id="sbtn" href="javascript:;"><img src="__RES__/images/house-search-input-icon.png" alt=""><span class="search_info">搜索</span></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 快捷入口 结束 -->
+<div class="search-index-filter search-index-filter-20170418">
+    <div class="search-index-filter-20170418-inner">
+
+        <div class="content-block">
+            <div class="uoolu-housing-detail-crumbs">
+                <a class="crumbs-item" href="/" title="奥兰多房产首页 ">奥兰多房产首页</a>
+                <a class="crumbs-item" href="javascript:;" title="精选房源">精选房源</a>
+            </div>
+
+            <div class="uoolu-fund-filter  active">
+                {volist name="filter" id="v"}
+                <div class="filter-item">
+                    <div class="item-label">{$v.name}：</div>
+                    <div class="uoolu-filter-list">
+                        <?php
+                            $up=$urlParam;
+                            $up[$v['key']]='';
+                        ?>
+                        <a class="link-list {if !$urlParam[$v['key']]}active{/if}" href="{:url('index/index/listHouse',$up)}" title="全部">全部</a>
+                        {volist name="v.child" id="vv"}
+                        <?php
+                            $up=$urlParam;
+                            $up[$v['key']]=$vv;
+                        ?>
+                        <a class="link-list {if $urlParam[$v['key']]==$vv}active{/if}" href="{:url('index/index/listHouse',$up)}" title="{$vv}">{$vv}</a>
+                        {/volist}
+                    </div>
+                </div>
+                {/volist}
+                <div class="filter-reset">
+                    <a href="{:url('index/index/listHouse')}">
+                        <img src="__RES__/images/house-search-reset.png" alt="">
+                        <span class="reset-title">重置条件</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="bg_white search-index-20170418">
+    <div class="content-block pb50">
+        <div class="search-index-result">
+            <div class="search-piclist-wrap">
+                <div class="search-piclist-outer">
+                    <ul class="search-piclist">
+                        {volist name="listHouse" id="v"}
+                        <li>
+                            <a href="{:url('index/index/showHouse',['id'=>$v.id])}" target="_blank">
+                                <div class="piclist-inner">
+                                    <div class="piclist-left">
+                                        <div class="piclist-img">
+                                            <img src="{:thumb($v.thumb,275,200)}" alt="{$v.title}">
+                                            <div class="piclist-picnum">
+                                                <span class="num">{:count($v.photo)}</span>
+                                                <i class="fa fa-picture-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="piclist-bd">
+                                            <div class="piclist-title">
+                                                <p>
+                                                    <span class="title-info">{$v.title}</span>
+                                                </p>
+                                                
+                                            </div>
+                                            <div class="piclist-info">{if $v.cattype==1}新房{elseif $v.cattype==2}二手房{else}土地{/if} | {:implode(',',$v.type)} | {$v.builddate} 交房 | {$v.property}</div>
+                                            <div class="piclist-location">
+                                                <img width="11" height="14" src="__RES__/images/raise-location-gray.png">
+                                                <span>{$v.address}</span>
+                                            </div>
+                                            <div class="piclist-num">
+                                                <img width="12" height="12" src="__RES__/images/raise-line-gray.png">
+                                                <span class="num-item">近一年房价涨幅<strong>{$v.rent}</strong></span>
+                                                <span class="num-item">年均租金收益 <strong>{$v.gain}</strong></span>
+                                                <span class="num-item">首付比例<strong>{$v.payment}</strong></span>
+                                            </div>
+                                            <div class="piclist-tip">
+                                                {volist name="v.tag" id="vv"}
+                                                <span class="tip-item">{$vv}</span>
+                                                {/volist}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="piclist-right">
+
+                                        <div class="piclist-house-price">
+                                            <div class="price-rmb"> ￥{:round($v.price*$rate,1)}{if $v.hprice}~{:round($v.hprice*$rate,1)}{/if}万</div>
+                                            <div class="price-origin">约{$v.price}{if $v.hprice}~{$v.hprice}{/if}万美元</div>
+                                        </div>
+                                        <div class="piclist-house-wx">
+                                            <div class="" style="margin-top: 15px;">
+                                                <p>微信扫码，随时</p>
+                                                <p>关注项目动态</p>
+                                            </div>
+                                            <img src="__RES__/images/xcx.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {/volist}
+                    </ul>
+                    <div class="bg_white pt30 pb30 pr20">
+                        <div class="mod_page" align="right">{$listHouse|raw}</div>
+                    </div>
+                </div>
+                <!-- 无结果 -->
+
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}

@@ -1,0 +1,133 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="left-info">
+                                <a href="#{:url('ads/add')}">
+                                    <el-button type="primary" icon="el-icon-plus">添加广告位</el-button>
+                                </a>
+                            </div>
+                            <div class="search">
+                                <el-form :inline="true" :model="search">
+                                    <el-form-item label="">
+                                        <el-input v-model="search.q" placeholder="广告位"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="onSearch">查询</el-button>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </div>
+
+                        <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                            <el-table-column type="expand" v-if="_xs">
+                                <template slot-scope="props">
+                                    <el-form label-position="left" inline class="table-expand">
+                                        <el-form-item label="名称">
+                                            <span>{{ props.row.name }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="描述">
+                                            <span>{{ props.row.description }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="数量">
+                                            <span>{{ props.row.ads_data_count }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="操作">
+                                            <el-button size="mini" type="text" @click="ads(props.row)">广告管理</el-button>
+                                            <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
+                                            <el-button size="mini" type="text" @click="del(props.row)">删除</el-button>
+                                        </el-form-item>
+                                    </el-form>
+                                </template>
+                            </el-table-column>
+                            <el-table-column type="selection" width="40"></el-table-column>
+                            <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                            <el-table-column prop="sort" label="权重" width="80"></el-table-column>
+                            <el-table-column prop="name" label="名称" :width="xs ? '' : 240"></el-table-column>
+                            <el-table-column prop="ads_data_count" label="数量" width="80" v-if="!xs"></el-table-column>
+                            <el-table-column prop="description" label="描述" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column fixed="right" label="操作" width="160" v-if="!xs">
+                                <template slot-scope="props">
+                                    <el-button size="mini" type="text" @click="ads(props.row)">广告管理</el-button>
+                                    <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
+                                    <el-button size="mini" type="text" @click="del(props.row)">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div id="pages" v-if="total">
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page="currentPage"
+                                    :page-sizes="pageConfig.pageSizes"
+                                    :page-size="pageConfig.pageSize"
+                                    :pager-count="pageConfig.pageCount"
+                                    :layout="pageConfig.layout"
+                                    :total="total">
+                            </el-pagination>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                total: 0,
+                search: {
+                    q: ''
+                },
+                pageConfig: _pageConfig,
+                currentPage: 1,
+                list: [],
+                multipleSelection: []
+            }
+        },
+        methods: {
+            ads: function (row) {
+                window.location.hash = '{:url("ads/lists")}?aid=' + row.id;
+            },
+            edit: function (row) {
+                window.location.hash = '{:url("ads/edit")}?id=' + row.id;
+            },
+            del: function (row) {
+                var _this = this;
+                this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function (res) {
+                    axios.post('{:url("ads/del")}', {
+                        id: row.id
+                    }).then(function (res) {
+                        if (res.code == 1) {
+                            _this.currentPage = 1;
+                            _this.getList();
+                        }
+                    });
+                }).catch(function () {
+                });
+            },
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getList();
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

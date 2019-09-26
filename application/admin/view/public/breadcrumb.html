@@ -1,0 +1,9 @@
+<div class="top-tool">
+    <el-breadcrumb>
+        <el-breadcrumb-item>仪表盘</el-breadcrumb-item>
+        {volist name="BREADCRUMB" id="v"}
+        <el-breadcrumb-item>{$v.name}</el-breadcrumb-item>
+        {/volist}
+    </el-breadcrumb>
+    <a :href="'#'+_back" v-if="_back"><el-button class="back" size="medium" round icon="el-icon-back">返回</el-button></a>
+</div>

@@ -1,0 +1,162 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <el-form :model="dataForm" :rules="rules" ref="dataForm" label-width="100px">
+                            <el-form-item label="任务名称" prop="title">
+                                <el-input v-model="dataForm.title"></el-input>
+                            </el-form-item>
+                            <el-form-item label="描述" prop="description">
+                                <el-input type="textarea" v-model="dataForm.description"></el-input>
+                            </el-form-item>
+                            <el-form-item label="单价" prop="price">
+                                <el-input v-model="dataForm.price">
+                                    <template slot="append">美元</template>
+                                </el-input>
+                            </el-form-item>
+                            <el-form-item label="类型" prop="type">
+                                <el-radio-group v-model="dataForm.type">
+                                    <el-radio :label="1">单次任务</el-radio>
+                                    <el-radio :label="2">持续任务</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item v-if="dataForm.type==1" label="执行日期" prop="task_date">
+                                <el-date-picker v-model="dataForm.task_date" type="date" :picker-options="{disabledDate(time) { return time.getTime() < Date.now(); }}" placeholder="选择日期">
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item v-if="dataForm.type==2" label="每月执行" prop="num">
+                                <el-input-number v-model="dataForm.num" :min="1" :max="10"></el-input-number>
+                            </el-form-item>
+                            <el-form-item label="状态" prop="status">
+                                <el-radio-group v-model="dataForm.status">
+                                    <el-radio :label="0">等待</el-radio>
+                                    <el-radio :label="1">进行中</el-radio>
+                                    <el-radio :label="9">已停止</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="关联房产" prop="house_id">
+                                <el-select
+                                        v-model="dataForm.house_id"
+                                        filterable
+                                        remote
+                                        clearable
+                                        reserve-keyword
+                                        placeholder="请输入客户名称"
+                                        :remote-method="getHouse"
+                                        :loading="loading">
+                                    <el-option-group
+                                            v-for="group in apiData.clientHouse"
+                                            :key="group.id"
+                                            :label="group.name">
+                                        <el-option
+                                                v-for="item in group.house"
+                                                :key="item.id"
+                                                :label="item.title"
+                                                :value="item.id">
+                                        </el-option>
+                                    </el-option-group>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="分配工人" prop="worker_id">
+                                <el-select
+                                        v-model="dataForm.worker_id"
+                                        filterable
+                                        remote
+                                        clearable
+                                        reserve-keyword
+                                        placeholder="请输入工人姓名"
+                                        :remote-method="getWorker"
+                                        :loading="loading">
+                                    <el-option
+                                            v-for="item in apiData.worker"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="postForm(1)">提交</el-button>
+                                <el-button @click="resetForm()">重置</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,    //固定格式
+                loading: false, //固定格式
+                apiData: {},    //固定格式
+                dataForm: {},   //固定格式
+                rules: {
+                    title: [
+                        {required: true, message: '必填', trigger: 'blur'},
+                    ],
+                    type: [
+                        {required: true, message: '必选', trigger: 'change'},
+                    ],
+                    status: [
+                        {required: true, message: '必选', trigger: 'change'},
+                    ],
+                },
+            }
+        },
+        methods: {
+            getHouse: function (query) {
+                var _this = this;
+                if (query !== '') {
+                    _this.loading = true;
+                    axios.get(vm.hash, {
+                        params: {
+                            ac: 'getClient',
+                            q: query
+                        }
+                    }).then(function (res) {
+                        _this.loading = false;
+                        _this.apiData.clientHouse = res.data.apiData.clientHouse;
+                    });
+                } else {
+                    _this.apiData.clientHouse = [];
+                }
+            },
+            getWorker: function (query) {
+                var _this = this;
+                if (query !== '') {
+                    _this.loading = true;
+                    axios.get(vm.hash, {
+                        params: {
+                            ac: 'getWorker',
+                            q: query
+                        }
+                    }).then(function (res) {
+                        _this.loading = false;
+                        _this.apiData.worker = res.data.apiData.worker;
+                    });
+                } else {
+                    _this.apiData.worker = [];
+                }
+            }
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

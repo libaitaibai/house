@@ -1,0 +1,118 @@
+{include file="public/m_header" /}
+{include file="public/m_page_header" /}
+<section class="house-list-inner">
+    <div class="swiper-container house-swiper">
+        <div class="swiper-wrapper">
+            {volist name="d.photo" id="v"}
+            <div class="swiper-slide">
+                <img {if $i==0}data-{/if}src="{$v.url}" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </div>
+            {/volist}
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="housing-info">
+        <div class="title">{$d.title}</div>
+        <div class="sub-title">{$d.sub_title}</div>
+        <div class="tip">
+            <div class="tip-item">
+                <div class="item-desc">
+                    <span class="desc-unit"></span>
+                    <em class="desc-main">{$d.payment}</em>
+                    <span class="desc-unit">%</span>
+                </div>
+                <div class="item-title">首付比例</div>
+            </div>
+            <div class="tip-item">
+                <div class="item-desc">
+                    <span class="desc-unit"></span>
+                    <em class="desc-main">{$d.gain}</em>
+                    <span class="desc-unit">%</span>
+                </div>
+                <div class="item-title">近一年房价</div>
+            </div>
+            <div class="tip-item">
+                <div class="item-desc">
+                    <span class="desc-unit"></span>
+                    <em class="desc-main">{$d.rent}</em>
+                    <span class="desc-unit">%</span>
+                </div>
+                <div class="item-title">年均租金</div>
+            </div>
+            <div class="tip-item" style="flex: 1">
+                <div class="item-desc">
+                    <span class="desc-unit">￥</span>
+                    <em class="desc-main">{:round($d.price*$rate,1)}</em>
+                    <span class="desc-normal">万起</span>
+                </div>
+                <div class="item-title">总价</div>
+            </div>
+        </div>
+        <div class="tags">
+            {volist name="d.tag" id="v"}
+            <span>
+                <img src="__RES__/m/images/icon-loan-right_3x.png">
+                <em>{$v}</em>
+            </span>
+            {/volist}
+        </div>
+    </div>
+    <div class="info-more">
+        <div class="panel-title">
+            <span>基础信息</span>
+        </div>
+        <div class="panel-box">
+            <div class="detail-info-list">
+                <div class="list-item">
+                    <div class="item-label">物业：</div>
+                    <div class="item-cont">
+                        {volist name="d.type" id="v"}
+                        {$v}
+                        {/volist}
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="item-label">装修：</div>
+                    <div class="item-cont">{$d.decoration}</div>
+                </div>
+                <div class="list-item" style="">
+                    <div class="item-label">类型：</div>
+                    <div class="item-cont">
+                        {volist name="d.purpose" id="v"}
+                        {$v}
+                        {/volist}
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="item-label">产权：</div>
+                    <div class="item-cont">{$d.property}</div>
+                </div>
+                <div class="list-item">
+                    <div class="item-label">交房：</div>
+                    <div class="item-cont">{$d.builddate}</div>
+                </div>
+                <div class="list-item">
+                    <div class="item-label">户型：</div>
+                    <div class="item-cont">{$d.huxing}</div>
+                </div>
+                <div class="list-item" style="width: 100%;">
+                    <div class="item-label">地址：</div>
+                    <div class="item-cont">{$d.address}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="house-content">
+    <div class="panel-title">
+        <span>详细信息</span>
+    </div>
+    <div class="content">
+        {$d.content|raw}
+    </div>
+</section>
+
+{include file="public/m_footer" /}

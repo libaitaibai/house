@@ -1,0 +1,44 @@
+{include file="public/header" /}
+{include file="public/nav" /}
+<div class="content-block">
+    <div class="uoolu-housing-detail-crumbs mt15">
+        <a class="crumbs-item" href="/" title="奥兰多房产首页">奥兰多房产首页</a>
+        <a class="crumbs-item" href="javascript:;" title="经纪人">经纪人</a>
+    </div>
+    <div class="housing-detail-col-2 clearfix event_content">
+        <div class="col-2-right" style="float: left;">
+            {include file="public/side" /}
+        </div>
+        <div class="col-2-left" style="float: right;">
+            <div class="house-list-wrap ">
+                <div class="house-list agent page-agent">
+                    {volist name="listAgent" id="v"}
+                    <li class="mod-house-item">
+                        <a target="_blank" href="{:url('index/index/showAgent',['id'=>$v.id])}" class="link-block">
+                            <div class="mod-house-item-top">
+                                <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
+                                <div class="qr">
+                                    <img src="{$v.qr}" alt="">
+                                    <p>微信扫一扫</p>
+                                </div>
+                            </div>
+                            <div class="mod-house-item-bottom">
+                                <div class="house-item-title">
+                                    {$v.title}
+                                </div>
+                                <div class="house-item-subtext">
+                                    {$v.description}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {/volist}
+                </div>
+            </div>
+            <div class="pt30">
+                <div class="mod_page" align="center">{$listAgent|raw}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}

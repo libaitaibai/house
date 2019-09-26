@@ -1,0 +1,77 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <el-form :model="dataForm" :rules="rules" ref="dataForm" label-width="100px">
+                            <el-form-item label="父节点" prop="arrpid">
+                                <el-cascader v-model="dataForm.arrpid" placeholder="请选择父节点：可搜索" :props="{children: 'children',label: 'name',value: 'id'}" :options="apiData.nodes" filterable change-on-select></el-cascader>
+                            </el-form-item>
+                            <el-form-item label="节点名" prop="name">
+                                <el-input v-model="dataForm.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Module" prop="module">
+                                <el-input v-model="dataForm.module"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Controller" prop="controller">
+                                <el-input v-model="dataForm.controller"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Action" prop="action">
+                                <el-input v-model="dataForm.action"></el-input>
+                            </el-form-item>
+                            <el-form-item label="隐藏" prop="show">
+                                <el-switch v-model="dataForm.show" :inactive-value="1" :active-value="0"></el-switch>
+                            </el-form-item>
+                            <el-form-item label="Icon" prop="icon">
+                                <el-input v-model="dataForm.icon"></el-input>
+                            </el-form-item>
+                            <el-form-item label="排序" prop="sort">
+                                <el-input v-model="dataForm.sort"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="postForm(1)">提交</el-button>
+                                <el-button @click="resetForm()">重置</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                loading: false,
+                apiData: {
+                    nodes: []
+                },
+                dataForm: {},
+                rules: {
+                    arrpid: [
+                        {required: true, message: '请选择父节点', trigger: 'change'},
+                    ],
+                    name: [
+                        {required: true, message: '请输入节点名', trigger: 'blur'},
+                    ],
+                }
+            }
+        },
+        methods: {},
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {},
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

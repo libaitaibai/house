@@ -1,0 +1,16 @@
+{volist name="listAgent" id="v"}
+<a class="link" href="{:url('index/mobile/showAgent?id='.$v['id'])}">
+    <div class="img">
+        <img class="img-bg" src="{:thumb($v.thumb,300,200)}">
+    </div>
+    <div class="right">
+        <div class="title">{$v.title}</div>
+        <div class="node" style="height: 40px;">{$v.description}</div>
+        <div class="text">
+            {volist name="v.lang" id="vv"}
+            <span>{$vv}</span>
+            {/volist}
+        </div>
+    </div>
+</a>
+{/volist}
