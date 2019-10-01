@@ -222,33 +222,35 @@
                 <div class="cbox" id="xmjs">
                     <div class="ctitle">项目介绍</div>
                     <div>{$d.content|raw}</div>
-                    <?php
-                        $realtor=json_decode($d['realtor'],true);
-                        $cs=$realtor['features'];
-                        if(!empty($realtor['features_zh'])) $cs=$realtor['features_zh'];
-                    ?>
+                    <!--<?php-->
+                        <!--$realtor=json_decode($d['realtor'],true);-->
+                        <!--$cs=$realtor['features'];-->
+                        <!--if(!empty($realtor['features_zh'])) $cs=$realtor['features_zh'];-->
+                    <!--?>-->
                     {if !empty($realtor)}
                     <div style="margin-top: 30px">
                         {volist name="$cs" id="v"}
-                        {volist name="v" id="vv"}
-                        {if $key!='photos'}
-                        <h4 class="title-subsection"> {$key} </h4>
-                        <ul class="list-default">
-                            {volist name="vv" id="vvv"}
-                            <li>{$vvv}</li>
+                            {volist name="v" id="vv"}
+                                {if $key!='photos'}
+                                <h4 class="title-subsection"> {$key} </h4>
+                                <ul class="list-default">
+                                    {volist name="vv" id="vvv"}
+                                    <li>{$vvv}</li>
+                                    {/volist}
+                                </ul>
+                                {/if}
                             {/volist}
-                        </ul>
-                        {/if}
-                        {/volist}
                         {/volist}
                     </div>
                     {/if}
                 </div>
-                <div class="cbox" id="sqsp" {if !$d.video}style="height:0;overflow: hidden;"{/if}>
+                <div class="cbox" id="sqsp" {if !$d.video} style="height:0;overflow: hidden;" {/if} >
                     <div class="ctitle">社区视频</div>
-                    <div>{if (strpos($d.video,'iframe') !== false)}{$d.video|raw}{else /}<iframe frameborder="0" width="100%" height="400" src="{$d.video|raw}" allowFullScreen="true"></iframe>{/if}</div>{/if}
+                    <div>{if (strpos($d.video,'iframe') !== false)}{$d.video|raw}{else /}
+                        <iframe frameborder="0" width="100%" height="400" src="{$d.video|raw}" allowFullScreen="true"></iframe>{/if}
+                    </div>
                 </div>
-                <div class="cbox" id="vr" {if !$d.vr}style="height:0;overflow: hidden;"{/if}>
+                <div class="cbox" id="vr" {if !$d.vr}  style="height:0;overflow: hidden;" {/if}>
                     <div class="ctitle">VR看房</div>
                     <div>{if (strpos($d.vr,'iframe') !== false)}{$d.vr|raw}{else /}<iframe frameborder="0" width="100%" height="400" src="{$d.vr|raw}" allowFullScreen="true"></iframe>{/if}</div>
                 </div>
