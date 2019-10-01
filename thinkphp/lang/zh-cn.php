@@ -141,4 +141,73 @@ return [
     'invalid Request method'                                    => '无效的请求类型',
     'invalid token'                                             => '令牌数据无效',
     'not conform to the rules'                                  => '规则错误',
+
+    'home'     => '奥兰多房产首页',
+    'SelectedHouses'    => '精选房源',
+    'NewHousingSources' => '奥兰多新房源',
+    'SecondhandhHousing' => '奥兰多二手房源',
+    'Landinvestment' => '土地投资',
+    'Estatemanager' => '房产经纪',
+    'Housingmanagement' => '房屋管理',
+    'Housedecoration' => '房屋装修',
+    'DecorationofHolidayHouse' => '度假屋装修',
+    'Decorator' => '装修工人',
+    'Realestateinformation' => '房产资讯',
+    'Lifeassistant' => '奥兰多生活助手',
+    'Briefintroduction' => '奥兰多介绍',
+    'StreetView' => '奥兰多街景',
+    'AmericanDeveloper' => '美国开发商',
+    'Aboutus' => '关于我们',
+    'Reliable' => '靠谱',
+    'Consultantsserveonetoonetomaximizeyourbenefits' => '顾问一对一服务最大化保障您的利益',
+    'Reallistings' => '真实房源',
+    'Licensedbrokersrecommendhousingsources' => '执照经纪人推荐房源',
+    'Professionalteam' => '专业团队',
+    'RealtimeConsultingLicensedBroker' => '实时咨询执照经纪人',
+    'Realestatemanagement' => '房产管理',
+    'Onestoptrusteeshipdoesnotbotherwiththetrivialityofrentingandsellinghouses' => '一站式托管不在为租房卖房琐事烦心',
+    'Licensedbrokersselectcarefullyforyou' => '执照经纪人为您精挑细选',
+    'tenthousand' => '万',
+    'rise' => '起',
+    'Increasesinthelastyear' => '最近一年涨幅',
+    'Averagerentalincome' => '平均租金收益',
+    'RecommendationBroker' => '推荐经纪人',
+    'USLicensedBrokerSeniorHousingManagementExperttoprovideyouwithprofessionalservices' => '美国执照经纪人，资深房源管理专家，为您提供专业服务',
+    'Checkoutmorehousingsources' => '查看更多房源',
+    'Sweepaway' => '微信扫一扫',
+    'CheckBrokers' => '查看经纪人',
+    'LifetourismimmigrationeducationetcYouwanttoknowthereare' => '生活、旅游、移民、教育等你想知道的，这里都有',
+    'Viewmoreinformation' => '查看更多资讯',
+    'Userevaluation' => '用户评价',
+    'Purchaseprocess' => '购房流程',
+    'OnestopOverseasHomeEstateCompanyescortsyou' => '一站式海外置业为您保驾护航',
+    'Cooperativebrand' => '合作品牌',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ];

@@ -6,43 +6,43 @@
                 <a href="/"><span class="nav-logo"></span></a>
             </div>
             <div class="index-nav-item ">
-                <a class="link-nav" href="/" title="首页">奥兰多房产首页</a>
+                <a class="link-nav" href="/" title="首页">{:lang('home')}</a>
             </div>
             <div class="index-nav-item hover-show">
-                <a href="{:url('index/index/listHouse')}">精选房源</a>
+                <a href="{:url('index/index/listHouse')}">{:lang('SelectedHouses')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="/house____%E6%96%B0%E6%88%BF_.html" class="link-block">奥兰多新房源</a>
+                        <a href="/house____%E6%96%B0%E6%88%BF_.html" class="link-block">{:lang('NewHousingSources')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="/house____%E4%BA%8C%E6%89%8B%E6%88%BF_.html" class="link-block">奥兰多二手房源</a>
+                        <a href="/house____%E4%BA%8C%E6%89%8B%E6%88%BF_.html" class="link-block">{:lang('SecondhandhHousing')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="/house____%E5%9C%9F%E5%9C%B0_.html" class="link-block">土地投资</a>
+                        <a href="/house____%E5%9C%9F%E5%9C%B0_.html" class="link-block">{:lang('Landinvestment')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item">
-                <a href="{:url('index/index/listAgent')}">房产经纪</a>
+                <a href="{:url('index/index/listAgent')}">{:lang('Estatemanager')}</a>
             </div>
             <div class="index-nav-item">
-                <a href="{:url('index/index/butlerCompany')}">房屋管理</a>
+                <a href="{:url('index/index/butlerCompany')}">{:lang('Housingmanagement')}</a>
             </div>
             <div class="index-nav-item hover-show ">
-                <a href="javascript:;">房屋装修</a>
+                <a href="javascript:;">{:lang('Housedecoration')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/decorationCompany')}" class="link-block">度假屋装修</a>
+                        <a href="{:url('index/index/decorationCompany')}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/listDecorator')}" class="link-block">装修工人</a>
+                        <a href="{:url('index/index/listDecorator')}" class="link-block"></a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item hover-show ">
-                <a href="{:url('index/index/listArticle')}">房产资讯</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <a href="{:url('index/index/listArticle')}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     {volist name="articleTag" id="v"}
                     <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
@@ -50,14 +50,14 @@
                 </ul>
             </div>
             <div class="index-nav-item hover-show ">
-                <a href="javascript:;">奥兰多生活助手</a>
+                <a href="javascript:;">{:lang('Lifeassistant')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">奥兰多介绍</a>
+                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">{:lang('Briefintroduction')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">奥兰多街景</a>
+                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">{:lang('StreetView')}</a>
                     </li>
                     <!--<li class="index-dropdown-item ">-->
                     <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
@@ -66,12 +66,12 @@
                     <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
                     <!--</li>-->
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/developerCompany')}" class="link-block">美国开发商</a>
+                        <a href="{:url('index/index/developerCompany')}" class="link-block">{:lang('AmericanDeveloper')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item hover-show ">
-                <a href="javascript:;">关于我们</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <a href="javascript:;">{:lang('Aboutus')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <?php
                         $list=db('ads_data')->where('aid',11)->where('show',1)->select();
@@ -135,8 +135,8 @@
                 <span class="iconfont  icon-youluPC_home_data_user"></span>
             </div>
             <div class="status-main">
-                <div class="status-item-title">靠谱</div>
-                <div>顾问一对一服务最大化保障您的利益</div>
+                <div class="status-item-title">{:lang('Reliable')}</div>
+                <div>{:lang('Consultantsserveonetoonetomaximizeyourbenefits')}</div>
             </div>
         </li>
         <li class="status-item">
@@ -144,8 +144,8 @@
                 <span class="iconfont  icon-youluPC_home_data_city"></span>
             </div>
             <div class="status-main">
-                <div class="status-item-title">真实房源</div>
-                <div>执照经纪人推荐房源</div>
+                <div class="status-item-title">{:lang('Reallistings')}</div>
+                <div>{:lang('Licensedbrokersrecommendhousingsources')}</div>
             </div>
         </li>
         <li class="status-item">
@@ -153,8 +153,8 @@
                 <span class="iconfont  icon-youluPC_home_data_partn"></span>
             </div>
             <div class="status-main">
-                <div class="status-item-title">专业团队</div>
-                <div>实时咨询执照经纪人</div>
+                <div class="status-item-title">{:lang('Professionalteam')}</div>
+                <div>{:lang('RealtimeConsultingLicensedBroker')}</div>
             </div>
         </li>
         <li class="status-item">
@@ -162,8 +162,8 @@
                 <span class="iconfont  icon-youluPC_home_data_house"></span>
             </div>
             <div class="status-main">
-                <div class="status-item-title">房产管理</div>
-                <div>一站式托管不在为租房卖房琐事烦心</div>
+                <div class="status-item-title">{:lang('Realestatemanagement')}</div>
+                <div>{:lang('Onestoptrusteeshipdoesnotbotherwiththetrivialityofrentingandsellinghouses')}</div>
             </div>
         </li>
     </ul>
@@ -173,8 +173,8 @@
     <div class="guide-title">
         <div class="title-modify-left"></div>
         <div class="title-info">
-            <h5 class="info-main">奥兰多精选房源</h5>
-            <div class="info-sub">执照经纪人为您精挑细选</div>
+            <h5 class="info-main">{:lang('SelectedHouses')}</h5>
+            <div class="info-sub">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
         </div>
         <div class="title-modify-right"></div>
     </div>
@@ -190,7 +190,7 @@
                     <div class="mod-house-item-top">
                         <img class="house-item-pic" src="{:thumb($v.thumb,280,162)}" alt="">
                         <div class="house-item-price">
-                            <span class="house-item-price_big">￥{:round($v.price*$rate,1)}万</span><span>起</span>
+                            <span class="house-item-price_big">￥{:round($v.price*$rate,1)}   {:lang('tenthousand')}</span><span>{:lang('rise')}</span>
                         </div>
                         <div class="house-item-cover">
                             <div class="house-item-cover-block">
@@ -208,10 +208,10 @@
                         </div>
                         <div class="house-item-trend">
                             <div class="house-item-trend-item">
-                                最近一年涨幅<span class="trend_num">{$v.rent}</span>
+                                {:lang('Increasesinthelastyear')}<span class="trend_num">{$v.rent}</span>
                             </div>
                             <div class="house-item-trend-item">
-                                平均租金收益<span class="trend_num">{$v.gain}</span>
+                                {:lang('Averagerentalincome')}<span class="trend_num">{$v.gain}</span>
                             </div>
                         </div>
                         <div class="house-item-subtext text-ellipsis" title="{$v.sub_title}">
@@ -223,14 +223,14 @@
             {/volist}
         </div>
     </div>
-    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}" title="查看更多房源">查看更多房源</a></div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}" title="查看更多房源">{:lang('Checkoutmorehousingsources')}</a></div>
 </div>
 <div class="page-national-guide" style="background: none">
     <div class="guide-title">
         <div class="title-modify-left"></div>
         <div class="title-info">
-            <h5 class="info-main">推荐经纪人</h5>
-            <div class="info-sub">美国执照经纪人，资深房源管理专家，为您提供专业服务</div>
+            <h5 class="info-main">{:lang('RecommendationBroker')}</h5>
+            <div class="info-sub">{:lang('USLicensedBrokerSeniorHousingManagementExperttoprovideyouwithprofessionalservices')}</div>
         </div>
         <div class="title-modify-right"></div>
     </div>
@@ -247,7 +247,8 @@
                         <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
                         <div class="qr">
                             <img src="{$v.qr}" alt="">
-                            <p>微信扫一扫</p>
+                            <!--<p>微信扫一扫</p>-->
+                            <p>{:lang('Sweepaway')}</p>
                         </div>
                     </div>
                     <div class="mod-house-item-bottom">
@@ -263,14 +264,17 @@
             {/volist}
         </div>
     </div>
-    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listAgent')}" title="查看经纪人">查看经纪人</a></div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listAgent')}" title="查看经纪人">
+        <!--查看经纪人-->
+        {:lang('CheckBrokers')}
+    </a></div>
 </div>
 <div class="checkin-big-wapper">
     <div class="content-block checkin">
         <div class="guide-title">
             <div class="title-modify-left"></div>
             <div class="title-info">
-                <h5 class="info-main">房屋管理</h5>
+                <h5 class="info-main"><!--房屋管理-->{:lang('Housingmanagement')}</h5>
             </div>
             <div class="title-modify-right"></div>
         </div>
@@ -296,7 +300,7 @@
         <div class="guide-title">
             <div class="title-modify-left"></div>
             <div class="title-info">
-                <h5 class="info-main">度假屋装修</h5>
+                <h5 class="info-main"><!--度假屋装修-->{:lang('DecorationofHolidayHouse')}</h5>
             </div>
             <div class="title-modify-right"></div>
         </div>
@@ -322,7 +326,7 @@
         <div class="guide-title">
             <div class="title-modify-left"></div>
             <div class="title-info">
-                <h5 class="info-main">美国开发商</h5>
+                <h5 class="info-main"><!--美国开发商-->{:lang('AmericanDeveloper')}  </h5>
             </div>
             <div class="title-modify-right"></div>
         </div>
@@ -347,8 +351,8 @@
     <div class="guide-title">
         <div class="title-modify-left"></div>
         <div class="title-info">
-            <h5 class="info-main">奥兰多房产资讯</h5>
-            <div class="info-sub">生活、旅游、移民、教育等你想知道的，这里都有</div>
+            <h5 class="info-main">{:lang('Realestateinformation')}  </h5>
+            <div class="info-sub">{:lang('LifetourismimmigrationeducationetcYouwanttoknowthereare')} </div>
         </div>
         <div class="title-modify-right"></div>
     </div>
@@ -378,13 +382,13 @@
             </div>
             {/volist}
         </div>
-        <div class="page-national-more-btn"><a target="_blank" class="link-btn" href="{:url('index/index/listArticle')}" title="查看更多资讯">查看更多资讯</a></div>
+        <div class="page-national-more-btn"><a target="_blank" class="link-btn" href="{:url('index/index/listArticle')}" title="查看更多资讯">{:lang('Viewmoreinformation')} </a></div>
     </div>
 </div>
 <div class="index-remark">
     <div class="content-block">
         <div class="page-national-title" style="color: #ffffff;">
-            <span>用户评价</span>
+            <span>{:lang('Userevaluation')} </span>
         </div>
         <div class="remark-swiper-container">
             <!-- Slider main container -->
@@ -431,8 +435,8 @@
         <div class="guide-title">
             <div class="title-modify-left"></div>
             <div class="title-info">
-                <h5 class="info-main">购房流程</h5>
-                <div class="info-sub">一站式海外置业为您保驾护航</div>
+                <h5 class="info-main">{:lang('Purchaseprocess')} </h5>
+                <div class="info-sub">{:lang('OnestopOverseasHomeEstateCompanyescortsyou')} </div>
             </div>
             <div class="title-modify-right"></div>
         </div>
@@ -447,7 +451,7 @@
         <div class="guide-title">
             <div class="title-modify-left"></div>
             <div class="title-info">
-                <h5 class="info-main">合作品牌</h5>
+                <h5 class="info-main">{:lang('Cooperativebrand')} </h5>
             </div>
             <div class="title-modify-right"></div>
         </div>
