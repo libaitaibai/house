@@ -35,7 +35,8 @@ class CmsHouse extends Base
             $q = input('param.q', '', 'trim');
             if ($q) $where[] = ['title', 'like', '%' . $q . '%'];
             $db = new \app\admin\model\CmsHouse();
-            $list = $db->where($where)->where('is_down',1)->order(['sort'=>'desc','id'=>'desc'])->paginate($limit);
+//            $list = $db->where($where)->where('is_down',1)->order(['sort'=>'desc','id'=>'desc'])->paginate($limit);
+            $list = $db->where($where)->order(['sort'=>'desc','id'=>'desc'])->paginate($limit);
             $this->succ(1, '', [
                 'total' => $list->total(),
                 'list' => $list->items(),
