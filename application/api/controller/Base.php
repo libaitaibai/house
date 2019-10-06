@@ -8,6 +8,8 @@
 
 namespace app\api\controller;
 use think\Container;
+use think\Controller;
+use think\facade\Cache;
 
 class Base extends Controller
 {
@@ -35,6 +37,18 @@ class Base extends Controller
     public function lang()
     {
         return Container::get('lang')->get();
+    }
+
+    /**
+     * 返回json
+     */
+    public  function json($data,$code=200,$msg='')
+    {
+        return json([
+            'code' => $code,
+            'data' => $data,
+            'msg'  => $msg
+        ]);
     }
 
 }

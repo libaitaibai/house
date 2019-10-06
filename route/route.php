@@ -53,4 +53,22 @@ if(request()->subDomain()=='m'){
 Route::rule('api/house', 'index/api/listHouse');  //ajax 加载房源
 
 
+//接口
+Route::rule('houseapi/','api/mobile/index');
+/*Route::rule('house_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>','index/mobile/listHouse')->pattern(['jg'=>'.*']);*/
+Route::rule('houseapi/house/:id','api/mobile/showHouse');
+Route::rule('houseapi/agent/:id','api/mobile/showAgent');
+Route::rule('houseapi/agent','api/mobile/listAgent');
+Route::rule('houseapi/article_<tag?>','api/mobile/listArticle');
+Route::rule('houseapi/article/:id','api/mobile/showArticle');
+Route::rule('houseapi/developer','api/mobile/developerCompany');    //开发商
+Route::rule('houseapi/butler','api/mobile/butlerCompany');  //管理公司
+Route::rule('houseapi/decoration','api/mobile/decorationCompany');  //度假屋装修
+Route::rule('houseapi/decorator/:id','api/mobile/showDecorator');  //装修工人
+Route::rule('houseapi/decorator','api/mobile/listDecorator');  //装修工人
+Route::rule('houseapi/about','api/mobile/page?id=36');  //关于我们
+Route::rule('houseapi/contact','api/mobile/page?id=37');  //联系我们
+Route::rule('houseapi/orlando', 'api/mobile/orlando_page?id=49');  //奥兰多介绍
+Route::rule('houseapi/jiejing', 'api/mobile/orlando_page?id=50');  //奥兰多街景
+
 return [];

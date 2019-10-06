@@ -1,6 +1,6 @@
 <?php
 
-namespace app\index\controller;
+namespace app\api\controller;
 
 use app\admin\model\AdsData;
 use app\admin\model\CmsAgent;
