@@ -23,13 +23,14 @@ class Index extends Base
             'description' => '我们是专为海外房东设立的奥兰多房地产服务平台，主推奥兰多房产，奥兰多度假屋、奥兰多经纪、美国房产等服务，为投资人提供一条龙的专业化服务，解决海外购房的一切难题。根据不同的投资需求，我们将为投资人筛选对接合适的持牌地产经纪、贷款经纪及房屋管理公司。除了奥兰多房屋买卖和出租管理以外，我们还会实时更新当地专业化的装修公司资讯，让您的房屋免除后顾之忧，轻松当美国房东！',
         ];
         $this->articleTag = ['奥兰多房产资讯', '美国房产资讯', '佛州旅游'];
-        $this->assign('articleTag', $this->articleTag);
+//        $this->assign('articleTag', $this->articleTag);
     }
 
     public function index()
     {
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+        return $this->json(['SEO'=>$this->SEO]);
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //房源列表
@@ -62,7 +63,7 @@ class Index extends Base
                 'child' => ['1居', '2居', '3居', '4居', '5居', '5居以上']
             ],
         ];
-        $this->assign('filter', $filter);
+//        $this->assign('filter', $filter);
         $param = input('param.');
         $urlParam = [];
         foreach ($filter as $k => $v) {
@@ -70,7 +71,7 @@ class Index extends Base
             $urlParam[$key] = '';
             if (!empty($param[$key])) $urlParam[$key] = $param[$key];
         }
-        $this->assign('urlParam', $urlParam);
+//        $this->assign('urlParam', $urlParam);
 
         $where = [];
         $jg = input('param.jg', '');
@@ -104,10 +105,13 @@ class Index extends Base
         $listHouse = $db->where($where)->where('show',1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(10, false, [
             'path' => url('index/index/listHouse', $param),
         ]);
-        $this->assign('listHouse', $listHouse);
-        $this->assign('ac', 'house');
 
         $this->SEO['title'] = '奥兰多精选房源-' . $this->SEO['page-title'];
+
+        return $this->json(['filter'=>$filter,'urlParam'=>$urlParam,'listHouse'=>$listHouse,'ac'=>'house','SEO'=>$this->SEO]);
+
+        $this->assign('listHouse', $listHouse);
+        $this->assign('ac', 'house');
         $this->assign('SEO', $this->SEO);
         return $this->tpl();
     }
@@ -119,12 +123,13 @@ class Index extends Base
         $db = new CmsHouse();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('房源不存在');
-        $this->assign('d', $d);
-        $this->assign('ac', 'house');
-
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'house','SEO'=>$this->SEO]);
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'house');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //经纪人列表
@@ -132,12 +137,13 @@ class Index extends Base
     {
         $db = new CmsAgent();
         $listAgent = $db->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(9);
-        $this->assign('listAgent', $listAgent);
-        $this->assign('ac', 'agent');
-
         $this->SEO['title'] = '奥兰多房产经纪人-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['listAgent'=>$listAgent,'ac'=>'agent','SEO'=>$this->SEO]);
+//        $this->assign('listAgent', $listAgent);
+//        $this->assign('ac', 'agent');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //经纪人内容
@@ -147,12 +153,14 @@ class Index extends Base
         $db = new CmsAgent();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('经纪人不存在');
-        $this->assign('d', $d);
-        $this->assign('ac', 'agent');
 
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+        return $this->json(['d'=>$d,'ac'=>'agent','SEO'=>$this->SEO]);
+
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'agent');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //文章列表
@@ -163,16 +171,19 @@ class Index extends Base
         $tag = input('param.tag', '');
         if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
         $listArticle = $db->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(10);
-        $this->assign('listArticle', $listArticle);
-        $this->assign('ac', 'article');
+
 
         if ($tag) {
             $this->SEO['title'] = $tag . '-' . $this->SEO['page-title'];
         } else {
             $this->SEO['title'] = '奥兰多房产资讯-' . $this->SEO['page-title'];
         }
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+        return $this->json(['ac'=>'article','listArticle'=>$listArticle,'SEO'=>$this->SEO]);
+
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('listArticle', $listArticle);
+//        $this->assign('ac', 'article');
+//        return $this->tpl();
     }
 
     //文章内容
@@ -182,43 +193,55 @@ class Index extends Base
         $db = new CmsArticle();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('文章不存在');
-        $this->assign('d', $d);
 
-        $this->assign('ac', 'article');
 
         $d->hits += 1;
         $d->save();
 
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'article','SEO'=>$this->SEO]);
+
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'article');
+//        return $this->tpl();
     }
 
     //美国开发商
     public function developerCompany()
     {
-        $this->assign('ac', 'help');
         $this->SEO['title'] = '美国房地产开发商-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['ac'=>'help','SEO'=>$this->SEO]);
+
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //房屋管理
     public function butlerCompany()
     {
-        $this->assign('ac', 'butlerCompany');
         $this->SEO['title'] = '美国房屋管理公司-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['ac'=>'butlerCompany','SEO'=>$this->SEO]);
+
+//        $this->assign('ac', 'butlerCompany');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //装修公司
     public function decorationCompany()
     {
-        $this->assign('ac', 'decoration');
         $this->SEO['title'] = '美国度假屋装修公司-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['ac'=>'decoration','SEO'=>$this->SEO]);
+
+//        $this->assign('ac', 'decoration');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //装修工人
@@ -226,12 +249,13 @@ class Index extends Base
     {
         $db = new CmsDecorator();
         $listDecorator = $db->where(['show' => 1])->order(['sort' => 'desc', 'id' => 'desc'])->paginate(9);
-        $this->assign('listDecorator', $listDecorator);
-
-        $this->assign('ac', 'decoration');
         $this->SEO['title'] = '美国装修工人-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['listDecorator'=>$listDecorator,'ac'=>'decoration','SEO'=>$this->SEO]);
+//        $this->assign('listDecorator', $listDecorator);
+//        $this->assign('ac', 'decoration');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //装修工人
@@ -241,12 +265,13 @@ class Index extends Base
         $db = new CmsDecorator();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('装修工人不存在');
-        $this->assign('d', $d);
-
-        $this->assign('ac', 'decoration');
         $this->SEO['title'] = $d['title'] . '-美国装修工人-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'decoration','SEO'=>$this->SEO]);
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'decoration');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //单页
@@ -256,12 +281,13 @@ class Index extends Base
         $db = new AdsData();
         $d = $db->where('id', $id)->find();
         if(empty($d)) $this->error('单页不存在');
-        $this->assign('d', $d);
-
-        $this->assign('ac', 'page');
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'page','SEO'=>$this->SEO]);
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'page');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
     //奥兰多生活助手单页
@@ -271,12 +297,13 @@ class Index extends Base
         $db = new AdsData();
         $d = $db->where('id', $id)->find();
         if(empty($d)) $this->error('单页不存在');
-        $this->assign('d', $d);
-
-        $this->assign('ac', 'help');
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'help','SEO'=>$this->SEO]);
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
 }

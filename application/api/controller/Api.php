@@ -23,7 +23,7 @@ class Api extends Base
             'description' => '我们是专为海外房东设立的奥兰多房地产服务平台，主推奥兰多房产，奥兰多度假屋等服务，为投资人提供一条龙的专业化服务，解决海外购房的一切难题。根据不同的投资需求，我们将为投资人筛选对接合适的持牌地产经纪、贷款经纪及房屋管理公司。除了奥兰多房屋买卖和出租管理以外，我们还会实时更新当地专业化的装修公司资讯，让您的房屋免除后顾之忧，轻松当美国房东！',
         ];
         $this->articleTag = ['推荐', '生活资讯', '旅游信息', '移民资讯', '教育资讯', '常见问题'];
-        $this->assign('articleTag', $this->articleTag);
+//        $this->assign('articleTag', $this->articleTag);
     }
 
     //房源列表
@@ -159,12 +159,13 @@ class Api extends Base
     {
         $db = new CmsDecorator();
         $listDecorator = $db->where(['show' => 1])->order(['sort' => 'desc', 'id' => 'desc'])->paginate(9);
-        $this->assign('listDecorator', $listDecorator);
-
-        $this->assign('ac', 'help');
         $this->SEO['title'] = '美国装修工人 - ' . $this->SEO['title'];
-        $this->assign('SEO', $this->SEO);
-        return $this->tpl();
+
+        return $this->json(['listDecorator'=>$listDecorator,'ac'=>'help','SEO'=>$this->SEO]);
+//        $this->assign('listDecorator', $listDecorator);
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        return $this->tpl();
     }
 
 }

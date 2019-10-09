@@ -64,7 +64,7 @@ class Mobile extends Base
                 'child' => ['1居', '2居', '3居', '4居', '5居', '5居以上']
             ],
         ];
-        $this->assign('filter', $filter);
+//        $this->assign('filter', $filter);
         $param = input('param.');
         $urlParam = [];
         foreach ($filter as $k => $v) {
@@ -72,7 +72,7 @@ class Mobile extends Base
             $urlParam[$key] = '';
             if (!empty($param[$key])) $urlParam[$key] = $param[$key];
         }
-        $this->assign('urlParam', $urlParam);
+//        $this->assign('urlParam', $urlParam);
 
         $where = [];
         $jg = input('param.jg', '');
@@ -109,7 +109,7 @@ class Mobile extends Base
 
         $this->SEO['title'] = '奥兰多精选房源-' . $this->SEO['page-title'];
 
-        return $this->json(['listHouse'=>$listHouse,'ac'=>'house','SEO'=>$this->SEO]);
+        return $this->json(['filter'=>$filter,'listHouse'=>$listHouse,'ac'=>'house','SEO'=>$this->SEO,'urlParam'=> $urlParam]);
 
 //        $this->assign('listHouse', $listHouse);
 //        $this->assign('ac', 'house');
@@ -188,11 +188,11 @@ class Mobile extends Base
         }
 
         return $this->json(['listArticle'=>$listArticle,'ac'=>'article','SEO'=>$this->SEO,'pageName'=>'奥兰多房产资讯']);
-        $this->assign('listArticle', $listArticle);
-        $this->assign('ac', 'article');
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '奥兰多房产资讯');
-        return $this->tpl();
+//        $this->assign('listArticle', $listArticle);
+//        $this->assign('ac', 'article');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '奥兰多房产资讯');
+//        return $this->tpl();
     }
 
     //文章内容
@@ -202,47 +202,57 @@ class Mobile extends Base
         $db = new CmsArticle();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('文章不存在');
-        $this->assign('d', $d);
-
-        $this->assign('ac', 'article');
 
         $d->hits += 1;
         $d->save();
-
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '奥兰多房产资讯');
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'article','SEO'=>$this->SEO,'pageName'=>'奥兰多房产资讯']);
+
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'article');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '奥兰多房产资讯');
+//        return $this->tpl();
     }
 
     //美国开发商
     public function developerCompany()
     {
-        $this->assign('ac', 'help');
         $this->SEO['title'] = '美国房地产开发商-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '美国房地产开发商');
-        return $this->tpl();
+
+        return $this->json(['ac'=> 'help','SEO'=>$this->SEO,'pageName'=>'美国房地产开发商']);
+
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '美国房地产开发商');
+//        return $this->tpl();
     }
 
     //美国开发商
     public function butlerCompany()
     {
-        $this->assign('ac', 'help');
         $this->SEO['title'] = '美国房屋管理公司-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '美国房屋管理公司');
-        return $this->tpl();
+
+        return $this->json(['ac'=> 'help','SEO'=>$this->SEO,'pageName'=>'美国房屋管理公司']);
+
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '美国房屋管理公司');
+//        return $this->tpl();
     }
 
     //装修公司
     public function decorationCompany()
     {
-        $this->assign('ac', 'help');
         $this->SEO['title'] = '美国度假屋装修公司-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '美国度假屋装修公司');
-        return $this->tpl();
+
+        return $this->json(['ac'=> 'help','SEO'=>$this->SEO,'pageName'=>'美国房屋管理公司']);
+
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '美国度假屋装修公司');
+//        return $this->tpl();
     }
 
     //装修工人
@@ -250,13 +260,15 @@ class Mobile extends Base
     {
         $db = new CmsDecorator();
         $listDecorator = $db->where(['show' => 1])->order(['sort' => 'desc', 'id' => 'desc'])->paginate(9);
-        $this->assign('listDecorator', $listDecorator);
-
-        $this->assign('ac', 'help');
         $this->SEO['title'] = '美国装修工人-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '美国装修工人');
-        return $this->tpl();
+
+        return $this->json(['listDecorator'=>$listDecorator,'ac'=>'help','SEO'=>$this->SEO,'pageName'=>'美国装修工人']);
+
+//        $this->assign('listDecorator', $listDecorator);
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '美国装修工人');
+//        return $this->tpl();
     }
 
     //装修工人
@@ -266,13 +278,14 @@ class Mobile extends Base
         $db = new CmsDecorator();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('装修工人不存在');
-        $this->assign('d', $d);
-
-        $this->assign('ac', 'help');
         $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
-        $this->assign('SEO', $this->SEO);
-        $this->assign('pageName', '美国装修工人');
-        return $this->tpl();
+
+        return $this->json(['d'=>$d,'ac'=>'help','SEO'=>$this->SEO,'pageName'=>'美国装修工人']);
+//        $this->assign('d', $d);
+//        $this->assign('ac', 'help');
+//        $this->assign('SEO', $this->SEO);
+//        $this->assign('pageName', '美国装修工人');
+//        return $this->tpl();
     }
 
     //单页
