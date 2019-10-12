@@ -54,7 +54,7 @@ Route::rule('api/house', 'index/api/listHouse');  //ajax 加载房源
 
 
 //接口
-Route::rule('houseapi/','api/mobile/index');
+Route::rule('houseapi','api/applet/index');
 /*Route::rule('house_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>','index/mobile/listHouse')->pattern(['jg'=>'.*']);*/
 Route::rule('houseapi/house/:id','api/mobile/showHouse');
 Route::rule('houseapi/agent/:id','api/mobile/showAgent');

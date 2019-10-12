@@ -42,12 +42,12 @@ class Base extends Controller
     /**
      * 返回json
      */
-    public  function json($data,$code=200,$msg='')
+    public  function json($data,$code=0,$msg='')
     {
         return json([
-            'code' => $code,
+            'errno' => $code,
             'data' => $data,
-            'msg'  => $msg
+            'message'  => $msg
         ]);
     }
 
