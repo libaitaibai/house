@@ -96,7 +96,8 @@ Page((_defineProperty(_Page = {
                     issalehouse: e.data.data.intro.issalehouse,
                     isagentlethouse: e.data.data.intro.isagentlethouse,
                     isagentoldhouse: e.data.data.intro.isagentoldhouse,
-                    city: wx.getStorageSync("cityinfo").name
+                    //city: wx.getStorageSync("cityinfo").name
+                    recommand:e.data.data.recommand
                 }));
             },
             complete: function() {

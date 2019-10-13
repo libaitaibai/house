@@ -5,6 +5,6 @@ module.exports = {
     multiid: "0",
     version: "df",
     // siteroot: "https://您的域名/app/index.php",
-    siteroot: "http://www.happy.com/houseapi/",
+    siteroot:"http://www.house.com:20085/index.php/api/wxapi/index",
     design_method: "3"
 };
