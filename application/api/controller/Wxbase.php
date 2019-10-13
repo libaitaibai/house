@@ -12,16 +12,22 @@ use think\Controller;
 class Wxbase extends Controller{
 
 
-    public function SD($code=200,$msg="",$data=[]){
+    protected $domain;
+    protected $rate = 6.7;
+
+
+    public function sd($code=0,$msg="",$data=[]){
 
         return json([
-            'code'=>$code,
-            'msg'=> $msg,
+            'errno'=>$code,
+            'message'=> $msg,
             'data'=>$data
 
         ]);
 
     }
+
+
 
 
 
