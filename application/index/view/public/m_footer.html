@@ -43,7 +43,7 @@ $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>
     <div class="inner">
         <h3>{$v.title}</h3>
         <div class="qr"><img width="200" src="{$v.thumb}" alt=""></div>
-        <div class="copyWeixin" data-clipboard-text="{$v.code}">点击复制微信号</div>
+        <div class="copyWeixin" data-clipboard-text="{$v.code}">{:lang('ClickonCopyMicrosignal')}</div>
     </div>
 </div>
 {/volist}
@@ -61,14 +61,14 @@ $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>
     </div>
     <div class="copyright">
         <div class="footer-quick">
-            <a class="quick-item" href="/">首页</a>
+            <a class="quick-item" href="/">{:lang('home')}</a>
             <?php
                 $list=db('ads_data')->where('aid',11)->where('show',1)->select();
             ?>
             {volist name="list" id="v"}
             <a class="quick-item" href="{:url('index/mobile/page?id='.$v['id'])}">{$v.title}</a>
             {/volist}
-            <a class="quick-item" href="">房东登录</a>
+            <a class="quick-item" href="">{:lang('Landlordlogin')}</a>
         </div>
         <div class="copy">Copyright © 2019 {:request()->rootDomain()} Inc. All Rights Reserved.</div>
     </div>

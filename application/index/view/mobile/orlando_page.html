@@ -5,7 +5,7 @@
         $list=db('ads_data')->where('aid',11)->where('show',1)->select();
     ?>
     {volist name="list" id="v"}
-    <a class="{if input('param.id')==$v.id}on{/if}" href="{:url('index/mobile/page?id='.$v['id'])}">{$v.title}</a>
+    <a class="{if input('param.id')==$v.id}on{/if}" href="{:url('index/mobile/page?id='.$v['id'])}?{:lang('home')}">{$v.title}</a>
     {/volist}
 </section>
 <section class="content-inner">

@@ -76,6 +76,33 @@ return [
     "WechatAddingRealEstateBroker" => "Wechat Adding Real Estate Broker",
     "Quicklylockinpreferentialactivitiesandinvestmentprograms" => "Quickly lock in preferential activities and investment programs",
     "WechatAddingBroker" => "Wechat Adding Broker",
+    "ClickonCopyMicrosignal" => "Click on Copy Microsignal",
+    "Landlordlogin" => "Landlord login",
+    "Navigation" => "Navigation",
+    "currentlocation" => "current location",
+    "Houseproperty" => "House property",
+    "Landlordlogin" => "Landlord login",
+    "Recommendagoodroom" => "Recommend a good room",
+    "screen" => "screen",
+    "clear" => "Clear",
+    "Determine" => "Determine",
+    "Housingpricesinthepastyear" => "Housing prices in the past year",
+    "Read" => "Read",
+    "Totalprice" => "Total price",
+    "Basicinformation" => "Basic information",
+    "Property" => "Property",
+    "Renovation" => "Renovation",
+    "Type" => "Type",
+    "Propertyright" => "Property right",
+    "Handinhand" => "Hand in hand",
+    "Apartment" => "Apartment",
+    "address" => "Address",
+    "detailedinformation" => "detailed information",
+
+
+
+
+
 
 
 

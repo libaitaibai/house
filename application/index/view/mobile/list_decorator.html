@@ -1,16 +1,16 @@
 {include file="public/m_header" /}
 {include file="public/m_page_header" /}
 <section class="house-list-inner" style="margin-top: 15px;">
-    <div class="house-list "dropload data-url="{:url('index/api/listDecorator')}">
+    <div class="house-list "dropload data-url="{:url('index/api/listDecorator')}?{:lang('home')}">
         <div class="ajax-box">
             {volist name="listDecorator" id="v"}
-            <a class="link" style="align-items: flex-start;" href="{:url('index/mobile/showDecorator?id='.$v['id'])}">
+            <a class="link" style="align-items: flex-start;" href="{:url('index/mobile/showDecorator?id='.$v['id'])}?{:lang('home')}">
                 <div class="img" style="width: 100px;">
                     <img class="img-bg" src="{:thumb($v.thumb,300,300)}">
                 </div>
                 <div class="right">
                     <div class="title">{$v.title}</div>
-                    <div class="node">工号：{$v.workcardnumber}</div>
+                    <div class="node">{:lang('Jobnumber')}：{$v.workcardnumber}</div>
                     <div class="text">
                         {volist name="v.tag" id="vv"}
                         <span>{$vv}</span>

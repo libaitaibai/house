@@ -23,7 +23,7 @@
                     <em class="desc-main">{$d.payment}</em>
                     <span class="desc-unit">%</span>
                 </div>
-                <div class="item-title">首付比例</div>
+                <div class="item-title">{:lang('Downpaymentratio')}</div>
             </div>
             <div class="tip-item">
                 <div class="item-desc">
@@ -31,7 +31,7 @@
                     <em class="desc-main">{$d.gain}</em>
                     <span class="desc-unit">%</span>
                 </div>
-                <div class="item-title">近一年房价</div>
+                <div class="item-title">{:lang('Housingpricesinthepastyear')}</div>
             </div>
             <div class="tip-item">
                 <div class="item-desc">
@@ -39,15 +39,15 @@
                     <em class="desc-main">{$d.rent}</em>
                     <span class="desc-unit">%</span>
                 </div>
-                <div class="item-title">年均租金</div>
+                <div class="item-title">{:lang('Averagerentalincome')}</div>
             </div>
             <div class="tip-item" style="flex: 1">
                 <div class="item-desc">
                     <span class="desc-unit">￥</span>
                     <em class="desc-main">{:round($d.price*$rate,1)}</em>
-                    <span class="desc-normal">万起</span>
+                    <span class="desc-normal">{:lang('tenthousand')}</span>
                 </div>
-                <div class="item-title">总价</div>
+                <div class="item-title">{:lang('Totalprice')}</div>
             </div>
         </div>
         <div class="tags">
@@ -61,12 +61,12 @@
     </div>
     <div class="info-more">
         <div class="panel-title">
-            <span>基础信息</span>
+            <span>{:lang('Basicinformation')}</span>
         </div>
         <div class="panel-box">
             <div class="detail-info-list">
                 <div class="list-item">
-                    <div class="item-label">物业：</div>
+                    <div class="item-label">{:lang('Property')}：</div>
                     <div class="item-cont">
                         {volist name="d.type" id="v"}
                         {$v}
@@ -74,11 +74,11 @@
                     </div>
                 </div>
                 <div class="list-item">
-                    <div class="item-label">装修：</div>
+                    <div class="item-label">{:lang('Renovation')}：</div>
                     <div class="item-cont">{$d.decoration}</div>
                 </div>
                 <div class="list-item" style="">
-                    <div class="item-label">类型：</div>
+                    <div class="item-label">{:lang('Type')}：</div>
                     <div class="item-cont">
                         {volist name="d.purpose" id="v"}
                         {$v}
@@ -86,19 +86,19 @@
                     </div>
                 </div>
                 <div class="list-item">
-                    <div class="item-label">产权：</div>
+                    <div class="item-label">{:lang('Propertyright')}：</div>
                     <div class="item-cont">{$d.property}</div>
                 </div>
                 <div class="list-item">
-                    <div class="item-label">交房：</div>
+                    <div class="item-label">{:lang('Handinhand')}：</div>
                     <div class="item-cont">{$d.builddate}</div>
                 </div>
                 <div class="list-item">
-                    <div class="item-label">户型：</div>
+                    <div class="item-label">{:lang('Apartment')}：</div>
                     <div class="item-cont">{$d.huxing}</div>
                 </div>
                 <div class="list-item" style="width: 100%;">
-                    <div class="item-label">地址：</div>
+                    <div class="item-label">{:lang('address')}：</div>
                     <div class="item-cont">{$d.address}</div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
 
 <section class="house-content">
     <div class="panel-title">
-        <span>详细信息</span>
+        <span>{:lang('detailedinformation')}</span>
     </div>
     <div class="content">
         {$d.content|raw}
