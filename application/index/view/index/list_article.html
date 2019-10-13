@@ -3,7 +3,7 @@
 <div class="content-block">
     <div class="housing-detail-col-2 clearfix event_content mt10 mb10">
         <div class="col-2-left left-menu">
-            <div class="m-title">奥兰多资讯</div>
+            <div class="m-title">{:lang('Realestateinformation')}</div>
             <ul>
                 {volist name="articleTag" id="v"}
                 <li><a href="{:url('index/index/listArticle',['tag'=>$v])}" class="{if input('param.tag')==$v}on{/if}">{$v}</a></li>
@@ -39,7 +39,7 @@
                         <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank"><p class="tit">{$v.title}</p></a>
                         <div class="mini-tit">
                             <span class="card" style="margin-right: 5px">{$v.form}</span>
-                            <span class="hot">热度：<span class="c1">{$v.hits}℃</span></span>
+                            <span class="hot">{:lang('temperature')}：<span class="c1">{$v.hits}℃</span></span>
                             <span class="time">{$v.addtime}</span>
                         </div>
                         <div class="txt-main">
@@ -62,7 +62,7 @@
                             {volist name="v.tag" id="tag"}
                             <span class="card" style="margin-right: 5px">{$tag}</span>
                             {/volist}
-                            <span class="hot">热度：<span class="c1">{$v.hits}℃</span></span>
+                            <span class="hot">{:lang('temperature')}：<span class="c1">{$v.hits}℃</span></span>
                             <span class="time">{$v.addtime}</span>
                         </div>
                         <div class="txt-main">

@@ -5,8 +5,8 @@
     <div class="housing-detail-banner ">
         <div class="content-block">
             <div class="uoolu-housing-detail-crumbs">
-                <a class="crumbs-item IMtag" href="/" title="奥兰多房产首页">奥兰多房产首页</a>
-                <a class="crumbs-item" href="{:url('index/index/listHouse')}" title="全球房产">精选房源</a>
+                <a class="crumbs-item IMtag" href="/" title="首页">{:lang('home')}</a>
+                <a class="crumbs-item" href="{:url('index/index/listHouse')}" title="全球房产">{:lang('SelectedHouses')}</a>
                 <a class="crumbs-item" style="color:#878787;" title="{$d.title}">{$d.title}</a>
             </div>
             <div class="uoolu-housing-detail-intro-wrap">
@@ -76,20 +76,20 @@
                             <div class="info-item-wrap info-item-wrap-section-01">
                                 <div class="item-list">
                                     <div class="item-num"> {$d.rent}</div>
-                                    <div class="item-title">年均租金</div>
+                                    <div class="item-title">{:lang('Averagerentalincome')}</div>
                                 </div>
                                 <div class="item-list">
                                     <div class="item-num">{$d.gain}</div>
-                                    <div class="item-title">近一年房价涨幅</div>
+                                    <div class="item-title">{:lang('Increasesinthelastyear')}</div>
                                 </div>
                                 <div class="item-list">
                                     <div class="item-num">{$d.payment}</div>
-                                    <div class="item-title">首付</div>
+                                    <div class="item-title">{:lang('Downpayments')}</div>
                                 </div>
                                 {if $d.yuegong}
                                 <div class="item-list">
                                     <div class="item-num">${$d.yuegong}起</div>
-                                    <div class="item-title">月供</div>
+                                    <div class="item-title">{:lang('SelectedHouses')} {:lang('Monthlysupply')}</div>
                                 </div>
                                 {/if}
                             </div>
@@ -121,14 +121,14 @@
                             </div>
                             <div class="info-item-wrap info-item-wrap-section-03">
                                 <div class="item-list-section-03">
-                                    <span class="item-title">项目地址</span>
+                                    <span class="item-title">{:lang('Projectaddress')} </span>
                                     <span class="item-desc">
                                         {$d.address}
-                                        <a class="link-desc event_maodian" href="https://www.google.com/maps/search/{$d.address}" target="_blank" title="[地图]">[地图]</a>
+                                        <a class="link-desc event_maodian" href="https://www.google.com/maps/search/{$d.address}" target="_blank" title="[地图]">[{:lang('Map')} ]</a>
                                     </span>
                                 </div>
                                 <div class="item-list-section-03">
-                                    <span class="item-title">主力户型</span>
+                                    <span class="item-title">{:lang('Mainunit')}</span>
                                     <span class="item-desc">
                                         {$d.huxing}
                                     </span>
@@ -136,8 +136,8 @@
                                 </div>
                             </div>
                             <div class="info-item-wrap info-item-wrap-section-06" style="padding: 0px;">
-                                <span class="title-tip tip-pin mt15" style="display: flex;"><i>微信添加房产经纪人</i><span
-                                        class="like"></span><i style="flex: 1">快人一步锁定优惠活动和投资方案</i></span>
+                                <span class="title-tip tip-pin mt15" style="display: flex;"><i>{:lang('WechatAddingRealEstateBroker')}</i><span
+                                        class="like"></span><i style="flex: 1">{:lang('Quicklylockinpreferentialactivitiesandinvestmentprograms')}</i></span>
                                 <div class="consultation-wapper mt10">
                                     <div class="consultation-left">
                                         <p style="color: #e81f00;">
@@ -149,7 +149,7 @@
                                             </svg>
                                             <span style="vertical-align: middle;">(+1) 3216660992</span>
                                         </p>
-                                        <a href="mailto:info@usahousecenter.com" class="js-show-float btn-consult" title="给我发邮件">给我发邮件</a>
+                                        <a href="mailto:info@usahousecenter.com" class="js-show-float btn-consult" title="给我发邮件">{:lang('mailbox')}</a>
                                     </div>
                                     <div class="consultation-right">
                                         <img src="/uploads/20190313/c85ef4e3b3fd25eb7cdc60a863019f89.png" style="border-radius: 0">

@@ -5,43 +5,43 @@
                 <a href="/"><span class="nav-logo"></span></a>
             </div>
             <div class="index-nav-item">
-                <a class="link-nav" href="/" title="首页">首页</a>
+                <a class="link-nav" href="/" title="首页">{:lang('home')}</a>
             </div>
             <div class="index-nav-item hover-show {if $ac=='house'}active{/if}">
-                <a href="{:url('index/index/listHouse')}">精选房源</a>
+                <a href="{:url('index/index/listHouse')}">{:lang('SelectedHouses')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="/house____%E6%96%B0%E6%88%BF_.html" class="link-block">奥兰多新房源</a>
+                        <a href="/house____%E6%96%B0%E6%88%BF_.html" class="link-block">{:lang('NewHousingSources')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="/house____%E4%BA%8C%E6%89%8B%E6%88%BF_.html" class="link-block">奥兰多二手房源</a>
+                        <a href="/house____%E4%BA%8C%E6%89%8B%E6%88%BF_.html" class="link-block">{:lang('SecondhandhHousing')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="/house____%E5%9C%9F%E5%9C%B0_.html" class="link-block">土地投资</a>
+                        <a href="/house____%E5%9C%9F%E5%9C%B0_.html" class="link-block">{:lang('Landinvestment')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item {if $ac=='agent'}active{/if}">
-                <a href="{:url('index/index/listAgent')}">房产经纪</a>
+                <a href="{:url('index/index/listAgent')}">{:lang('Estatemanager')}</a>
             </div>
             <div class="index-nav-item {if $ac=='butlerCompany'}active{/if}">
-                <a href="{:url('index/index/butlerCompany')}">房屋管理</a>
+                <a href="{:url('index/index/butlerCompany')}">{:lang('Housingmanagement')}</a>
             </div>
             <div class="index-nav-item hover-show {if $ac=='decoration'}active{/if}">
-                <a href="javascript:;">房屋装修</a>
+                <a href="javascript:;">{:lang('Housedecoration')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/decorationCompany')}" class="link-block">度假屋装修</a>
+                        <a href="{:url('index/index/decorationCompany')}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/listDecorator')}" class="link-block">装修工人</a>
+                        <a href="{:url('index/index/listDecorator')}" class="link-block">{:lang('Decorator')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item hover-show {if $ac=='article'}active{/if}">
-                <a href="{:url('index/index/listArticle')}">房产资讯</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <a href="{:url('index/index/listArticle')}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     {volist name="articleTag" id="v"}
                     <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
@@ -49,14 +49,14 @@
                 </ul>
             </div>
             <div class="index-nav-item hover-show {if $ac=='help'}active{/if}">
-                <a href="javascript:;">奥兰多生活助手</a>
+                <a href="javascript:;">{:lang('Lifeassistant')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">奥兰多介绍</a>
+                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">{:lang('Briefintroduction')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">奥兰多街景</a>
+                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">{:lang('StreetView')}</a>
                     </li>
                     <!--<li class="index-dropdown-item ">-->
                         <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
@@ -65,12 +65,12 @@
                         <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
                     <!--</li>-->
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/developerCompany')}" class="link-block">美国开发商</a>
+                        <a href="{:url('index/index/developerCompany')}" class="link-block">{:lang('AmericanDeveloper')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item hover-show {if $ac=='page'}active{/if}">
-                <a href="javascript:;">关于我们</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <a href="javascript:;">{:lang('Aboutus')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <?php
                         $list=db('ads_data')->where('aid',11)->where('show',1)->select();

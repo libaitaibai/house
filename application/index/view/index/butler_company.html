@@ -5,7 +5,7 @@
         <div class="guide-title">
             <div class="title-modify-left"></div>
             <div class="title-info">
-                <h5 class="info-main">美国房屋管理公司</h5>
+                <h5 class="info-main">{:lang('AmericanHousingManagementCompany')}</h5>
             </div>
             <div class="title-modify-right"></div>
         </div>
@@ -31,8 +31,8 @@
     <div class="guide-title">
         <div class="title-modify-left"></div>
         <div class="title-info">
-            <h5 class="info-main">奥兰多精选房源</h5>
-            <div class="info-sub">执照经纪人为您精挑细选</div>
+            <h5 class="info-main">{:lang('SelectedHouses')}</h5>
+            <div class="info-sub"> {:lang('Licensedbrokersselectcarefullyforyou')}</div>
         </div>
         <div class="title-modify-right"></div>
     </div>
@@ -66,10 +66,10 @@
                         </div>
                         <div class="house-item-trend">
                             <div class="house-item-trend-item">
-                                最近一年涨幅<span class="trend_num">{$v.rent}</span>
+                                {:lang('Increasesinthelastyear')}<span class="trend_num">{$v.rent}</span>
                             </div>
                             <div class="house-item-trend-item">
-                                平均租金收益<span class="trend_num">{$v.gain}</span>
+                                {:lang('Averagerentalincome')}<span class="trend_num">{$v.gain}</span>
                             </div>
                         </div>
                         <div class="house-item-subtext text-ellipsis" title="{$v.sub_title}">

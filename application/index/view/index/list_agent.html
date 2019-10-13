@@ -2,8 +2,8 @@
 {include file="public/nav" /}
 <div class="content-block">
     <div class="uoolu-housing-detail-crumbs mt15">
-        <a class="crumbs-item" href="/" title="奥兰多房产首页">奥兰多房产首页</a>
-        <a class="crumbs-item" href="javascript:;" title="经纪人">经纪人</a>
+        <a class="crumbs-item" href="/" title="首页">{:lang('home')}</a>
+        <a class="crumbs-item" href="javascript:;" title="经纪人">{:lang('Agent')}</a>
     </div>
     <div class="housing-detail-col-2 clearfix event_content">
         <div class="col-2-right" style="float: left;">
@@ -19,7 +19,7 @@
                                 <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
                                 <div class="qr">
                                     <img src="{$v.qr}" alt="">
-                                    <p>微信扫一扫</p>
+                                    <p>{:lang('Sweepaway')}</p>
                                 </div>
                             </div>
                             <div class="mod-house-item-bottom">

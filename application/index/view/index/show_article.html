@@ -3,7 +3,7 @@
 <div class="content-block">
     <div class="housing-detail-col-2 clearfix event_content mt10 mb10">
         <div class="col-2-left left-menu">
-            <div class="m-title">奥兰多资讯</div>
+            <div class="m-title">{:lang('Realestateinformation')}</div>
             <ul>
                 {volist name="articleTag" id="v"}
                 <li><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
@@ -21,7 +21,7 @@
                             {volist name="d.tag" id="tag"}
                             <span class="card" style="margin-right: 5px">{$tag}</span>
                             {/volist}
-                            <span class="hot">热度：<span class="c1">{$d.hits}℃</span></span>
+                            <span class="hot">{:lang('temperature')}：<span class="c1">{$d.hits}℃</span></span>
                             <span class="time">{$d.addtime}</span>
                         </div>
                     </div>

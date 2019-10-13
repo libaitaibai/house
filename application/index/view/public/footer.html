@@ -32,7 +32,7 @@
     </div>
     <div class="page-footer-exchange-link page-footer-exchange-link_noborder">
         <div class="content-block">
-            <a href="javascript:;" class="exchange-link-item exchange-link-title">友情链接</a>
+            <a href="javascript:;" class="exchange-link-item exchange-link-title">{:lang('Friendshiplink')}</a>
             <?php
                 $list=db('ads_data')->where(['aid'=>6,'show'=>1])->order(['sort'=>'desc','id'=>'asc'])->limit(10)->select();
             ?>

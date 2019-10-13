@@ -142,7 +142,7 @@ return [
     'invalid token'                                             => '令牌数据无效',
     'not conform to the rules'                                  => '规则错误',
 
-    'home'     => '奥兰多房产首页',
+    'home'     => '首页',
     'SelectedHouses'    => '精选房源',
     'NewHousingSources' => '奥兰多新房源',
     'SecondhandhHousing' => '奥兰多二手房源',
@@ -182,9 +182,32 @@ return [
     'Purchaseprocess' => '购房流程',
     'OnestopOverseasHomeEstateCompanyescortsyou' => '一站式海外置业为您保驾护航',
     'Cooperativebrand' => '合作品牌',
-
-
-
+    "Realestatesearch" => '房产搜索',
+    "Friendshiplink" => "友情链接",
+    "More" => "更多",
+    "Wechatapplet" => "微信小程序",
+    "Pleaseenterthenameofthehouse" => "请输入房产名称",
+    "all" => "全部",
+    "ResetFilter" => "重置条件",
+    "Downpaymentratio" => "首付比例",
+    "Downpayments" => "首付",
+    "Wechatscanner" => "微信扫码",
+    "Focusonprojectdynamics" => "关注项目动态",
+    "Agent" => "经纪人",
+    "Licensenumber" => "执照号",
+    "Telephone" => "电话",
+    "mailbox" => "邮箱",
+    "temperature" => "热度",
+    "AmericanHousingManagementCompany" => "美国房屋管理公司",
+    "Jobnumber" => "工号",
+    "Goodat" => "擅长",
+    "Monthlysupply" => "月供",
+    "Projectaddress" => "项目地址",
+    "Map" => "地图",
+    "Mainunit" => "主力户型",
+    "WechatAddingRealEstateBroker" => "微信添加房产经纪人",
+    "Quicklylockinpreferentialactivitiesandinvestmentprograms" => "快人一步锁定优惠活动和投资方案",
+    "WechatAddingBroker" => "微信添加经纪人",
 
 
 

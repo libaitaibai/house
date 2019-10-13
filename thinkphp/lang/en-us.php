@@ -6,8 +6,8 @@
  * Time: 17:59
  */
 return [
-    'home'    => 'home',
-    'SelectedHouses'    => 'Selected houses',
+    'home'    => 'Home',
+    'SelectedHouses'    => 'Houses',
     'NewHousingSources' => 'New housing sources',
     'SecondhandhHousing' => 'Second-hand housing',
     'Landinvestment' => 'Land investment',
@@ -50,10 +50,32 @@ return [
     'Purchaseprocess' => 'Purchase process',
     'OnestopOverseasHomeEstateCompanyescortsyou' => 'One-stop Overseas Home Estate Company escorts you',
     'Cooperativebrand' => 'Cooperative brand',
-
-
-
-
+    "Realestatesearch" => '',
+    "Friendshiplink" => "Friendship link",
+    "More" => "More",
+    "Wechatapplet" => "Wechat applet",
+    "Pleaseenterthenameofthehouse" => "Please enter the name of the house.",
+    "all" => "All",
+    "ResetFilter" => "Reset Filter",
+    "Downpaymentratio" => "Down payment ratio",
+    "Wechatscanner" => "Wechat scanner",
+    "Focusonprojectdynamics" => "Focus on project dynamics",
+    "Agent" => "Agent",
+    "Licensenumber" => "License number",
+    "Telephone" => "Telephone",
+    "mailbox" => "Mailbox",
+    "temperature" => "temperature",
+    "AmericanHousingManagementCompany" => "American Housing Management Company",
+    "Jobnumber" => "Job number",
+    "Goodat" => "Good at",
+    "Downpayments" => "Down payments",
+    "Monthlysupply" => "Monthly supply",
+    "Projectaddress" => "Project address",
+    "Map" => "Map",
+    "Mainunit" => "Main unit",
+    "WechatAddingRealEstateBroker" => "Wechat Adding Real Estate Broker",
+    "Quicklylockinpreferentialactivitiesandinvestmentprograms" => "Quickly lock in preferential activities and investment programs",
+    "WechatAddingBroker" => "Wechat Adding Broker",
 
 
 
