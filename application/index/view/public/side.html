@@ -8,7 +8,7 @@
 <div class="section-05">
     <div class="section-title clearfix">
         <div class="title-info">{:lang('Viewmoreinformation')}</div>
-        <div class="title-more"><a href="{:url('index/index/listArticle')}" title="更多">{:lang('More')}&gt;</a></div>
+        <div class="title-more"><a href="{:url('index/index/listArticle')}?lang={$lang}" title="更多">{:lang('More')}&gt;</a></div>
     </div>
     <div class="section-list">
         <?php
@@ -17,12 +17,12 @@
         {volist name="list" id="v"}
         <div class="list-item">
             <div class="item-pic">
-                <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank">
+                <a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}" target="_blank">
                     <img src="{:thumb($v.thumb,100,100)}" alt="{$v.title}">
                 </a>
             </div>
             <div class="item-info">
-                <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank">
+                <a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}" target="_blank">
                     {$v.title}
                 </a>
             </div>
