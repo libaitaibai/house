@@ -39,19 +39,19 @@
                             $up=$urlParam;
                             $up[$v['key']]='';
                         ?>
-                        <a class="link-list {if !$urlParam[$v['key']]}active{/if}" href="{:url('index/index/listHouse',$up)}" title="全部">{:lang('all')}</a>
+                        <a class="link-list {if !$urlParam[$v['key']]}active{/if}" href="{:url('index/index/listHouse',$up)}?lang={$lang}" title="全部">{:lang('all')}</a>
                         {volist name="v.child" id="vv"}
                         <?php
                             $up=$urlParam;
                             $up[$v['key']]=$vv;
                         ?>
-                        <a class="link-list {if $urlParam[$v['key']]==$vv}active{/if}" href="{:url('index/index/listHouse',$up)}" title="{$vv}">{$vv}</a>
+                        <a class="link-list {if $urlParam[$v['key']]==$vv}active{/if}" href="{:url('index/index/listHouse',$up)}?lang={$lang}" title="{$vv}">{$vv}</a>
                         {/volist}
                     </div>
                 </div>
                 {/volist}
                 <div class="filter-reset">
-                    <a href="{:url('index/index/listHouse')}">
+                    <a href="{:url('index/index/listHouse')}?lang={$lang}">
                         <img src="__RES__/images/house-search-reset.png" alt="">
                         <span class="reset-title">{:lang('ResetFilter')}</span>
                     </a>
@@ -69,7 +69,7 @@
                     <ul class="search-piclist">
                         {volist name="listHouse" id="v"}
                         <li>
-                            <a href="{:url('index/index/showHouse',['id'=>$v.id])}" target="_blank">
+                            <a href="{:url('index/index/showHouse',['id'=>$v.id])}?lang={$lang}" target="_blank">
                                 <div class="piclist-inner">
                                     <div class="piclist-left">
                                         <div class="piclist-img">

@@ -5,10 +5,10 @@
                 <a href="/"><span class="nav-logo"></span></a>
             </div>
             <div class="index-nav-item">
-                <a class="link-nav" href="/" title="首页">{:lang('home')}</a>
+                <a class="link-nav" href="{:url('index/index/index')}?lang={$lang}" title="首页">{:lang('home')}</a>
             </div>
             <div class="index-nav-item hover-show {if $ac=='house'}active{/if}">
-                <a href="{:url('index/index/listHouse')}">{:lang('SelectedHouses')}</a>
+                <a href="{:url('index/index/listHouse')}?lang={$lang}">{:lang('SelectedHouses')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
@@ -23,28 +23,28 @@
                 </ul>
             </div>
             <div class="index-nav-item {if $ac=='agent'}active{/if}">
-                <a href="{:url('index/index/listAgent')}">{:lang('Estatemanager')}</a>
+                <a href="{:url('index/index/listAgent')}?lang={$lang}">{:lang('Estatemanager')}</a>
             </div>
             <div class="index-nav-item {if $ac=='butlerCompany'}active{/if}">
-                <a href="{:url('index/index/butlerCompany')}">{:lang('Housingmanagement')}</a>
+                <a href="{:url('index/index/butlerCompany')}?lang={$lang}">{:lang('Housingmanagement')}</a>
             </div>
             <div class="index-nav-item hover-show {if $ac=='decoration'}active{/if}">
                 <a href="javascript:;">{:lang('Housedecoration')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/decorationCompany')}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>
+                        <a href="{:url('index/index/decorationCompany')}?lang={$lang}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/listDecorator')}" class="link-block">{:lang('Decorator')}</a>
+                        <a href="{:url('index/index/listDecorator')}?lang={$lang}" class="link-block">{:lang('Decorator')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item hover-show {if $ac=='article'}active{/if}">
-                <a href="{:url('index/index/listArticle')}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <a href="{:url('index/index/listArticle')}?lang={$lang}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     {volist name="articleTag" id="v"}
-                    <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
+                    <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}?lang={$lang}">{$v}</a></li>
                     {/volist}
                 </ul>
             </div>
@@ -53,10 +53,10 @@
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">{:lang('Briefintroduction')}</a>
+                        <a href="{:url('index/index/orlando_page?id=49')}?lang={$lang}" class="link-block">{:lang('Briefintroduction')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">{:lang('StreetView')}</a>
+                        <a href="{:url('index/index/orlando_page?id=50')}?lang={$lang}" class="link-block">{:lang('StreetView')}</a>
                     </li>
                     <!--<li class="index-dropdown-item ">-->
                         <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
@@ -65,7 +65,7 @@
                         <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
                     <!--</li>-->
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/developerCompany')}" class="link-block">{:lang('AmericanDeveloper')}</a>
+                        <a href="{:url('index/index/developerCompany')}?lang={$lang}" class="link-block">{:lang('AmericanDeveloper')}</a>
                     </li>
                 </ul>
             </div>
@@ -77,7 +77,7 @@
                     ?>
                     {volist name="list" id="v"}
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/page?id='.$v['id'])}" class="link-block">{$v.title}</a>
+                        <a href="{:url('index/index/page?id='.$v['id'])}?lang={$lang}" class="link-block">{$v.title}</a>
                     </li>
                     {/volist}
                 </ul>

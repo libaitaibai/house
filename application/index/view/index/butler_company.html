@@ -44,7 +44,7 @@
             ?>
             {volist name="list" id="v"}
             <li class="mod-house-item">
-                <a target="_blank" href="{:url('index/index/showHouse',['id'=>$v.id])}" class="link-block">
+                <a target="_blank" href="{:url('index/index/showHouse',['id'=>$v.id])}?lang={$lang}" class="link-block">
                     <div class="mod-house-item-top">
                         <img class="house-item-pic" src="{:thumb($v.thumb,280,162)}" alt="">
                         <div class="house-item-price">
@@ -81,6 +81,6 @@
             {/volist}
         </div>
     </div>
-    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}" title="查看更多房源">查看更多房源</a></div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}?lang={$lang}" title="查看更多房源">查看更多房源</a></div>
 </div>
 {include file="public/footer" /}

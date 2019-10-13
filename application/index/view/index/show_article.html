@@ -6,7 +6,7 @@
             <div class="m-title">{:lang('Realestateinformation')}</div>
             <ul>
                 {volist name="articleTag" id="v"}
-                <li><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
+                <li><a href="{:url('index/index/listArticle',['tag'=>$v])}?lang={$lang}">{$v}</a></li>
                 {/volist}
             </ul>
         </div>

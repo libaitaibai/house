@@ -14,7 +14,7 @@
                 <div class="house-list agent page-agent">
                     {volist name="listDecorator" id="v"}
                     <li class="mod-house-item" style="height: 310px;text-align: center;">
-                        <a target="_blank" href="{:url('index/index/showDecorator',['id'=>$v.id])}" class="link-block">
+                        <a target="_blank" href="{:url('index/index/showDecorator',['id'=>$v.id])}?lang={$lang}" class="link-block">
                             <div class="mod-house-item-top">
                                 <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
                             </div>

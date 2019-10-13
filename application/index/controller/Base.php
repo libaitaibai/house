@@ -12,6 +12,7 @@ class Base extends Controller
     public function initialize()
     {
         parent::initialize();
+        $this->assign('lang', input('lang','zh-cn')); //美金汇率
         $this->assign('rate', $this->rate); //美金汇率
     }
 

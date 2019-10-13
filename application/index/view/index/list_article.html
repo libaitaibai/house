@@ -6,7 +6,7 @@
             <div class="m-title">{:lang('Realestateinformation')}</div>
             <ul>
                 {volist name="articleTag" id="v"}
-                <li><a href="{:url('index/index/listArticle',['tag'=>$v])}" class="{if input('param.tag')==$v}on{/if}">{$v}</a></li>
+                <li><a href="{:url('index/index/listArticle',['tag'=>$v])}?lang={$lang}" class="{if input('param.tag')==$v}on{/if}">{$v}</a></li>
                 {/volist}
             </ul>
         </div>
@@ -16,7 +16,7 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         {volist name="listArticle" id="v" length="5"}
-                        <div class="swiper-slide"><a href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{$v.thumb}" alt="{$v.title}">
+                        <div class="swiper-slide"><a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}"><img src="{$v.thumb}" alt="{$v.title}">
                             <div class="desc"><p>{$v.title}</p></div>
                         </a></div>
                         {/volist}
@@ -32,11 +32,11 @@
                 <li>
                     {if $v.thumb}
                     <div class="thumb">
-                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{:thumb($v.thumb,160,120)}"></a>
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}"><img src="{:thumb($v.thumb,160,120)}"></a>
                     </div>
                     {/if}
                     <div class="item-txt">
-                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank"><p class="tit">{$v.title}</p></a>
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}" target="_blank"><p class="tit">{$v.title}</p></a>
                         <div class="mini-tit">
                             <span class="card" style="margin-right: 5px">{$v.form}</span>
                             <span class="hot">{:lang('temperature')}：<span class="c1">{$v.hits}℃</span></span>
@@ -53,11 +53,11 @@
                 <li>
                     {if $v.thumb}
                     <div class="thumb">
-                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{:thumb($v.thumb,160,120)}"></a>
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}"><img src="{:thumb($v.thumb,160,120)}"></a>
                     </div>
                     {/if}
                     <div class="item-txt">
-                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}" target="_blank"><p class="tit">{$v.title}</p></a>
+                        <a href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}" target="_blank"><p class="tit">{$v.title}</p></a>
                         <div class="mini-tit">
                             {volist name="v.tag" id="tag"}
                             <span class="card" style="margin-right: 5px">{$tag}</span>

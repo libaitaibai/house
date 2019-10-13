@@ -6,10 +6,10 @@
                 <a href="/"><span class="nav-logo"></span></a>
             </div>
             <div class="index-nav-item ">
-                <a class="link-nav" href="/" title="首页">{:lang('home')}</a>
+                <a class="link-nav" href="{:url('index/index/index')}?lang={$lang}" title="首页">{:lang('home')}</a>
             </div>
             <div class="index-nav-item hover-show">
-                <a href="{:url('index/index/listHouse')}">{:lang('SelectedHouses')}</a>
+                <a href="{:url('index/index/listHouse')}?lang={$lang}">{:lang('SelectedHouses')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
@@ -24,28 +24,28 @@
                 </ul>
             </div>
             <div class="index-nav-item">
-                <a href="{:url('index/index/listAgent')}">{:lang('Estatemanager')}</a>
+                <a href="{:url('index/index/listAgent')}?lang={$lang}">{:lang('Estatemanager')}</a>
             </div>
             <div class="index-nav-item">
-                <a href="{:url('index/index/butlerCompany')}">{:lang('Housingmanagement')}</a>
+                <a href="{:url('index/index/butlerCompany')}?lang={$lang}">{:lang('Housingmanagement')}</a>
             </div>
             <div class="index-nav-item hover-show ">
                 <a href="javascript:;">{:lang('Housedecoration')}</a>
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/decorationCompany')}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>
+                        <a href="{:url('index/index/decorationCompany')}?lang={$lang}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/listDecorator')}" class="link-block"></a>
+                        <a href="{:url('index/index/listDecorator')}?lang={$lang}" class="link-block">{:lang('Decorator')}</a>
                     </li>
                 </ul>
             </div>
             <div class="index-nav-item hover-show ">
-                <a href="{:url('index/index/listArticle')}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <a href="{:url('index/index/listArticle')}?lang={$lang}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     {volist name="articleTag" id="v"}
-                    <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}">{$v}</a></li>
+                    <li class="index-dropdown-item"><a href="{:url('index/index/listArticle',['tag'=>$v])}?lang={$lang}">{$v}</a></li>
                     {/volist}
                 </ul>
             </div>
@@ -54,10 +54,10 @@
                 <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
                 <ul class="index-dropdown">
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=49')}" class="link-block">{:lang('Briefintroduction')}</a>
+                        <a href="{:url('index/index/orlando_page?id=49')}?lang={$lang}" class="link-block">{:lang('Briefintroduction')}</a>
                     </li>
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/orlando_page?id=50')}" class="link-block">{:lang('StreetView')}</a>
+                        <a href="{:url('index/index/orlando_page?id=50')}?lang={$lang}" class="link-block">{:lang('StreetView')}</a>
                     </li>
                     <!--<li class="index-dropdown-item ">-->
                     <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
@@ -66,7 +66,7 @@
                     <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
                     <!--</li>-->
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/developerCompany')}" class="link-block">{:lang('AmericanDeveloper')}</a>
+                        <a href="{:url('index/index/developerCompany')}?lang={$lang}" class="link-block">{:lang('AmericanDeveloper')}</a>
                     </li>
                 </ul>
             </div>
@@ -78,22 +78,29 @@
                     ?>
                     {volist name="list" id="v"}
                     <li class="index-dropdown-item ">
-                        <a href="{:url('index/index/page?id='.$v['id'])}" class="link-block">{$v.title}</a>
+                        <a href="{:url('index/index/page?id='.$v['id'])}?lang={$lang}" class="link-block">{$v.title}</a>
                     </li>
                     {/volist}
                 </ul>
             </div>
         </div>
-        <form action="{:url('index/index/listHouse')}">
-            <div class="index-nav_right" style="margin-right: 28px">
-                <div class=" uoolu-search search-group " id="houseListSearch">
-                        <input class="search-input" name="q" autocomplete="off" type="text" placeholder="房源查询">
-                        <a href="javascript:;" class="search-btn" id="sbtn">
-                            <img src="__RES__/images/search.png" alt="">
-                        </a>
-                </div>
-            </div>
-        </form>
+
+        <div class="index-nav-item hover-show ">
+            <a href="{:url('index/index/index')}?lang=zh-cn" {if $lang == 'zh-cn'} style="color: #778899" {/if}>中文</a>
+            |
+            <a href="{:url('index/index/index')}?lang=en-us" {if $lang == 'en-us'} style="color: #778899" {/if}>English</a>
+        </div>
+
+        <!--<form action="{:url('index/index/listHouse')}?lang={$lang}">-->
+            <!--<div class="index-nav_right" style="margin-right: 28px">-->
+                <!--<div class=" uoolu-search search-group " id="houseListSearch">-->
+                        <!--<input class="search-input" name="q" autocomplete="off" type="text" placeholder="房源查询">-->
+                        <!--<a href="javascript:;" class="search-btn" id="sbtn">-->
+                            <!--<img src="__RES__/images/search.png" alt="">-->
+                        <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</form>-->
     </div>
 </div>
 <div class="index-banner">
@@ -186,7 +193,7 @@
             ?>
             {volist name="list" id="v"}
             <li class="mod-house-item">
-                <a target="_blank" href="{:url('index/index/showHouse',['id'=>$v.id])}" class="link-block">
+                <a target="_blank" href="{:url('index/index/showHouse',['id'=>$v.id])}?lang={$lang}" class="link-block">
                     <div class="mod-house-item-top">
                         <img class="house-item-pic" src="{:thumb($v.thumb,280,162)}" alt="">
                         <div class="house-item-price">
@@ -223,7 +230,7 @@
             {/volist}
         </div>
     </div>
-    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}" title="查看更多房源">{:lang('Checkoutmorehousingsources')}</a></div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listHouse')}?lang={$lang}" title="查看更多房源">{:lang('Checkoutmorehousingsources')}</a></div>
 </div>
 <div class="page-national-guide" style="background: none">
     <div class="guide-title">
@@ -242,7 +249,7 @@
             ?>
             {volist name="list" id="v"}
             <li class="mod-house-item">
-                <a target="_blank" href="{:url('index/index/showAgent',['id'=>$v.id])}" class="link-block">
+                <a target="_blank" href="{:url('index/index/showAgent',['id'=>$v.id])}?lang={$lang}" class="link-block">
                     <div class="mod-house-item-top">
                         <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
                         <div class="qr">
@@ -264,7 +271,7 @@
             {/volist}
         </div>
     </div>
-    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listAgent')}" title="查看经纪人">
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/index/listAgent')}?lang={$lang}" title="查看经纪人">
         <!--查看经纪人-->
         {:lang('CheckBrokers')}
     </a></div>
@@ -363,7 +370,7 @@
                 $list=$cmsArticleDb->where(['show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(7)->select();
             ?>
             {volist name="list" id="v" length='3'}
-            <a target="_blank" class="list-item" href="{:url('index/index/showArticle',['id'=>$v.id])}">
+            <a target="_blank" class="list-item" href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}">
                 <img src="{:thumb($v.thumb,385,205)}" alt="{$v.title}">
                 <div class="item-desc">
                     <div class="desc-inner">{$v.title}</div>
@@ -374,15 +381,15 @@
         <div class="guide-text-list">
             {volist name="list" id="v" offset='3'}
             <div class="list-item">
-                <a target="_blank" class="item-pic" href="{:url('index/index/showArticle',['id'=>$v.id])}"><img src="{:thumb($v.thumb,165,115)}" alt="{$v.title}"></a>
+                <a target="_blank" class="item-pic" href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}"><img src="{:thumb($v.thumb,165,115)}" alt="{$v.title}"></a>
                 <div class="item-info">
-                    <a class="info-title" href="{:url('index/index/showArticle',['id'=>$v.id])}">{$v.title}</a>
+                    <a class="info-title" href="{:url('index/index/showArticle',['id'=>$v.id])}?lang={$lang}">{$v.title}</a>
                     <div class="info-desc">{$v.description}</div>
                 </div>
             </div>
             {/volist}
         </div>
-        <div class="page-national-more-btn"><a target="_blank" class="link-btn" href="{:url('index/index/listArticle')}" title="查看更多资讯">{:lang('Viewmoreinformation')} </a></div>
+        <div class="page-national-more-btn"><a target="_blank" class="link-btn" href="{:url('index/index/listArticle')}?lang={$lang}" title="查看更多资讯">{:lang('Viewmoreinformation')} </a></div>
     </div>
 </div>
 <div class="index-remark">
