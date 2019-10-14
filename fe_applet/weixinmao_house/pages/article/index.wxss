@@ -181,13 +181,13 @@ swiper-item image {
 }
 
 .news .newslist .title view:nth-child(1) {
-    font-size: .8rem;
+    font-size: .7rem;
     height: 40rpx;
     line-height: 40rpx;
 }
 
 .news .newslist .title view:nth-child(2) {
-    font-size: .7rem;
+    font-size: .6rem;
     height: 20rpx;
     line-height: 20rpx;
 }

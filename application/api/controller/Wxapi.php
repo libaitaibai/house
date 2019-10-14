@@ -142,7 +142,7 @@ class Wxapi extends Wxbase{
             "id"=> "41",
             "weid"=>"52",
             "advname"=> "房产资讯",
-            "link"=> "toNewslist",
+            "link"=> "toArticle",
             "thumb"=> "../../resource/images/t6.png",
             "displayorder"=> "0",
             "enabled"=>"1",
@@ -291,7 +291,7 @@ class Wxapi extends Wxbase{
 }';
 
 
-    $tmp = json_decode($str,true);
+      $tmp = json_decode($str,true);
        $last = array_merge($tmp,$data);
 
 
@@ -301,9 +301,120 @@ class Wxapi extends Wxbase{
 
 
 
+    public function getarticle(){
+
+        $page = input('page',1);
+        $pid = input('pid',1);
+
+        if($pid==1){
+            $tag = '奥兰多房产资讯';
+        }else if($pid==2){
+            $tag = '美国房产资讯';
+        }else{
+            $tag = '佛州旅游';
+        }
+        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
+        $start = ($page-1)*10;
+        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit($start,10)->select();
+
+        $data = [];
+        $data['category'] = [[
+            "id"=> "1",
+            "weid"=> "52",
+            "name"=> "奥兰多房产资讯",
+            "thumb"=> "",
+            "parentid"=> "0",
+            "isrecommand"=> "0",
+            "description"=> "",
+            "displayorder"=> "0",
+            "enabled"=> "1",
+            "model"=> "0"
+        ], [
+            "id"=> "2",
+            "weid"=> "52",
+            "name"=> "美国房产资讯",
+            "thumb"=> "",
+            "parentid"=> "0",
+            "isrecommand"=> "0",
+            "description"=> "",
+            "displayorder"=> "0",
+            "enabled"=> "1",
+            "model"=> "0"
+        ],
+            [
+                "id"=> "3",
+                "weid"=> "52",
+                "name"=> "佛州旅游",
+                "thumb"=> "",
+                "parentid"=> "0",
+                "isrecommand"=> "0",
+                "description"=> "",
+                "displayorder"=> "0",
+                "enabled"=> "1",
+                "model"=> "0"
+            ]
+        ];
+
+        $data['activeCategoryId'] = $pid;
+        $data['intro'] = ['maincolor'=>''];
+        $data['article'] = [];
+        foreach($listArticle as $v){
+
+            $data['article'][] = [
+
+                "id"=> $v['id'],
+                "uniacid"=> "52",
+                "title"=> $v['title'],
+                "createtime"=> date('Y-m-d',$v['addtime']),
+                "content"=> "",
+                "sort"=> "0",
+                "pid"=> "12",
+                "sid"=> "0",
+                "hits"=> "0",
+                "status"=> "0",
+                "thumb"=> $v['thumb']
+            ];
+        }
+
+        return $this->sd(0,'success',$data);
+
+    }
 
 
 
+
+    public function getbanner(){
+
+        $tag = input('param.tag', '奥兰多房产资讯');
+        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
+        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(4);
+
+        $data = [];
+        foreach($listArticle as $v){
+            $data[] = [
+
+                "id"=> $v['id'],
+                "weid"=> "52",
+                "advname"=> "B1",
+                "link"=> "",
+                "thumb"=> $v['thumb'],
+                "displayorder"=> "0",
+                "enabled"=> "1",
+                "toway"=> "",
+                "appid"=> "",
+                "type"=> "0"
+            ];
+        }
+
+        return $this->sd(0,'success',$data);
+    }
+
+
+    public function getsecondlist(){
+
+        return $this->getarticle();
+
+    }
 
 
 

@@ -256,8 +256,9 @@ Page((_defineProperty(_Page = {
         url: "/weixinmao_house/pages/agentlist/index"
     });
 }), _defineProperty(_Page, "toArticle", function(e) {
-    wx.navigateTo({
-        url: "/weixinmao_house/pages/salelist/index"
+
+    wx.switchTab({
+        url: "/weixinmao_house/pages/article/index"
     });
 }), _defineProperty(_Page, "toActive", function(e) {
     wx.navigateTo({

@@ -7,7 +7,8 @@ Page({
         duration: 1e3,
         page: 1,
         loadMore: "",
-        pid: 0
+        pid: 0,
+        article:[]
     },
     onLoad: function(a) {
         wx.setNavigationBarTitle({
@@ -28,7 +29,7 @@ Page({
         app.util.request({
             url: "entry/wxapp/getarticle",
             data: {
-                page: t.data.page
+                page: t.data.page,
             },
             success: function(a) {
                 a.data.message.errno || (a.data.data.intro.maincolor || (a.data.data.intro.maincolor = "#3274e5"), 
@@ -41,9 +42,10 @@ Page({
                     }
                 }), t.setData({
                     category: a.data.data.category,
-                    article: a.data.data.article,
+                    article: {...t.data.article,...a.data.data.article},
                     activeCategoryId: a.data.data.activeCategoryId
                 }));
+
             },
             complete: function() {
                 t.setData({
@@ -61,10 +63,12 @@ Page({
                 page: t.data.page
             },
             success: function(a) {
+                console.log(a.data.message.errno)
                 a.data.message.errno || t.setData({
-                    article: a.data.data,
-                    activeCategoryId: t.data.pid
+                    article: {...t.data.article,...a.data.data.article},
+                    activeCategoryId: a.data.data.activeCategoryId
                 });
+
             },
             complete: function() {
                 t.setData({
@@ -83,9 +87,10 @@ Page({
             },
             success: function(a) {
                 a.data.message.errno || t.setData({
-                    article: a.data.data,
+                    article: a.data.data.article,
                     activeCategoryId: e
                 });
+
             }
         });
     },
