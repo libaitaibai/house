@@ -1,0 +1,18 @@
+
+<template name="slider">
+<block wx:if="{{banners}}">
+<view class="container">
+    <view class="swiper-container">
+        <swiper autoplay="{{true}}" bindchange="swiperchange" class="swiper_box" duration="1000" interval="3000">
+            <swiper-item wx:for="{{banners}}">
+                <image bindtap="tapBanner" class="slide-image" data-id="{{item.id}}" height="562.5rpx" src="{{item.thumb}}" width="750rpx"></image>
+                <view class="dotss"></view>
+                <view class="dotssText"><text>{{ item.title }}</text></view>
+            </swiper-item>
+        </swiper>
+
+    </view>
+</view>
+</block>
+
+</template>

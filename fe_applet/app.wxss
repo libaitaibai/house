@@ -1,3 +1,5 @@
+@import './weixinmao_house/resource/weui/weui-wxss/dist/style/weui.wxss';
+
 page {
     line-height: 1.6;
     font-family: -apple-system-font,"Helvetica Neue",sans-serif;

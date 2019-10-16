@@ -62,7 +62,7 @@ swiper-item image {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 20rpx;
+    bottom: 36rpx;
     display: flex;
     justify-content: center;
 }
@@ -87,7 +87,7 @@ swiper-item image {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    padding-top: 20rpx;
+    padding-bottom:20px;
     flex-wrap: wrap;
 }
 
@@ -106,16 +106,25 @@ button::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: .7rem;
-    padding-bottom: 30rpx;
+    font-size: 26rpx;
+    color:#666;
+
 }
 
 .navlist .item image {
-    width: 120rpx;
-    height: 120rpx;
+    width: 70rpx;
+    height: 70rpx;
+}
+.navlist .item view {
+   text-align:center;
+   width:180rpx;
+   overflow:hidden;
+   white-space:nowrap;
+   text-overflow:ellipsis;
 }
 
-.news {
+
+.news1 {
     margin-top: 10rpx;
     width: 750rpx;
     background: #FFF;
@@ -123,7 +132,7 @@ button::after {
     flex-direction: column;
 }
 
-.news .newstitle {
+.news1 .newstitle {
     width: 750rpx;
     height: 80rpx;
     line-height: 80rpx;
@@ -137,7 +146,7 @@ button::after {
 
 }
 
-.news .newstitle view:nth-child(1) {
+.news1 .newstitle view:nth-child(1) {
     height: 40rpx;
     line-height: 40rpx;
     width: 6rpx;
@@ -146,14 +155,14 @@ button::after {
     margin-left: 10rpx;
 }
 
-.news .newstitle view:nth-child(2) {
+.news1 .newstitle view:nth-child(2) {
     height: 80rpx;
     line-height: 80rpx;
     width: 150rpx;
     padding-left: 15rpx;
 }
 
-.news .newslist {
+.news1 .newslist {
     display: flex;
     flex-direction: row;
     width: 720rpx;
@@ -163,7 +172,7 @@ button::after {
     padding-bottom: 10rpx;
 }
 
-.news .newslist .pic {
+.news1 .newslist .pic {
     width: 35%;
     height: 220rpx;
     line-height: 220rpx;
@@ -173,12 +182,12 @@ button::after {
     position: relative;
 }
 
-.news .newslist .pic image {
+.news1 .newslist .pic image {
     width: 260rpx;
     height: 190rpx;
 }
 
-.news .newslist .title {
+.news1 .newslist .title {
     width: 65%;
     flex-direction: column;
     display: flex;
@@ -187,10 +196,10 @@ button::after {
     padding-top: 25rpx;
 }
 
-.news .newslist .title .address {
+.news1 .newslist .title .address {
     padding-left: 5%;
     text-align: left;
-    font-size: .6rem;
+
     color: #000;
     display: flex;
     flex-direction: column;
@@ -198,13 +207,13 @@ button::after {
     height: 110rpx;
 }
 
-.news .newslist .title .address view:nth-child(1) {
+.news1 .newslist .title .address view:nth-child(1) {
     height: 30rpx;
     line-height: 30rpx;
-    font-size: .7rem;
+
 }
 
-.news .newslist .title .address view:nth-child(2) {
+.news1 .newslist .title .address view:nth-child(2) {
     height: 30rpx;
     line-height: 30rpx;
     color: #979797;
@@ -216,7 +225,7 @@ button::after {
     color: #979797;
 }
 
-.news .newslist .title .price {
+.news1 .newslist .title .price {
     padding-left: 5%;
     text-align: left;
     font-size: .6rem;
@@ -230,7 +239,7 @@ button::after {
     width: 450rpx;
 }
 
-.news .newslist .title .price view text {
+.news1 .newslist .title .price view text {
 
     border-radius: 3rpx;
     margin-right: 5rpx;
@@ -240,7 +249,7 @@ button::after {
     background: #f7f5f6;
 }
 
-.news .newslist .title .price .money {
+.news1 .newslist .title .price .money {
     color: #d65408;
     font-weight: bold;
     font-size: .8rem;
@@ -707,13 +716,32 @@ button::after {
 
 .page-section1{
   width: 100%;
-  margin-bottom: 20rpx;
-  margin-top:20rpx;
   padding-left:40rpx;
-  height:60rpx;
+  padding-top:5rpx;
+  padding-bottom:5rpx;
+  height:38px;
+  line-height:38px;
   font-size:24rpx;
+  color:#595959;
+  border-top:1px solid #e6e6e6;
   border-bottom:1px solid #e6e6e6;
+ overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+}
+.page-recommand{
 
+  color:#595959;
+  font-weight:bold;
+  border-top:1px solid #e6e6e6;
+  border-bottom:1px solid #e6e6e6;
+  width:100rpx;
+  font-size:30rpx;
+  line-height:38px;
+  height:38px;
+  text-align:right;
+   padding-top:5rpx;
+   padding-bottom:5rpx;
 }
 .page-section1 swiper{
  height:100%
@@ -731,7 +759,6 @@ button::after {
   padding: 0 30rpx;
 }
 .page-section-spacing1{
-  box-sizing: border-box;
 
 }
 .page-section-title1{
@@ -745,6 +772,131 @@ button::after {
   padding-left: 0;
   padding-right: 0;
 }
-.navlist-1 .item{
-font-size:0.6rem}
+.navlist-1{
 
+    padding-top:20px;
+
+  }
+
+.banner-radius{
+
+   position:relative;
+   top:-28rpx;
+}
+.banner-radius image{
+
+   width:750rpx;
+   height:30rpx;
+}
+
+.type-container {
+    width: 100%;
+    height: 88rpx;
+    background-color: #fff;
+    overflow: hidden;
+    border-bottom: 1rpx solid #F2f2f2;
+    padding-bottom: 10rpx;
+}
+
+.type-navbar {
+    white-space: nowrap;
+    height: 88rpx;
+    background-color: #fff;
+
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.type-box {
+    width: 230rpx;
+    box-sizing: content-box;
+    font-size: 24rpx;
+    line-height: 84rpx;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.type-navbar-item {
+    border-bottom: 4rpx solid #fff;
+    font-size:30rpx;
+
+}
+
+.type-item-on {
+    border-bottom: 4rpx solid #3274e5;
+}
+
+
+.news {
+    margin-top: 10rpx;
+    width: 750rpx;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.news .newstitle {
+    width: 720rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-left: 20rpx;
+    font-size: .7rem;
+    border-bottom: 1rpx solid #ccc;
+    margin: 0 auto;
+}
+
+.news .newslist {
+    display: flex;
+    flex-direction: row;
+    width: 720rpx;
+    margin: 0 auto;
+    border-bottom: 1px solid #F2f2f2;
+}
+
+.news .newslist .pic {
+    width: 30%;
+    height: 180rpx;
+    line-height: 180rpx;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.news .newslist .pic image {
+    width: 250rpx;
+    height: 150rpx;
+}
+
+.news .newslist .title {
+    width: 60%;
+    flex-direction: column;
+    display: flex;
+    height: 150rpx;
+    justify-content: space-between;
+}
+
+.news .newslist .title view {
+    padding-left: 5%;
+    text-align: left;
+}
+
+.news .newslist .title view:nth-child(1) {
+    font-size: 25rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.news .newslist .title view:nth-child(2) {
+    font-size: 25rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+       display:flex;
+        flex-direction: row
+        justify-content: space-between;
+        color:#999;
+}

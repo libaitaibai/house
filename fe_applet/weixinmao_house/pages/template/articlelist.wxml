@@ -1,0 +1,34 @@
+<import src="../template/slider.wxml" />
+<template name="articlelist">
+
+ <view class="type-container">
+    <scroll-view class="type-navbar" scrollX="{{true}}">
+        <view class="type-box" wx:for="{{category}}">
+            <view bindtap="tabClick" class="type-navbar-item {{pid==item.id?'type-item-on':''}}" id="{{item.id}}">
+                    {{item.name}}
+                </view>
+        </view>
+    </scroll-view>
+</view>
+
+    <template is="slider" data="{{banners:banners}}" />
+
+  <view class="container">
+      <view class="news">
+          <view class="newslist" wx:for="{{article}}">
+              <view bindtap="toNewsDetail" class="pic" data-id="{{item.id}}">
+                  <image src="{{item.thumb}}"></image>
+              </view>
+              <view bindtap="toNewsDetail" class="title" data-id="{{item.id}}">
+                  <view>{{item.title}}</view>
+                  <view  style="height:40rpx;line-height:40rpx">
+                  <view style="width:50%;height:30rpx;line-height:30rpx">
+                  <image src="../../resource/images/hits.png" style="width:30rpx;height:30rpx;position:relative;top:5rpx"></image>
+                  <text style="display:inline-block;height:30rpx;line-height:30rpx;">{{item.hits}}</text></view><view style="width:50%;height:40rpx;line-height:40rpx">{{item.createtime}}</view>
+                  </view>
+              </view>
+          </view>
+      </view>
+  </view>
+
+</template>

@@ -86,13 +86,13 @@
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "",
-    "navigationBarBackgroundColor": "white",
+    "navigationBarBackgroundColor": "#5D238A",
     "backgroundColor": "white",
     "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#6e6d6b",
-    "selectedColor": "#44b549",
+    "selectedColor": "#e64340",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "box-shadow": "0 0 6px 0",
@@ -100,32 +100,32 @@
       {
         "pagePath": "weixinmao_house/pages/index/index",
         "text": "首页",
-        "iconPath": "weixinmao_house/resource/images/nav/home-off.png",
-        "selectedIconPath": "weixinmao_house/resource/images/nav/home-on.png"
+        "iconPath": "weixinmao_house/resource/images/navs/home-off.png",
+        "selectedIconPath": "weixinmao_house/resource/images/navs/home-on.png"
       },
       {
         "pagePath": "weixinmao_house/pages/newhouselist/index",
         "text": "最新楼盘",
-        "iconPath": "weixinmao_house/resource/images/nav/news-off.png",
-        "selectedIconPath": "weixinmao_house/resource/images/nav/news-on.png"
+        "iconPath": "weixinmao_house/resource/images/navs/news-off.png",
+        "selectedIconPath": "weixinmao_house/resource/images/navs/news-on.png"
       },
       {
         "pagePath": "weixinmao_house/pages/oldhouselist/index",
         "text": "二手房",
-        "iconPath": "weixinmao_house/resource/images/nav/er-off.png",
-        "selectedIconPath": "weixinmao_house/resource/images/nav/er-on.png"
+        "iconPath": "weixinmao_house/resource/images/navs/er-off.png",
+        "selectedIconPath": "weixinmao_house/resource/images/navs/er-on.png"
       },
       {
         "pagePath": "weixinmao_house/pages/article/index",
         "text": "房产资讯",
-        "iconPath": "weixinmao_house/resource/images/nav/order-off.png",
-        "selectedIconPath": "weixinmao_house/resource/images/nav/order-on.png"
+        "iconPath": "weixinmao_house/resource/images/navs/order-off.png",
+        "selectedIconPath": "weixinmao_house/resource/images/navs/order-on.png"
       },
       {
         "pagePath": "weixinmao_house/pages/user/index",
         "text": "会员中心",
-        "iconPath": "weixinmao_house/resource/images/nav/user-off.png",
-        "selectedIconPath": "weixinmao_house/resource/images/nav/user-on.png"
+        "iconPath": "weixinmao_house/resource/images/navs/user-off.png",
+        "selectedIconPath": "weixinmao_house/resource/images/navs/user-on.png"
       }
     ]
   },

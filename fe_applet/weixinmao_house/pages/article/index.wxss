@@ -1,3 +1,4 @@
+
 .container {
     background-color: #FFF;
     min-height: 100%;
@@ -20,13 +21,29 @@ swiper-item image {
     height: 362.5rpx;
 }
 
-.swiper-container .dots {
+.swiper-container .dotss {
     position: absolute;
     left: 0;
-    right: 0;
-    bottom: 20rpx;
-    display: flex;
-    justify-content: center;
+    bottom:0;
+    width:100%;
+    height:50rpx;
+    line-height:50rpx;
+    background-color:#000;
+    opacity:0.5;
+
+}
+
+.swiper-container .dotssText{
+
+    position: absolute;
+        left: 0;
+        bottom:0;
+        width:100%;
+        height:50rpx;
+        line-height:50rpx;
+        font-size:25rpx;
+        color:#fff;
+        padding-left:30rpx;
 }
 
 .swiper-container .dots .dot {
@@ -95,6 +112,7 @@ swiper-item image {
     white-space: nowrap;
     height: 88rpx;
     background-color: #fff;
+
 }
 
 ::-webkit-scrollbar {
@@ -104,7 +122,7 @@ swiper-item image {
 }
 
 .type-box {
-    width: 180rpx;
+    width: 230rpx;
     box-sizing: content-box;
     font-size: 24rpx;
     line-height: 84rpx;
@@ -115,6 +133,8 @@ swiper-item image {
 
 .type-navbar-item {
     border-bottom: 4rpx solid #fff;
+    font-size:30rpx;
+
 }
 
 .type-item-on {
@@ -181,13 +201,17 @@ swiper-item image {
 }
 
 .news .newslist .title view:nth-child(1) {
-    font-size: .7rem;
+    font-size: 25rpx;
     height: 40rpx;
     line-height: 40rpx;
 }
 
 .news .newslist .title view:nth-child(2) {
-    font-size: .6rem;
-    height: 20rpx;
-    line-height: 20rpx;
+    font-size: 25rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+       display:flex;
+        flex-direction: row
+        justify-content: space-between;
+        color:#999;
 }

@@ -22,7 +22,8 @@ Page((_defineProperty(_Page = {
         isphone: !0,
         moban: 0,
         uid: 0,
-        indeximg: !0
+        indeximg: !0,
+        pid:1
     },
     onLoad: function(e) {
         var o = this, a = wx.getStorageSync("userInfo");
@@ -81,10 +82,8 @@ Page((_defineProperty(_Page = {
                     indeximg: !1
                 }))), a.setData({
                     newhouselist: e.data.data.newhouselist,
-                    oldhouselist: e.data.data.oldhouselist,
-                    lethouselist: e.data.data.lethouselist,
-                    agentlist: e.data.data.agentlist,
                     navlist: e.data.data.navlist,
+                    navlist1:e.data.data.navlist1,
                     banners: e.data.data.banner,
                     intro: e.data.data.intro,
                     ordertype: 1,
@@ -97,12 +96,39 @@ Page((_defineProperty(_Page = {
                     isagentlethouse: e.data.data.intro.isagentlethouse,
                     isagentoldhouse: e.data.data.intro.isagentoldhouse,
                     //city: wx.getStorageSync("cityinfo").name
-                    recommand:e.data.data.recommand
+                    recommand:e.data.data.recommand,
+                    category:e.data.data.category,
+                    article:e.data.data.article
                 }));
             },
             complete: function() {
                 wx.hideNavigationBarLoading(), wx.stopPullDownRefresh();
             }
+        });
+    },
+    tabClick: function(a) {
+        var t = this, e = a.currentTarget.id;
+
+        t.data.pid = e, t.data.page = 1, app.util.request({
+            url: "entry/wxapp/getsecondlist",
+            data: {
+                pid: e,
+            },
+            success: function(a) {
+
+                const tmp = { article: a.data.data.article};
+                //(!a.data.data.category || (tmp.category = a.data.data.category));
+                tmp.pid = e;
+                a.data.message.errno || t.setData(tmp);
+
+
+            }
+        });
+    },
+    toNewsDetail: function(a) {
+        var t = a.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: "/weixinmao_house/pages/newsdetail/index?id=" + t
         });
     },
     closeIndeximg: function() {
