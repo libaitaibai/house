@@ -230,6 +230,8 @@ return [
     "Apartment" => "户型",
     "address" => "地址",
     "detailedinformation" => "详细信息",
+    "OrlandoHouseproperty"=>"奥兰多房产",
+
 
 
 

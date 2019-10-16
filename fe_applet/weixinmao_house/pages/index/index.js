@@ -23,7 +23,8 @@ Page((_defineProperty(_Page = {
         moban: 0,
         uid: 0,
         indeximg: !0,
-        pid:1
+        pid:1,
+        seeMore:"查看更多房源"
     },
     onLoad: function(e) {
         var o = this, a = wx.getStorageSync("userInfo");

@@ -15,6 +15,7 @@ class Wxapi extends Wxbase{
     public function initialize(){
 
          $this->domain = request()->domain();
+         $this->defaultLang = input('language','en-us');
     }
 
 
@@ -41,6 +42,7 @@ class Wxapi extends Wxbase{
     public function GetSysInit(){
 
 
+        $lang = input('lang','cn');
         $data = [];
 
         $banners =  db('ads_data')->where(['aid'=>12,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
@@ -71,15 +73,15 @@ class Wxapi extends Wxbase{
             "id"=>"17",
 			"uniacid"=> "52",
 			"createtime"=> "1552096080",
-			"content"=> "<p>11<\/p>",
-			"name"=> "奥兰多房产",
-            "maincolor"=> "",
+			"content"=> "",
+			"name"=> $this->language('OrlandoHouseproperty'),
+            "maincolor"=> "#5D238A",
 			"logo"=> "",
 			"fxbanner"=> "",
 			"agentbanner"=> "",
 			"address"=> "11",
 			"tel"=> "11111",
-			"opentime"=> "8:30-11:30  13:30-17:30",
+			"opentime"=> "",
 			"lng"=> "1.000000",
 			"lat"=> "1.000000",
 			"qq"=> "1250123367",
@@ -111,13 +113,15 @@ class Wxapi extends Wxbase{
         $data['intro'] = $intro;
 
 
+
+
         $navlist = [
          [
            "id"=>  "28",
 			"weid"=>  "52",
-			"advname"=> "精品房源",
+			"advname"=> $this->language('Houseproperty'),
 			"link"=>  "toNewHouse",
-			"thumb"=>  "../../resource/images/t1.png",
+			"thumb"=>  "../../resource/images/num1.png",
 			"displayorder"=>  "0",
 			"enabled"=>  "1",
 			"cateid"=>  "0",
@@ -128,9 +132,9 @@ class Wxapi extends Wxbase{
             [
             "id"=> "34",
 			"weid"=>"52",
-			"advname"=> "经纪人",
+			"advname"=> $this->language("Agent"),
 			"link"=> "toAgentlist",
-			"thumb"=> "../../resource/images/t4.png",
+			"thumb"=> "../../resource/images/num2.png",
 			"displayorder"=> "0",
 			"enabled"=> "1",
 			"cateid"=> "0",
@@ -141,9 +145,9 @@ class Wxapi extends Wxbase{
             [
             "id"=> "41",
             "weid"=>"52",
-            "advname"=> "房产资讯",
+            "advname"=> $this->language("Realestateinformation"),
             "link"=> "toArticle",
-            "thumb"=> "../../resource/images/t6.png",
+            "thumb"=> "../../resource/images/num3.png",
             "displayorder"=> "0",
             "enabled"=>"1",
             "cateid"=>"0",
@@ -153,9 +157,62 @@ class Wxapi extends Wxbase{
             [
                 "id"=> "42",
                 "weid"=>"52",
-                "advname"=> "用户评价",
+                "advname"=> $this->language("Landlordlogin"),
                 "link"=> "toCommentlist",
-                "thumb"=> "../../resource/images/t8.png",
+                "thumb"=> "../../resource/images/num4.png",
+                "displayorder"=> "0",
+                "enabled"=>"1",
+                "cateid"=>"0",
+                "innerurl"=>"",
+                "appid"=>""
+            ]
+        ];
+
+        $navlist1 = [
+            [
+                "id"=>  "28",
+                "weid"=>  "52",
+                "advname"=> "美国开发商",
+                "link"=>  "toNewHouse",
+                "thumb"=>  "../../resource/images/num5.png",
+                "displayorder"=>  "0",
+                "enabled"=>  "1",
+                "cateid"=>  "0",
+                "innerurl"=>  "",
+                "appid"=>  ""
+            ],
+
+            [
+                "id"=> "34",
+                "weid"=>"52",
+                "advname"=> "美国房屋管理公司",
+                "link"=> "toAgentlist",
+                "thumb"=> "../../resource/images/num6.png",
+                "displayorder"=> "0",
+                "enabled"=> "1",
+                "cateid"=> "0",
+                "innerurl"=> "",
+                "appid"=>""
+            ],
+
+            [
+                "id"=> "41",
+                "weid"=>"52",
+                "advname"=> "度假屋装修",
+                "link"=> "toArticle",
+                "thumb"=> "../../resource/images/num7.png",
+                "displayorder"=> "0",
+                "enabled"=>"1",
+                "cateid"=>"0",
+                "innerurl"=>"",
+                "appid"=>""
+            ],
+            [
+                "id"=> "42",
+                "weid"=>"52",
+                "advname"=> "装修工人",
+                "link"=> "toCommentlist",
+                "thumb"=> "../../resource/images/num8.png",
                 "displayorder"=> "0",
                 "enabled"=>"1",
                 "cateid"=>"0",
@@ -165,6 +222,8 @@ class Wxapi extends Wxbase{
         ];
 
         $data['navlist'] = $navlist;
+        $data['navlist1'] = $navlist1;
+
 
 
         //房源
@@ -224,8 +283,6 @@ class Wxapi extends Wxbase{
 
         }
 
-        $data['lethouselist'] = [];
-        $data['oldhouselist'] = [];
         $data['city'] = [];
 
         //推荐
@@ -233,131 +290,33 @@ class Wxapi extends Wxbase{
             ->order(['sort' => 'desc', 'id' => 'desc'])->limit(5)->field('id,title')->select();
         $data['recommand'] =$recommand;
 
-        $str = '{
-
-		
-		"agentlist": [{
-			"id": "113",
-			"name": "张三",
-			"password": null,
-			"thumb": "",
-			"tel": "17839100008",
-			"qq": "17839100008",
-			"address": "碧水云天",
-			"createtime": "1563809614",
-			"uniacid": "52",
-			"uid": "20522",
-			"enabled": "1",
-			"content": null,
-			"sort": "0",
-			"intro": "哈哈哈",
-			"cityid": "29",
-			"card": "",
-			"bank": "",
-			"bankaddress": "",
-			"lethousenum": "10",
-			"oldhousenum": "10",
-			"endtime": "1566401614",
-			"roleid": "34",
-			"companyname": ""
-		} ],
-		
-		"article": [{
-			"id": "48",
-			"title": "楼市新动向！两会上释放的房地产政策五大信号",
-			"createtime": "2019-04-13",
-			"thumb": "https:\/\/api.site100.cn\/attachment\/images\/52\/2019\/03\/SZtqE6dE0enQptX0MxqVe3peXOVvUm.png"
-		}, {
-			"id": "47",
-			"title": "财政部公布2019年立法工作安排 未提及房地产税",
-			"createtime": "2019-04-13",
-			"thumb": "https:\/\/api.site100.cn\/attachment\/images\/52\/2019\/03\/XTMKArUrZyqjyMX9Mv2q6HUaHR6q6K.jpg"
-		}, {
-			"id": "46",
-			"title": "前3月房企密集融资 融资成本明显降低",
-			"createtime": "2019-04-13",
-			"thumb": "https:\/\/api.site100.cn\/attachment\/images\/52\/2019\/03\/g48doObHgC11tGt4mG64D8gEAc62oE.png"
-		}, {
-			"id": "45",
-			"title": "重磅!住建部发布新规!今天起你家的房子将有重大变化",
-			"createtime": "2019-04-13",
-			"thumb": "https:\/\/api.site100.cn\/attachment\/images\/52\/2019\/03\/CEeIk9OL3EZwZ07W098KeeKjJoozJ7.png"
-		}, {
-			"id": "44",
-			"title": "2019楼市之火 已起燎原之势",
-			"createtime": "2019-04-13",
-			"thumb": "https:\/\/api.site100.cn\/attachment\/images\/52\/2019\/03\/XTMKArUrZyqjyMX9Mv2q6HUaHR6q6K.jpg"
-		}]
-}';
-
-
-      $tmp = json_decode($str,true);
-       $last = array_merge($tmp,$data);
-
-
-       return $this->sd(0,'success',$last);
-    }
-
-
-
-
-    public function getarticle(){
-
-        $page = input('page',1);
-        $pid = input('pid',1);
-
-        if($pid==1){
-            $tag = '奥兰多房产资讯';
-        }else if($pid==2){
-            $tag = '美国房产资讯';
-        }else{
-            $tag = '佛州旅游';
-        }
-        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
-        $start = ($page-1)*10;
-        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit($start,10)->select();
-
-        $data = [];
+        //资讯
         $data['category'] = [[
             "id"=> "1",
             "weid"=> "52",
             "name"=> "奥兰多房产资讯",
             "thumb"=> "",
-            "parentid"=> "0",
-            "isrecommand"=> "0",
-            "description"=> "",
-            "displayorder"=> "0",
-            "enabled"=> "1",
-            "model"=> "0"
         ], [
             "id"=> "2",
             "weid"=> "52",
             "name"=> "美国房产资讯",
             "thumb"=> "",
-            "parentid"=> "0",
-            "isrecommand"=> "0",
-            "description"=> "",
-            "displayorder"=> "0",
-            "enabled"=> "1",
-            "model"=> "0"
         ],
             [
                 "id"=> "3",
                 "weid"=> "52",
                 "name"=> "佛州旅游",
                 "thumb"=> "",
-                "parentid"=> "0",
-                "isrecommand"=> "0",
-                "description"=> "",
-                "displayorder"=> "0",
-                "enabled"=> "1",
-                "model"=> "0"
             ]
         ];
 
-        $data['activeCategoryId'] = $pid;
-        $data['intro'] = ['maincolor'=>''];
-        $data['article'] = [];
+
+        $tag = '奥兰多房产资讯';
+
+        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
+
+        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit(8)->select();
+
         foreach($listArticle as $v){
 
             $data['article'][] = [
@@ -370,7 +329,102 @@ class Wxapi extends Wxbase{
                 "sort"=> "0",
                 "pid"=> "12",
                 "sid"=> "0",
-                "hits"=> "0",
+                "hits"=> $v['hits'],
+                "status"=> "0",
+                "thumb"=> $v['thumb']
+            ];
+        }
+
+        //查看更多
+
+
+        return $this->sd(0,'success',$data);
+    }
+
+
+
+
+    public function getarticle(){
+
+        $page = input('page',1);
+        $pid = input('pid',1);
+
+        $pageSize = 5;
+        if($pid==1){
+            $tag = '奥兰多房产资讯';
+        }else if($pid==2){
+            $tag = '美国房产资讯';
+        }else{
+            $tag = '佛州旅游';
+        }
+        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
+        $start = ($page-1)*$pageSize;
+        $data['banners'] = [];
+        if($page==1){
+
+            $tmp = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit($start,$pageSize)->select();
+
+            $data = [];
+
+            foreach($tmp as $v){
+                $data['banners'][] = [
+
+                    "id"=> $v['id'],
+                    "weid"=> "52",
+                    "advname"=> "B1",
+                    "link"=> "",
+                    "thumb"=> $v['thumb'],
+                    "title" => $v['title'],
+                    "displayorder"=> "0",
+                    "enabled"=> "1",
+                    "toway"=> "",
+                    "appid"=> "",
+                    "type"=> "0"
+                ];
+            }
+
+        }
+
+        $data['category'] = [[
+            "id"=> "1",
+            "weid"=> "52",
+            "name"=> "奥兰多房产资讯",
+            "thumb"=> "",
+        ], [
+            "id"=> "2",
+            "weid"=> "52",
+            "name"=> "美国房产资讯",
+            "thumb"=> "",
+        ],
+            [
+                "id"=> "3",
+                "weid"=> "52",
+                "name"=> "佛州旅游",
+                "thumb"=> "",
+            ]
+        ];
+
+        $data['intro'] = ['maincolor'=>'#5D238A'];
+        $data['article'] = [];
+
+        $page++;
+        $start = ($page-1)*$pageSize;
+
+        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit($start,$pageSize)->select();
+
+        foreach($listArticle as $v){
+
+            $data['article'][] = [
+
+                "id"=> $v['id'],
+                "uniacid"=> "52",
+                "title"=> $v['title'],
+                "createtime"=> date('Y-m-d',$v['addtime']),
+                "content"=> "",
+                "sort"=> "0",
+                "pid"=> "12",
+                "sid"=> "0",
+                "hits"=> $v['hits'],
                 "status"=> "0",
                 "thumb"=> $v['thumb']
             ];
@@ -381,38 +435,45 @@ class Wxapi extends Wxbase{
     }
 
 
-
-
-    public function getbanner(){
-
-        $tag = input('param.tag', '奥兰多房产资讯');
-        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
-        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(4);
+    public function getsecondlist(){
 
         $data = [];
+        $page = input('page',1);
+        $pid = input('pid',1);
+
+        $pageSize = input('pagesize',8);
+        if($pid==1){
+            $tag = '奥兰多房产资讯';
+        }else if($pid==2){
+            $tag = '美国房产资讯';
+        }else{
+            $tag = '佛州旅游';
+        }
+        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
+        $start = ($page-1)*$pageSize;
+
+        $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit($start,$pageSize)->select();
+
         foreach($listArticle as $v){
-            $data[] = [
+
+            $data['article'][] = [
 
                 "id"=> $v['id'],
-                "weid"=> "52",
-                "advname"=> "B1",
-                "link"=> "",
-                "thumb"=> $v['thumb'],
-                "displayorder"=> "0",
-                "enabled"=> "1",
-                "toway"=> "",
-                "appid"=> "",
-                "type"=> "0"
+                "uniacid"=> "52",
+                "title"=> $v['title'],
+                "createtime"=> date('Y-m-d',$v['addtime']),
+                "content"=> "",
+                "sort"=> "0",
+                "pid"=> "12",
+                "sid"=> "0",
+                "hits"=> $v['hits'],
+                "status"=> "0",
+                "thumb"=> $v['thumb']
             ];
         }
 
         return $this->sd(0,'success',$data);
-    }
 
-
-    public function getsecondlist(){
-
-        return $this->getarticle();
 
     }
 

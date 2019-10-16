@@ -252,7 +252,7 @@ button::after {
 .news1 .newslist .title .price .money {
     color: #d65408;
     font-weight: bold;
-    font-size: .8rem;
+    font-size: 30rpx;
     padding-right: 10rpx;
 }
 
@@ -899,4 +899,14 @@ button::after {
         flex-direction: row
         justify-content: space-between;
         color:#999;
+}
+.seeMore{
+   display:block;
+   height:40px;
+   line-height:40px;
+   padding-top:10px;
+   padding-bottom:10px;
+   font-size:30rpx;
+   text-align:center;
+   color:#1682e1;
 }

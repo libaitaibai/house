@@ -175,6 +175,20 @@
               </view>
           </view>
 
+          <view class="seeMore" bindtap="toArticle">{{seeMore}}</view>
+            <view style="height:35rpx;background-color:#f5f5f5"></view>
+
+          <view class="weui-footer" style="padding-bottom:20px;font-size:12px;color:#999">
+                      <view class="weui-footer__links" style="padding:5px;">
+                          <navigator url="" class="weui-footer__link" style="color:#999;font-size:12px">首页</navigator>
+                          <navigator url="" class="weui-footer__link"  style="color:#999;font-size:12px">关于我们</navigator>
+                           <navigator url="" class="weui-footer__link"  style="color:#999;font-size:12px">联系我们</navigator>
+                            <navigator url="" class="weui-footer__link"  style="color:#999;font-size:12px">房东登录</navigator>
+                      </view>
+                      <view class="weui-footer__text">Copyright © 2019 usahousecenter.com Inc.All Rights Reserved.</view>
+           </view>
+
+
         </view>
 
     </view>
