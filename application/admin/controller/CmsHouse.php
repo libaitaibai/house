@@ -53,6 +53,7 @@ class CmsHouse extends Base
             $db = new \app\admin\model\CmsHouse();
             $post = input('post.');
             $post['addtime'] = time();
+            $post['release'] = session('U.id');
             $db->allowField(true)->save($post);
             $this->succ(1, '添加成功');
         } elseif ($this->request->isAjax()) {
