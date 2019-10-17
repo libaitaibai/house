@@ -1,0 +1,10 @@
+<view class="section" wx:if="{{developers}}">
+  <view class="flex-wrp" style="flex-direction:row;" >
+    <view class="flex-item" wx:for="{{developers}}">
+       <navigate url="http://www.baidu.com"><image src="{{item.thumb}}" style="width:300rpx;height:180rpx"></image>
+       <view>{{item.title}}</view></navigate>
+    </view>
+  </view>
+  <include src="../public/footer.wxml"/>
+</view>
+
