@@ -15,8 +15,6 @@ class Wxbase extends Controller{
 
     protected $domain;
     protected $rate = 6.7;
-    protected $defaultLang = 'zh-cn';
-
 
     public function sd($code=0,$msg="",$data=[]){
 
@@ -28,14 +26,6 @@ class Wxbase extends Controller{
         ]);
 
     }
-
-    public function language($name)
-    {
-        return lang($name,[],$this->defaultLang);
-    }
-
-
-
 
 
 

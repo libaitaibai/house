@@ -1,9 +1,9 @@
 {
   "pages": [
     "weixinmao_house/pages/index/index",
-    "weixinmao_house/pages/letbusinesshouselist/index",
-    "weixinmao_house/pages/oldsalehouselist/index",
-    "weixinmao_house/pages/oldpayhouselist/index",
+    "weixinmao_house/pages/americandeveloper/index",
+    "weixinmao_house/pages/housingmanagement/index",
+    "weixinmao_house/pages/oldhouselist/index",
     "weixinmao_house/pages/agentlist/index",
     "weixinmao_house/pages/message/index",
     "weixinmao_house/pages/joinuser/index",
@@ -30,9 +30,6 @@
     "weixinmao_house/pages/article/index",
     "weixinmao_house/pages/newsdetail/index",
     "weixinmao_house/pages/picdetail/index",
-    "weixinmao_house/pages/lethouselist/index",
-    "weixinmao_house/pages/oldhouselist/index",
-    "weixinmao_house/pages/oldhousedetail/index",
     "weixinmao_house/pages/done/index",
     "weixinmao_house/pages/search/index",
     "weixinmao_house/pages/newhousedetail/index",

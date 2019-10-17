@@ -73,6 +73,7 @@ util.url = function(e, t) {
             wx.removeStorageSync(u);
         }
     }
+
     wx.request((_defineProperty(e = {
         url: i,
         data: n.data ? n.data : {},

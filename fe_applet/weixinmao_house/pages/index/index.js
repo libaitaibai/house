@@ -24,9 +24,12 @@ Page((_defineProperty(_Page = {
         uid: 0,
         indeximg: !0,
         pid:1,
-        seeMore:"查看更多房源"
+        seeMore:"查看更多房源",
+        category:[]
     },
     onLoad: function(e) {
+        wx.setStorageSync('wxlang','zh-cn');
+
         var o = this, a = wx.getStorageSync("userInfo");
         console.log(a), a && a.hasOwnProperty("wxInfo") ? o.data.isuser = !0 : o.data.isuser = !1, 
         o.setData({
@@ -107,7 +110,7 @@ Page((_defineProperty(_Page = {
             }
         });
     },
-    tabClick: function(a) {
+    tabClicks: function(a) {
         var t = this, e = a.currentTarget.id;
 
         t.data.pid = e, t.data.page = 1, app.util.request({
@@ -115,15 +118,20 @@ Page((_defineProperty(_Page = {
             data: {
                 pid: e,
             },
-            success: function(a) {
+            success: (a) => {
 
-                const tmp = { article: a.data.data.article};
-                //(!a.data.data.category || (tmp.category = a.data.data.category));
-                tmp.pid = e;
+                const tmp = {
+                    article: a.data.data.article,
+                    pid:e,
+                    category:this.data.category
+
+                };
                 a.data.message.errno || t.setData(tmp);
 
-
             }
+
+
+
         });
     },
     toNewsDetail: function(a) {
@@ -262,7 +270,23 @@ Page((_defineProperty(_Page = {
     wx.switchTab({
         url: "/weixinmao_house/pages/newhouselist/index"
     });
-}), _defineProperty(_Page, "toOldHouse", function(e) {
+}), _defineProperty(_Page, "toDeveloper", function(e) {
+    wx.navigateTo({
+        url: "/weixinmao_house/pages/americandeveloper/index"
+    });
+}), _defineProperty(_Page, "toManagement", function(e) {
+    wx.navigateTo({
+        url: "/weixinmao_house/pages/housingmanagement/index"
+    });
+}), _defineProperty(_Page, "toHoliday", function(e) {
+    wx.navigateTo({
+        url: "/weixinmao_house/pages/americandeveloper/index"
+    });
+})
+
+
+
+    , _defineProperty(_Page, "toOldHouse", function(e) {
     wx.switchTab({
         url: "/weixinmao_house/pages/oldhouselist/index"
     });

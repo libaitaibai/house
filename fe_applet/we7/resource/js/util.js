@@ -97,12 +97,16 @@ util.base64Encode = function(e) {
             wx.removeStorageSync(u);
         }
     }
+
+    var wxlang = wx.getStorageSync('wxlang');
+    wxlang || (wxlang="zh-cn");
     wx.request((_defineProperty(e = {
-        url: i,
+        url: i+"&lang="+wxlang,
         data: a.data ? a.data : {},
         header: a.header ? a.header : {},
         method: a.method ? a.method : "GET"
     }, "header", {
+        "HTTP-ACCEPT-LANGUAGE":wxlang,
         "content-type": "application/x-www-form-urlencoded"
     }), _defineProperty(e, "success", function(e) {
         if (wx.hideNavigationBarLoading(), wx.hideLoading(), e.data.errno) {

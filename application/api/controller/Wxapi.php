@@ -15,7 +15,7 @@ class Wxapi extends Wxbase{
     public function initialize(){
 
          $this->domain = request()->domain();
-         $this->defaultLang = input('language','en-us');
+      
     }
 
 
@@ -24,7 +24,7 @@ class Wxapi extends Wxbase{
         return $this->sd(4004,'fail');
 
     }
-
+    
 
     public function index(){
 
@@ -74,7 +74,7 @@ class Wxapi extends Wxbase{
 			"uniacid"=> "52",
 			"createtime"=> "1552096080",
 			"content"=> "",
-			"name"=> $this->language('OrlandoHouseproperty'),
+			"name"=> lang('OrlandoHouseproperty'),
             "maincolor"=> "#5D238A",
 			"logo"=> "",
 			"fxbanner"=> "",
@@ -119,7 +119,7 @@ class Wxapi extends Wxbase{
          [
            "id"=>  "28",
 			"weid"=>  "52",
-			"advname"=> $this->language('Houseproperty'),
+			"advname"=> lang('Houseproperty'),
 			"link"=>  "toNewHouse",
 			"thumb"=>  "../../resource/images/num1.png",
 			"displayorder"=>  "0",
@@ -132,7 +132,7 @@ class Wxapi extends Wxbase{
             [
             "id"=> "34",
 			"weid"=>"52",
-			"advname"=> $this->language("Agent"),
+			"advname"=> lang("Agent"),
 			"link"=> "toAgentlist",
 			"thumb"=> "../../resource/images/num2.png",
 			"displayorder"=> "0",
@@ -145,7 +145,7 @@ class Wxapi extends Wxbase{
             [
             "id"=> "41",
             "weid"=>"52",
-            "advname"=> $this->language("Realestateinformation"),
+            "advname"=> lang("Realestateinformation"),
             "link"=> "toArticle",
             "thumb"=> "../../resource/images/num3.png",
             "displayorder"=> "0",
@@ -157,7 +157,7 @@ class Wxapi extends Wxbase{
             [
                 "id"=> "42",
                 "weid"=>"52",
-                "advname"=> $this->language("Landlordlogin"),
+                "advname"=> lang("Landlordlogin"),
                 "link"=> "toCommentlist",
                 "thumb"=> "../../resource/images/num4.png",
                 "displayorder"=> "0",
@@ -172,8 +172,8 @@ class Wxapi extends Wxbase{
             [
                 "id"=>  "28",
                 "weid"=>  "52",
-                "advname"=> "美国开发商",
-                "link"=>  "toNewHouse",
+                "advname"=> lang("AmericanDeveloper"),
+                "link"=>  "toDeveloper",
                 "thumb"=>  "../../resource/images/num5.png",
                 "displayorder"=>  "0",
                 "enabled"=>  "1",
@@ -185,8 +185,8 @@ class Wxapi extends Wxbase{
             [
                 "id"=> "34",
                 "weid"=>"52",
-                "advname"=> "美国房屋管理公司",
-                "link"=> "toAgentlist",
+                "advname"=> lang("AmericanHousingManagementCompany"),
+                "link"=> "toManagement",
                 "thumb"=> "../../resource/images/num6.png",
                 "displayorder"=> "0",
                 "enabled"=> "1",
@@ -198,8 +198,8 @@ class Wxapi extends Wxbase{
             [
                 "id"=> "41",
                 "weid"=>"52",
-                "advname"=> "度假屋装修",
-                "link"=> "toArticle",
+                "advname"=> lang("DecorationofHolidayHouse"),
+                "link"=> "toHoliday",
                 "thumb"=> "../../resource/images/num7.png",
                 "displayorder"=> "0",
                 "enabled"=>"1",
@@ -210,8 +210,8 @@ class Wxapi extends Wxbase{
             [
                 "id"=> "42",
                 "weid"=>"52",
-                "advname"=> "装修工人",
-                "link"=> "toCommentlist",
+                "advname"=> lang("Decorator"),
+                "link"=> "toDecorator",
                 "thumb"=> "../../resource/images/num8.png",
                 "displayorder"=> "0",
                 "enabled"=>"1",
@@ -223,7 +223,6 @@ class Wxapi extends Wxbase{
 
         $data['navlist'] = $navlist;
         $data['navlist1'] = $navlist1;
-
 
 
         //房源
@@ -454,6 +453,7 @@ class Wxapi extends Wxbase{
 
         $listArticle = db('cms_article')->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->limit($start,$pageSize)->select();
 
+        $data['article'] = [];
         foreach($listArticle as $v){
 
             $data['article'][] = [
@@ -477,6 +477,53 @@ class Wxapi extends Wxbase{
 
     }
 
+
+    public function getdevelopers(){
+
+
+        $data = [];
+        $data['developers'] = [];
+        $data['barTitle'] = lang('AmericanDeveloper');
+        $list=db('ads_data')->where(['aid'=>8,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
+
+        foreach($list as $v){
+            $data['developers'][] = [
+
+                'id'=>$v['id'],
+                'title'=>$v['title'],
+                'thumb'=>$this->domain.$v['thumb'],
+                'url'=>$v['url']
+
+            ];
+        }
+
+
+        return $this->sd(0,'success',$data);
+    }
+
+    public function getmanagement(){
+
+
+        $data = [];
+        $data['noData'] = lang("noData");
+        $data['developers'] = [];
+        $data['barTitle'] = lang('AmericanHousingManagementCompany');
+        $list=db('ads_data')->where(['aid'=>8,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
+
+        foreach($list as $v){
+            $data['developers'][] = [
+
+                'id'=>$v['id'],
+                'title'=>$v['title'],
+                'thumb'=>$this->domain.$v['thumb'],
+                'url'=>$v['url']
+
+            ];
+        }
+
+
+        return $this->sd(0,'success',$data);
+    }
 
 
 }

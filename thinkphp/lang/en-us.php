@@ -98,7 +98,8 @@ return [
     "Apartment" => "Apartment",
     "address" => "Address",
     "detailedinformation" => "detailed information",
-    "OrlandoHouseproperty"=>"Orlando Houseproperty"
+    "OrlandoHouseproperty"=>"Orlando Houseproperty",
+    "noData" => "no data"
 
 
 

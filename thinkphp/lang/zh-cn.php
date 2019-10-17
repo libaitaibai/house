@@ -231,7 +231,7 @@ return [
     "address" => "地址",
     "detailedinformation" => "详细信息",
     "OrlandoHouseproperty"=>"奥兰多房产",
-
+    "noData"=>"暂无数据"
 
 
 

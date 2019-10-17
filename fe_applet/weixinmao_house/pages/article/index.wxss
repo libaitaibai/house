@@ -188,7 +188,7 @@ swiper-item image {
 }
 
 .news .newslist .title {
-    width: 60%;
+    width: 65%;
     flex-direction: column;
     display: flex;
     height: 150rpx;
