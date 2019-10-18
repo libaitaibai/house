@@ -19,7 +19,9 @@ class Base extends Controller
     public function tpl()
     {
         $md5 = md5(json_encode(input('param.')).request()->domain());
+
         $html = Cache::tag('tpl')->remember($md5, function () {
+
             return $this->fetch();
         }, 10);
         return $html;

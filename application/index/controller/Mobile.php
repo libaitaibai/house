@@ -145,6 +145,7 @@ class Mobile extends Base
     //经纪人内容
     public function showAgent()
     {
+
         $id = input('param.id', 0, 'intval');
         $db = new CmsAgent();
         $d = $db->where('id', $id)->find();
@@ -156,6 +157,24 @@ class Mobile extends Base
         $this->assign('SEO', $this->SEO);
         $this->assign('pageName', '奥兰多房产经纪人');
         return $this->tpl();
+    }
+
+    //经纪人内容
+    public function getAgent(){
+
+        $id = input('param.id', 0, 'intval');
+        $db = new CmsAgent();
+        $d = $db->where('id', $id)->find();
+       // if (empty($d)) $this->error('经纪人不存在');
+        $this->assign('d', $d);
+        $this->assign('ac', 'agent');
+
+        $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
+        $this->assign('SEO', $this->SEO);
+        $this->assign('pageName', '奥兰多房产经纪人');
+
+        return $this->fetch();
+
     }
 
     //文章列表

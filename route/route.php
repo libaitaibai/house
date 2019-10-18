@@ -17,6 +17,7 @@ if(request()->subDomain()=='m'){
     Route::rule('house_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>','index/mobile/listHouse')->pattern(['jg'=>'.*']);
     Route::rule('house/:id','index/mobile/showHouse');
     Route::rule('agent/:id','index/mobile/showAgent');
+    Route::rule("agents/:id",'index/mobile/getAgent');
     Route::rule('agent','index/mobile/listAgent');
     Route::rule('article_<tag?>','index/mobile/listArticle');
     Route::rule('article/:id','index/mobile/showArticle');
