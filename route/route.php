@@ -48,6 +48,15 @@ if(request()->subDomain()=='m'){
     Route::rule('contact', 'index/index/page?id=37');  //联系我们
     Route::rule('orlando', 'index/index/orlando_page?id=49');  //奥兰多介绍
     Route::rule('jiejing', 'index/index/orlando_page?id=50');  //奥兰多街景
+
+
+    Route::rule('newagent/:id', 'index/agent/index');
+    Route::rule('newagent', 'index/agent/index');
+    Route::rule('newarticle/:id/:article', 'index/agent/article');
+    Route::rule('newarticleone/:id/:articleid', 'index/agent/articleone');
+    Route::rule('newhouse_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>/:id', 'index/agent/house');
+    Route::rule('newhouseone/:id/:houseid', 'index/agent/houseone');
+    Route::rule('newperson/:id', 'index/agent/person');
 }
 
 //API

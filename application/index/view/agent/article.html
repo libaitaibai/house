@@ -1,0 +1,106 @@
+{include file="public/agent_header" /}
+
+
+
+<div id="sitecontent" class="ff_sitecontent">
+    <div class="npagePage ff_pageList">
+        <div id="banner">
+            <div style="background-image:url(__AGENT__/img/1502855762113_1.jpg);">
+            </div>
+        </div>
+        <div id="pageTarget" class="ff_pageTarget module">
+            <div class="module_container">
+                <div class="container_target wow">
+                    您的位置：
+                    <a href="/">首页</a> > <a href="#">房产资讯</a> > <a href="#">{$potation}</a>                </div>
+                <div class="container_category wow movedx">
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>0])}" {if condition="$potation == '全部'"}class="active" {/if}>
+                        <span>全部</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>1])}" {if condition="$potation == '奥兰多房产资讯'"}class="active" {/if}>
+                        <span>奥兰多房产资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>2])}" {if condition="$potation == '房产资讯'"}class="active" {/if}>
+                        <span>房产资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>3])}" {if condition="$potation == '旅游信息'"}class="active" {/if}>
+                        <span>旅游信息</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>5])}" {if condition="$potation == '移民资讯'"}class="active" {/if}>
+                        <span>移民资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>6])}" {if condition="$potation == '教育资讯'"}class="active" {/if} >
+                        <span>教育资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>4])}" {if condition="$potation == '生活资讯'"}class="active" {/if}>
+                        <span>生活资讯</span>
+                    </a>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="mlist news module ff_noSlider" style=" ">
+                <div class="bgmask">
+                </div>
+                <div class="module_container">
+                    <div class="container_content">
+                        <div class="content_wrapper">
+                            <div class="content_list clearfix">
+
+                                {volist name="listArticle" id="v" }
+
+                                <div id="item_block_0" class="item_block_0 item_block wow" style="animation-delay:.0s">
+                                    <a href="{:url('index/agent/articleone',['id'=>$agentData.id,'articleid'=>$v['id']])}" class="item_box">
+                                        <div class="item_img" target="_blank">
+                                            <img src={$v['thumb']}  />
+                                            <div class="item_mask">
+                                            </div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <p class="title ellipsis">
+                                                    {$v['title']}                                              </p>
+                                                <p class="subtitle ellipsis">
+                                                </p>
+                                            </div>
+                                            <div class="date_wrap">
+                                                {$v['addtime']}
+
+                                            </div>
+                                            <div class="item_des">
+                                                <p class="description">
+                                                    {$v['description']}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                {/volist}
+
+                            </div>
+                        </div>
+                        <div id="pages">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{include file="public/agent_footer" /}

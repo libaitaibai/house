@@ -14,7 +14,7 @@ class CmsArticle extends Base
     public function initialize()
     {
         parent::initialize();
-        $this->tag = ['推荐', '生活资讯', '旅游信息', '移民资讯', '教育资讯', '常见问题'];
+        $this->tag = ['推荐', '生活资讯', '旅游信息', '移民资讯', '教育资讯', '常见问题','奥兰多房产资讯'];
     }
 
     public function index()
@@ -41,6 +41,7 @@ class CmsArticle extends Base
             $db = new \app\agent_admin\model\CmsArticle();
             $post = input('post.');
             $post['addtime'] = time();
+            $post['release'] = $this->aid;
             $db->allowField(true)->save($post);
             $this->succ(1, '添加成功');
         } elseif ($this->request->isAjax()) {
