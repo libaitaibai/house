@@ -30,7 +30,6 @@ if(request()->subDomain()=='m'){
     Route::rule('orlando', 'index/mobile/orlando_page?id=49');  //奥兰多介绍
     Route::rule('jiejing', 'index/mobile/orlando_page?id=50');  //奥兰多街景
 
-    Route::rule("agents/index/:id",'index/magents/index');
 }else{
     //前端
     Route::rule('/','index/index/index');

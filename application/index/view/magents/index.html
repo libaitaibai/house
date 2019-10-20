@@ -15,14 +15,14 @@
    <!-- <img class="banner-radius" src="__RES__/m/images/banner-radius.png">-->
 </div>
 <div class="agentBox">
-        <img src="http://lisa.kylin66.com/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentQr" alt="微信二维码">
-    <img src="http://lisa.kylin66.com/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentThumb" alt="头像">
+        <img src="{$agent.qr}" class="agentQr" alt="微信二维码">
+    <img src="{$agent.thumb}" class="agentThumb" alt="头像">
     <div class="info">
-        <h1> Lisa Ma 马琳</h1>
-        <h5>微信号sunlisa888</h5>
-        <h5>SL3087301</h5>
+        <h1>{$agent.title}</h1>
+        <h5>{$agent.email}</h5>
+        <h5>{$agent.license}</h5>
     </div>
-    <p class="mobile">4077016598</p>
+    <p class="mobile">{$agent.phone}</p>
 </div>
 
 {include file="public/m_agent_nav" /}
