@@ -36,7 +36,7 @@ class Magents extends Base
 
     private function getAgent(){
 
-        $aid = intval(input('aid',0));
+        $aid = intval(input('aid',2));
         //获取经纪人
         $db = new CmsAgent();
         $agent = $db->where('id', $aid)->find();
