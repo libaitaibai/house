@@ -155,6 +155,22 @@ class Index extends Base
         $this->assign('SEO', $this->SEO);
         return $this->tpl();
     }
+    //经纪人内容
+    public function showAgentone()
+    {
+        $id = input('param.id', 0, 'intval');
+
+        $db = new CmsAgent();
+        $d = $db->where('id', $id)->find();
+        if (empty($d)) $this->error('经纪人不存在');
+        $this->assign('d', $d);
+        $this->assign('ac', 'agent');
+//echo '<pre>';var_dump($d);exit;
+        $this->SEO['title'] = $d['title'] . '-' . $this->SEO['page-title'];
+        $this->assign('SEO', $this->SEO);
+        return $this->tpl();
+    }
+
 
     //文章列表
     public function listArticle()
