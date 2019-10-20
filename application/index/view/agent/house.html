@@ -1,0 +1,263 @@
+<link rel="stylesheet" href="__RES__/css/main.css">
+
+{include file="public/agent_header" /}
+
+
+
+
+<div id="sitecontent" class="ff_sitecontent">
+    <div class="npagePage ff_pageList">
+        <div id="banner">
+            <div class="imgs" style="background-image:url(__AGENT__/img/1502855762113_1.jpg);height: 300px;">
+            </div>
+            <div class="suggest-inner clearfix">
+                <div class="suggest-input">
+                    <div class="suggest-input-title">{:lang('Realestatesearch')}</div>
+                    <div class="uoolu-ask-search clearfix">
+                        <div class="ask_banner_input">
+                            <div class="fix_dib pr">
+                                <form>
+                                    <input class="ask_input" name="q" value="{:input('param.q','')}" type="text" placeholder="{:lang('Pleaseenterthenameofthehouse')}">
+                                    <a class="ask_search" id="sbtn" href="javascript:;"><img src="__RES__/images/house-search-input-icon.png" alt=""><span class="search_info">搜索</span></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="suggest-inner clearfix">-->
+                <!--<div class="suggest-input">-->
+
+                    <!--<div class="suggest-input-title"><strong>{:lang('Realestatesearch')}</strong></div>-->
+                    <!--<div class="uoolu-ask-search clearfix">-->
+                        <!--<div class="ask_banner_input">-->
+                            <!--<div class="fix_dib pr">-->
+                                <!--<form class="formput">-->
+                                    <!--<input class="ask_input" name="q" value="{:input('param.q','')}" type="text" placeholder="{:lang('Pleaseenterthenameofthehouse')}">-->
+                                    <!--<a class="ask_search" id="sbtn" href="javascript:;"><img src="__RES__/images/house-search-input-icon.png" alt=""><span class="search_info">搜索</span></a>-->
+                                <!--</form>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <div class="search-index-filter search-index-filter-20170418">
+            <div class="search-index-filter-20170418-inner">
+
+                <div class="content-block">
+                    <div class="uoolu-fund-filter  active">
+                        {volist name="filter" id="v"}
+                        <div class="filter-item">
+                            <div class="item-label">{$v.name}：</div>
+                            <div class="uoolu-filter-list">
+                                <?php
+                            $up=$urlParam;
+                            $up[$v['key']]='';
+                        ?>
+                                <a class="link-list {if !$urlParam[$v['key']]}active{/if}" href="{:url('index/agent/house',array_merge($up,['id'=>$agentData['id']]))}" title="全部">{:lang('all')}</a>
+                                {volist name="v.child" id="vv" key="k"}
+                                <?php
+                            $up=$urlParam;
+                            $up[$v['key']]=$k;
+                        ?>
+                                <a class="link-list {if $urlParam[$v['key']]==$k}active{/if}" href="{:url('index/agent/house',array_merge($up,['id'=>$agentData['id']]))}" title="{$vv}">{$vv}</a>
+                                {/volist}
+                            </div>
+                        </div>
+                        {/volist}
+                        <div class="filter-reset">
+                            <a href="{:url('index/agent/house',array_merge(['id'=>$agentData['id']]))}">
+                                <img src="__RES__/images/house-search-reset.png" alt="">
+                                <span class="reset-title">{:lang('ResetFilter')}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="pageTarget" class="ff_pageTarget module">
+            <div class="module_container">
+                <div class="container_target wow">
+                    您的位置：
+                    <a href="/">首页</a> >
+                    <a href="#">房源精选</a>
+                </div>
+                <div class="container_category wow movedx">
+                    <a href="{:url('index/agent/house',array_merge(['id'=>$agentData['id']]))}" {if condition="$urlParam['lx'] == ''"}class="active" {/if}>
+                        <span>全部</span>
+                    </a>
+                    <a href="{:url('index/agent/house',array_merge(['lx'=>1],['id'=>$agentData['id']]))}" {if condition="$urlParam['lx'] == 1"}class="active" {/if}>
+                        <span>奥兰多新房源</span>
+                    </a>
+                    <a href="{:url('index/agent/house',array_merge(['lx'=>2],['id'=>$agentData['id']]))}" {if condition="$urlParam['lx'] == 2"}class="active" {/if}>
+                        <span>奥兰多二手房源</span>
+                    </a>
+                    <a href="{:url('index/agent/house',array_merge(['lx'=>3],['id'=>$agentData['id']]))}" {if condition="$urlParam['lx'] == 3"}class="active" {/if}>
+                        <span>土地投资</span>
+                    </a>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="mlist project module ff_noSlider" style=" ">
+                <div class="bgmask">
+                </div>
+                <div class="module_container">
+                    <div class="container_content">
+                        <div class="content_wrapper">
+                            <div class="content_list clearfix">
+
+                                {volist name="listHouse" id="val" key="key"}
+                                <div id="item_block_0" class="item_block_0 item_block wow" style="animation-delay:.0s">
+                                    <div class="item_index">
+                                        {$key}                                    </div>
+                                    <a href="{:url('index/agent/houseone',array_merge(['id'=>$agentData['id']],['houseid'=>$val['id']]))}" class="item_box">
+                                        <div class="item_img" target="_blank">
+                                            <img src={$val.thumb} />
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <p class="title ellipsis">{$val.title}</p>
+                                                <p class="subtitle ellipsis">￥{:round($val.price*$rate,1)} 万起 </p>
+                                            </div>
+                                            <div class="item_des">
+                                                <p class="description" style="height: 100px;font-size: 16px;">
+                                                    价格：{:round($val.price*$rate,1)}w<br>
+                                                    {$val.sub_title}<br>
+                                                    类型：{:implode(',',$val.type)}                                               </p>
+                                            </div>
+                                        </div>
+                                        <div class="item_index">
+                                            {$key}                                        </div>
+                                    </a>
+                                </div>
+                                {/volist}
+
+
+                                <!--<div id="item_block_1" class="item_block_1 item_block wow" style="animation-delay:.1s">-->
+                                    <!--<div class="item_index">-->
+                                        <!--02                                    </div>-->
+                                    <!--<a href="http://lisa.kylin66.com/housedetail/20.html" class="item_box">-->
+                                        <!--<div class="item_img" target="_blank">-->
+                                            <!--<img src="/uploads/20180806/42cd75c7f375904adb82224ab8e93fb0.jpg"/>-->
+                                            <!--<div class="item_mask"></div>-->
+                                        <!--</div>-->
+                                        <!--<div class="item_wrapper clearfix">-->
+                                            <!--<div class="item_info clearfix">-->
+                                                <!--<p class="title ellipsis">【奥兰多房产】10分钟就到佛州坦帕南佛大学，46万美元新房</p>-->
+                                                <!--<p class="subtitle ellipsis">46万美元</p>-->
+                                            <!--</div>-->
+                                            <!--<div class="item_des">-->
+                                                <!--<p class="description" style="height: 100px;font-size: 16px;">-->
+                                                    <!--价格：46万美元<br>-->
+                                                    <!--面积：1866平方英尺<br>-->
+                                                    <!--类型：长租房                                                </p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="item_index">-->
+                                            <!--02                                        </div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+
+                            </div>
+                        </div>
+                        <div id="pages">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{include file="public/agent_footer" /}
+<style type="text/css">
+    .search-index-suggest .suggest-inner {
+        position: absolute;
+        width: 1200px;
+        margin-left: -600px;
+        left: 50%;
+        top: 0;
+        z-index: 10;
+    }
+    #banner{
+        position:relative;
+    }
+    #banner div{
+        height: 45px;
+    }
+    .suggest-inner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 10;
+    }
+    .suggest-input-title{
+        font-size:36px;
+        color:white;
+    }
+    .ask_input {
+        height: 44px;
+        padding: 0 15px;
+        background-color:white;
+        vertical-align: top;
+        outline: 0;
+        font-size: 14px;
+        width:350px;
+    }
+    .ask_search {
+        width: 120px;
+        height: 44px;
+        line-height: 44px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: rgb(237,87,87);
+        display: inline-block;
+        color: #fff;
+        text-align: center;
+    }
+    .formput{
+        width:520px;
+    }
+    .ask_search img{
+        margin-top:10px;
+        display: inline-block;
+        width:24px;
+    }
+    .search_info{
+        margin-left:10px;
+    }
+
+
+</style>
+
+<script>
+    $("#sbtn").click(function () {
+        $(this).parents("form").submit();
+    });
+</script>

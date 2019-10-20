@@ -144,6 +144,7 @@ class Index extends Base
     public function showAgent()
     {
         $id = input('param.id', 0, 'intval');
+
         $db = new CmsAgent();
         $d = $db->where('id', $id)->find();
         if (empty($d)) $this->error('经纪人不存在');

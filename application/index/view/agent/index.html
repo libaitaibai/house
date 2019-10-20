@@ -1,0 +1,410 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="agent-pc theme-w theme-wblue">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="__AGENT__/css/lib2_1.css">
+    <link rel="stylesheet" type="text/css" href="__AGENT__/css/style.3785_1.css">
+    <link rel="stylesheet" type="text/css" href="__AGENT__/css/wblue_1.css">
+    <link rel="stylesheet" type="text/css" href="__AGENT__/css/3785_1.css">
+    <script type="text/javascript" src="__AGENT__/js/jquery.min_1.js"></script>
+    <script type="text/javascript" src="__AGENT__/js/org.1494058893_1.js" data-main="indexMain"></script>
+    <script type="text/javascript" src="__AGENT__/js/3785_1.js"></script>
+    <title>金牌地产经纪人 {$agentData['name']}</title>
+    <meta name="keywords" content="美国房产,奥兰多度假屋,佛罗里达房产,奥兰多房产,奥兰多管理公司,佛罗里达地产学校">
+    <meta name="description" content="麒麟地产创始于美国佛罗里达州，现年平均交易额已超过一亿美元，管理近千套长租短租房屋，在国内外均设有分公司，已成为当地房产服务行业的领头羊。我们拥有上百位经纪人和专职房屋管理人员，主要经营房屋买卖、长租管理、度假屋短租管理、中文地产学校和房产开发五个板块，多年来一直致力于用最专业的经验知识为广大海内外华人服务，为客户朋友提供最新鲜，最真诚的房产资讯。在提供专业的售前，售中服务的同时，还有保险，出租等一站式的售后服务，为投资和自住者量体裁衣，提供适合不同个体的房屋购买方案。麒麟地产，圆您海外置业的梦想。">
+</head>
+
+<body id="longPage" class="gh0 longPage">
+<div class="bodyMask"></div>
+<div id="header">
+    <div class="wrapper">
+        <div class="content">
+            <div id="headTop">
+                <a href="/" id="logo">
+                    <img src={$agentData['photo']} style="border-radius: 50%;margin-right: 10px;">
+                    <p style="
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #c29c0f;">金牌地产经纪人 {$agentData['name']}</p></a>
+            </div>
+            <div id="navWrapper" style="margin-right: 0;">
+                <div class="content">
+                    <ul class="nav movedx">
+                        <li class="navitem"><a class="active" href="{:url('index/agent/index',['id'=>$agentData.id])}" target="_self"><span data-title="首页">首页</span></a></li>
+                        <li class="navitem">
+                            <a class="" href="http://lisa.kylin66.com/housetype/1.html" target="_self">
+                                <span data-title="佛州房产">精选房源</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="subnav">
+                                <li><a href="{:url('index/agent/house',array_merge(['lx'=>1],['id'=>$agentData['id']]))}" target="_self">奥兰多新房源</a></li>
+                                <li><a href="{:url('index/agent/house',array_merge(['lx'=>2],['id'=>$agentData['id']]))}" target="_self">奥兰多二手房源</a></li>
+                                <li><a href="{:url('index/agent/house',array_merge(['lx'=>3],['id'=>$agentData['id']]))}" target="_self">土地投资</a></li>
+                            </ul>
+                        </li>
+                        <li class="navitem">
+                            <a class="" href="http://lisa.kylin66.com/articletype/1.html" target="_self">
+                                <span data-title="房产资讯">房产资讯</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="subnav">
+                                <li><a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>1])}" target="_self">奥兰多房产资讯</a></li>
+                                <li><a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>2])}" target="_self">房产资讯</a></li>
+                                <li><a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>3])}" target="_self">旅游信息</a></li>
+                                <li><a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>5])}" target="_self">移民资讯</a></li>
+                                <li><a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>6])}" target="_self">教育资讯</a></li>
+                                <li><a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>4])}" target="_self">生活资讯</a></li>
+                            </ul>
+                        </li>
+                        <!--<li class="navitem">-->
+                            <!--<a href="http://lisa.kylin66.com/articletype/7.html" target="_self">-->
+                                <!--<span data-title="房产管理">房产管理</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <li class="navitem">
+                            <a class="" href="{:url('index/agent/person',['id'=>$agentData.id])}" target="_self">
+                                <span data-title="联系方式">联系方式</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="sitecontent" class="ff_sitecontent">
+    <div id="indexPage" class="ff_indexPage" data-scroll-ease="Expo.easeInOut" data-scroll-speed="1" data-control="0" data-control-wheel="0" data-singlescreen="0">
+        <div id="topSlider" class="ff_topSlider mslider module">
+            <div class="content_wrapper">
+                <div class="content_list owl-carousel owl-theme" data-slider-height="630" data-slider-auto="1" data-slider-mode="0" data-slider-pause="4" data-slider-ease="ease-out" data-slider-speed="1">
+                    <div class="item_block">
+                        <div class="item_bg image" style="background-image:url(http://www.kylin66.com/uploadfile/2017/1010/20171010102144885.jpg)"><a href="http://www.kylin66.com/"></a></div>
+                    </div>
+                    <div class="item_block">
+                        <div class="item_bg image" style="background-image:url(http://www.kylin66.com/uploadfile/2017/0919/20170919090430155.jpg)"><a href="http://www.kylin66.com/"></a></div>
+                    </div>
+                </div>
+                <div class="sliderArrow"><div></div></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="mlist project module ff_noSlider" style=" background-position: initial;background-size: cover;background-repeat: no-repeat;padding-top: 60px;">
+            <div class="module_container">
+                <div class="container_header wow">
+                    <p class="title">
+                        热门房源
+                    </p>
+                    <p class="subtitle">
+                        Hot
+                    </p>
+                </div>
+                <div class="container_category wow movedx">
+
+                    <a href="{:url('index/agent/house',array_merge(['id'=>$agentData['id']]))}" >
+                    <span>全部</span>
+                    </a>
+                    <a href="{:url('index/agent/house',array_merge(['lx'=>1],['id'=>$agentData['id']]))}" >
+                    <span>奥兰多新房源</span>
+                    </a>
+                    <a href="{:url('index/agent/house',array_merge(['lx'=>2],['id'=>$agentData['id']]))}" >
+                    <span>奥兰多二手房源</span>
+                    </a>
+                    <a href="{:url('index/agent/house',array_merge(['lx'=>3],['id'=>$agentData['id']]))}" >
+                    <span>土地投资</span>
+                    </a>
+                </div>
+                <div class="container_content">
+                    <div class="content_wrapper">
+                        <div class="content_list clearfix">
+
+                            {volist name="houselist" id="v" key="k"}
+
+                            <div class="item_block_1 item_block wow" style="animation-delay:.1s">
+                                <div class="item_index">
+                                    {$k}                             </div>
+                                <a href="{:url('index/agent/houseone',array_merge(['id'=>$agentData['id']],['houseid'=>$v['id']]))}" class="item_box">
+                                    <div class="item_img" target="_blank">
+                                        <img src={$v['thumb']}>
+                                        <div class="item_mask"></div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">{$v['title']}</p>
+                                            <p class="subtitle ellipsis">￥{:round($v.price*$rate,1)} w</p>
+                                        </div>
+                                        <div class="item_des">
+                                            <p class="description" style="height: 100px;font-size: 16px;">
+                                                价格：{:round($v.price*$rate,1)}w<br>
+                                                {$v.sub_title}<br>
+                                                类型：{:implode(',',$v.type)}                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="item_index">
+                                        {$k}                                   </div>
+                                </a>
+                            </div>
+                            {/volist}
+
+                        </div>
+                        <a href="{:url('index/agent/house',array_merge(['id'=>$agentData['id']]))}" class="more wow" style="animation-delay:.5s">MORE<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="mlist news module ff_slider" style=" background-position: initial;background-size: cover;background-repeat: no-repeat; ">
+            <div class="bgmask">
+            </div>
+            <div class="module_container">
+                <div class="container_header wow">
+                    <p class="title">
+                        相关资讯
+                    </p>
+                    <p class="subtitle">
+                        News
+                    </p>
+                </div>
+                <div class="container_category wow movedx" data-movedx-mid="2" data-movedx-distance="15">
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>0])}" class="active">
+                        <span>全部</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>1])}">
+                        <span>奥兰多房产资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>2])}">
+                        <span>房产资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>3])}">
+                        <span>旅游信息</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>5])}">
+                        <span>移民资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>6])}">
+                        <span>教育资讯</span>
+                    </a>
+                    <a href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>4])}">
+                        <span>生活资讯</span>
+                    </a>
+
+                </div>
+                <div class="container_content">
+                    <div class="content_wrapper slider" data-slider-num='2' data-slider-loop="1">
+                        <div class="content_list clearfix">
+
+                            {volist name="cmsArticleDb" id="v" key="k"}
+                            <div class="item_block_0 item_block wow" style="animation-delay:.0s">
+                                <a href="{:url('index/agent/articleone',['id'=>$agentData.id,'articleid'=>$v['id']])}" class="item_box">
+                                    <div class="item_img" target="_blank">
+                                        <img src={$v.thumb}>
+                                        <div class="item_mask">
+                                        </div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">{$v.title}</p>
+                                        </div>
+                                        <div class="date_wrap">
+                                            {$v.addtime}
+                                            <!--<span class="year">2018</span><i class="time-connect">-</i><span class="m">08</span><i class="time-connect">-</i><span-->
+                                                <!--class="d">06</span>-->
+                                        </div>
+                                        <div class="item_des">
+                                            <p class="description">{$v.description}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="{:url('index/agent/articleone',['id'=>$agentData.id,'articleid'=>$v['id']])}" class="details">
+                                    MORE
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            {/volist}
+
+
+                        </div>
+                        <a href="http://lisa.kylin66.com/articletype/1.html" class="more wow" style="animation-delay:.5s">MORE<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="mlist team module bgShow ff_noSlider" style=" background-position: center center; background-size: initial; background-repeat: no-repeat; background-image:url(__AGENT__/img/1502331338154_1.jpg);">
+            <div class="bgmask"></div>
+            <div class="module_container">
+                <div class="container_content">
+                    <div class="content_wrapper">
+                        <div class="content_list clearfix">
+                            <div class="item_block_0 item_block wow" style="animation-delay:.0s">
+                                <a href="javascript:;" class="item_box">
+                                    <div class="item_img">
+                                        <img src="__AGENT__/img/icon_zs_1.png" width="41"/>
+                                        <div class="item_mask">
+                                        </div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">
+                                                真实
+                                            </p>
+                                            <p class="subtitle ellipsis">
+                                                高清图片，真实信息展现
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_block_1 item_block wow" style="animation-delay:.1s">
+                                <a href="javascript:;" class="item_box">
+                                    <div class="item_img" target="_blank">
+                                        <img src="__AGENT__/img/icon_js_1.png" width="41"/>
+                                        <div class="item_mask">
+                                        </div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">
+                                                及时
+                                            </p>
+                                            <p class="subtitle ellipsis">
+                                                直联顾问个人，沟通快无骚扰
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_block_2 item_block wow" style="animation-delay:.2s">
+                                <a href="javascript:;" class="item_box">
+                                    <div class="item_img" target="_blank">
+                                        <img src="__AGENT__/img/icon_zy_1.png" width="41"/>
+                                        <div class="item_mask">
+                                        </div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">
+                                                专业
+                                            </p>
+                                            <p class="subtitle ellipsis">
+                                                近百名考核认证顾问为您服务
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_block_3 item_block wow" style="animation-delay:.0s">
+                                <a href="javascript:;" class="item_box">
+                                    <div class="item_img" target="_blank">
+                                        <img src="__AGENT__/img/icon_zya_1.png" width="41"/>
+                                        <div class="item_mask">
+                                        </div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">
+                                                自由
+                                            </p>
+                                            <p class="subtitle ellipsis">
+                                                信息分享随心所欲
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_block_4 item_block wow" style="animation-delay:.1s">
+                                <a href="javascript:;" class="item_box">
+                                    <div class="item_img" target="_blank">
+                                        <img src="__AGENT__/img/icon_fx_1.png" width="41"/>
+                                        <div class="item_mask">
+                                        </div>
+                                    </div>
+                                    <div class="item_wrapper clearfix">
+                                        <div class="item_info clearfix">
+                                            <p class="title ellipsis">
+                                                放心
+                                            </p>
+                                            <p class="subtitle ellipsis">
+                                                专职顾问全程指导服务
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+
+        <div id="mcontact" class="mcontact module bgShow " style="background: #f7f7f7;margin-top: 0;">
+            <div class="module_container">
+                <div class="container_content">
+                    <div class="content_wrapper">
+                        <div id="contactlist" class="contactlist">
+                            <div class="container_header wow" style="display: block;top: 0;">
+                                <p class="title">
+                                    联系我们
+                                </p>
+                                <p class="subtitle">
+                                    Contact Us
+                                </p>
+                            </div>
+                            <div id="contactinfo" class="contactinfo wow">
+                                <div class="fl" style="width: 380px;">
+                                    <!--<div class="imgbox" style="display: inline-block;">-->
+                                        <!--<img src="/uploads/20180730/50766477f8d191522400580330c580bb.jpg" alt="微信二维码">-->
+                                        <!--<p>微信二维码</p>-->
+                                    <!--</div>-->
+                                    <div class="imgbox" style="display: inline-block;">
+                                        <img src=" http://qr.liantu.com/api.php?text=http://lisa.kylin66.com" alt="移动站">
+                                        <p>移动站</p>
+                                    </div>
+                                </div>
+                                <div style="float: none;">
+                                    <p class="ellipsis contact_add">
+                                        联系电话：{$agentData['phone']}                                    </p>
+                                    <p class="ellipsis contact_add">
+                                        微信号：{$agentData['phone']}                                  </p>
+                                    <p class="ellipsis contact_add">
+                                        Email：{$agentData['email']}                                </p>
+                                    <p class="ellipsis contact_add">
+                                        公司：奥兰多房产公司                                  </p>
+                                    <!--<p class="ellipsis contact_tel">-->
+                                        <!--地址：5168 W Colonial Dr,Orlando,FL 32808                                    </p>-->
+                                    <p class="ellipsis contact_tel">
+                                        美国电话 （+1）3216660992
+                                        全国统一服务热线 （工作日 6:00 - 22:00）
+                                    </p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>
+        版权所属 奥兰多房产服务平台 开发者 Pandora Property Group LLC
+    </p>
+</div>
+</body>
+</html>

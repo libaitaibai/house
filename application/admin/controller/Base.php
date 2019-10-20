@@ -47,7 +47,7 @@ class Base extends Common
         //如果是创始人和超级管理员角色则跳过
         if (session('U.id') == 1 || session('U.role_id') == 1) return true;
 
-        $Auth = new Auth();
+        $Auth = new \app\admin\model\Auth();
         $auth = $Auth->where([
             ['rid', '=', session('U.role_id')],
             ['nid', '=', $node->id]

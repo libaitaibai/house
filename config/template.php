@@ -36,5 +36,6 @@ return [
     'tpl_replace_string' => [
         '__STATIC__' => '/static',
         '__RES__' => '/res',
+        '__AGENT__' => '/agent',
     ],
 ];

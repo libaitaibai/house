@@ -1,0 +1,57 @@
+{include file="public/agent_header" /}
+
+
+
+
+
+
+<div id="sitecontent" class="ff_sitecontent">
+    <div class="npagePage post ff_postPage">
+        <div id="pageTarget" class="ff_pageTarget module">
+            <div class="module_container">
+                <!--<div class="container_target wow">-->
+                    <!--您的位置：-->
+                    <!--<a href="/">首页</a> > <a href="http://lisa.kylin66.com/housetype/1.html">房产资讯</a> > <a href="http://lisa.kylin66.com/housetype/2.html">生活资讯</a>                </div>-->
+                <!--<div class="clear">-->
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="mlistpost service module">
+                <div class="module_container" style="margin-top: 0;">
+                    <div class="container_content">
+                        <div class="content_wrapper">
+                            <div id="postWrapper">
+                                <div class="postContent">
+                                    <div class="postInfo wow">
+                                        <div class="mainInfor">
+                                            <h1 class="title" style="font-size: 24px;margin-bottom: 10px;">{$articleone['title']}</h1>
+                                            <p class="subtitle" style="font-size: 14px;margin-bottom: 5px;">
+                                                {$agentData['name']}&nbsp;&nbsp;|&nbsp;&nbsp;
+                                                电话:{$agentData['phone']}&nbsp;&nbsp;|&nbsp;&nbsp;
+                                                微信:{$agentData['phone']}                                             </p>
+                                            <p class="usetdate" style="font-size: 14px;">
+                                                {$agentData['addtime']}                                           </p>
+                                        </div>
+                                        <div class="description" style="background: #f5f5f5;padding: 15px;font-size: 14px;">
+                                            {$articleone['description']}
+                                    </div>
+
+                                    <div class="postbody wow" style="font-size: 14px;line-height:30px;">
+                                        <?php echo html_entity_decode($articleone['content']);?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{include file="public/agent_footer" /}
