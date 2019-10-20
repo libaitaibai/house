@@ -1,0 +1,37 @@
+{include file="public/agentone_header" /}
+{include file="public/agentone_nav" /}
+<div class="content-block">
+    <div class="uoolu-housing-detail-crumbs mt15">
+        <a class="crumbs-item" href="/" title="首页">{:lang('home')}</a>
+        <a class="crumbs-item" href="javascript:;" title="经纪人">{:lang('Agent')}</a>
+    </div>
+    <div class="housing-detail-col-2 clearfix event_content">
+        <div class="col-2-right" style="float: left;">
+            {include file="public/side" /}
+        </div>
+        <div class="col-2-left" style="float: right;">
+            <div class="house-list-wrap ">
+                <div class="house-list agent page-agent">
+                    {volist name="listDecorator" id="v"}
+                    <li class="mod-house-item" style="height: 310px;text-align: center;">
+                        <a target="_blank" href="{:url('index/agentone/showDecorator',['id'=>$v.id])}?lang={$lang}" class="link-block">
+                            <div class="mod-house-item-top">
+                                <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
+                            </div>
+                            <div class="mod-house-item-bottom">
+                                <div class="house-item-title">
+                                    {$v.title}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {/volist}
+                </div>
+            </div>
+            <div class="pt30">
+                <div class="mod_page" align="center">{$listDecorator|raw}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/agentone_footer" /}

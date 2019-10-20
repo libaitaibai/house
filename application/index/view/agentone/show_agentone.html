@@ -1,0 +1,465 @@
+{include file="public/header" /}
+<div class="transparent-navbar">
+    <div class="content-block clearfix" style="width: 98%!important;margin: 0 auto">
+        <div class="index-nav_left" style="margin-left: 28px;">
+            <div class="index-nav-item_logo">
+                <a href="/"><span class="nav-logo"></span></a>
+            </div>
+            <div class="index-nav-item ">
+                <a class="link-nav" href="{:url('index/agentone/index')}?lang={$lang}" title="首页">{:lang('home')}</a>
+            </div>
+            <div class="index-nav-item hover-show">
+                <a href="{:url('index/agentone/listHouse')}?lang={$lang}">{:lang('SelectedHouses')}</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="/agentonehouse____%E6%96%B0%E6%88%BF_.html?lang={$lang}" class="link-block">{:lang('NewHousingSources')}</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="/agentonehouse____%E4%BA%8C%E6%89%8B%E6%88%BF_.html?lang={$lang}" class="link-block">{:lang('SecondhandhHousing')}</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="/agentonehouse____%E5%9C%9F%E5%9C%B0_.html?lang={$lang}" class="link-block">{:lang('Landinvestment')}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="index-nav-item hover-show ">
+                <a href="{:url('index/agentone/listArticle')}?lang={$lang}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    {volist name="articleTag" id="v"}
+                    <li class="index-dropdown-item"><a href="{:url('index/agentone/listArticle',['tag'=>$v])}?lang={$lang}">{$v}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show ">
+                <a href="javascript:;">{:lang('Lifeassistant')}</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/orlando_page?id=49')}?lang={$lang}" class="link-block">{:lang('Briefintroduction')}</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/orlando_page?id=50')}?lang={$lang}" class="link-block">{:lang('StreetView')}</a>
+                    </li>
+                    <!--<li class="index-dropdown-item ">-->
+                    <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
+                    <!--</li>-->
+                    <!--<li class="index-dropdown-item ">-->
+                    <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
+                    <!--</li>-->
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/developerCompany')}?lang={$lang}" class="link-block">{:lang('AmericanDeveloper')}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show ">
+                <a href="javascript:;">{:lang('Aboutus')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <?php
+                        $list=db('ads_data')->where('aid',11)->where('show',1)->select();
+                    ?>
+                    {volist name="list" id="v"}
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/page?id='.$v['id'])}?lang={$lang}" class="link-block">{$v.title}</a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+
+        <div class="index-nav-item hover-show ">
+            <a href="{:url('index/agentone/index')}?lang=zh-cn" {if $lang == 'zh-cn'} style="color: #778899" {/if}>中文</a>
+            |
+            <a href="{:url('index/agentone/index')}?lang=en-us" {if $lang == 'en-us'} style="color: #778899" {/if}>English</a>
+        </div>
+
+        <!--<form action="{:url('index/agentone/listHouse')}?lang={$lang}">-->
+            <!--<div class="index-nav_right" style="margin-right: 28px">-->
+                <!--<div class=" uoolu-search search-group " id="houseListSearch">-->
+                        <!--<input class="search-input" name="q" autocomplete="off" type="text" placeholder="房源查询">-->
+                        <!--<a href="javascript:;" class="search-btn" id="sbtn">-->
+                            <!--<img src="__RES__/images/search.png" alt="">-->
+                        <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</form>-->
+    </div>
+</div>
+<div class="index-banner">
+    <div class="swiper-container banner_swiper">
+        <?php
+            $list=db('ads_data')->where(['aid'=>1,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(5)->select();
+        ?>
+        <!-- 导航按钮 -->
+        <div class="swiper-navigation-wrapper">
+            <ul class="swiper-navigation content-block">
+                {volist name="$list" id="v"}
+                <li class="navigation-item">
+                    {$v.title}
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <!-- 左右滑动按钮 -->
+        <div class="banner-button_prev">
+            <span class="iconfont icon-youluPC_common_arrow_th"></span>
+        </div>
+        <div class="banner-button_next">
+            <span class="iconfont icon-youluPC_common_arrow_th1"></span>
+        </div>
+        <div class="swiper-wrapper">
+            {volist name="$list" id="v"}
+            <div class="swiper_item swiper-slide" style="background-image: url({$v.thumb})">
+                {if $v.url}<a target="_blank" href="{$v.url}" class="link-block"></a>{/if}
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+</div>
+<div class="index-status-bar">
+    <ul class="content-block status-bar-content">
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_user"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">{:lang('Reliable')}</div>
+                <!--<div>{:lang('Consultantsserveonetoonetomaximizeyourbenefits')}</div>-->
+            </div>
+        </li>
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_city"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">{:lang('Reallistings')}</div>
+                <!--<div>{:lang('Licensedbrokersrecommendhousingsources')}</div>-->
+            </div>
+        </li>
+        <li class="status-item">
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_partn"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">{:lang('Professionalteam')}</div>
+                <!--<div>{:lang('RealtimeConsultingLicensedBroker')}</div>-->
+            </div>
+        </li>
+        <li class="status-item">
+
+            <div class="status-icon">
+                <span class="iconfont  icon-youluPC_home_data_house"></span>
+            </div>
+            <div class="status-main">
+                <div class="status-item-title">{:lang('Realestatemanagement')}</div>
+                <!--<div>{:lang('Onestoptrusteeshipdoesnotbotherwiththetrivialityofrentingandsellinghouses')}</div>-->
+            </div>
+        </li>
+
+        <li class="status-item" style="width:360px;height:0px;position: relative;">
+            <div class="statuscon">
+                <img style="width: 140px;height: 140px;" src={$agent['photo']} class="agentThumb" alt="头像">
+            </div>
+            <div class="statusain">
+                <div class="statustitle">
+                    <h1>{$agent['name']}</h1>
+                    <h5>手机号 : {$agent['phone']}</h5>
+                    <h5>邮箱 : {$agent['email']}</h5>
+                </div>
+            </div>
+
+        </li>
+
+    </ul>
+</div>
+<style>
+    .statuscon{
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: solid 3px #dcdcdc;
+        position: absolute;
+        right: 10px;
+        top: -125px;
+        overflow: hidden;
+        z-index:999;
+    }
+    .statusain{
+        position:absolute;
+        top: -40px;
+        left:60px;
+    }
+    .statustitle h1 {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1;
+        color:black;
+    }
+    .statustitle h5 {
+        margin-top: 9px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color:black;
+    }
+
+</style>
+<!-- 精选房源 -->
+<div class="page-national-house">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">{:lang('SelectedHouses')}</h5>
+            <div class="info-sub">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="house-list-wrap content-block">
+        <div class="house-list">
+            <?php
+                $houseDb= new \app\admin\model\CmsHouse();
+                $list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(8)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li class="mod-house-item">
+                <a target="_blank" href="{:url('index/agentone/showHouse',['id'=>$v.id])}?lang={$lang}" class="link-block">
+                    <div class="mod-house-item-top">
+                        <img class="house-item-pic" src="{:thumb($v.thumb,280,162)}" alt="">
+                        <div class="house-item-price">
+                            <span class="house-item-price_big">￥{:round($v.price*$rate,1)}   {:lang('tenthousand')}</span><span>{:lang('rise')}</span>
+                        </div>
+                        <div class="house-item-cover">
+                            <div class="house-item-cover-block">
+                                <div style="white-space: normal;">{$v.sub_title}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mod-house-item-bottom">
+                        <div class="house-item-title" title="{$v.title}">
+                            {$v.title}
+                        </div>
+                        <div class="house-item-feature">
+                            {:implode(',',$v.type)} · {:implode(',',$v.room)}
+                        </div>
+                        <div class="house-item-trend">
+                            <div class="house-item-trend-item">
+                                {:lang('Increasesinthelastyear')}<span class="trend_num">{$v.rent}</span>
+                            </div>
+                            <div class="house-item-trend-item">
+                                {:lang('Averagerentalincome')}<span class="trend_num">{$v.gain}</span>
+                            </div>
+                        </div>
+                        <div class="house-item-subtext text-ellipsis" title="{$v.sub_title}">
+                            {$v.sub_title}
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+        </div>
+    </div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/agentone/listHouse')}?lang={$lang}" title="查看更多房源">{:lang('Checkoutmorehousingsources')}</a></div>
+</div>
+<div class="page-national-guide" style="background: none">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">{:lang('RecommendationBroker')}</h5>
+            <div class="info-sub">{:lang('USLicensedBrokerSeniorHousingManagementExperttoprovideyouwithprofessionalservices')}</div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="house-list-wrap content-block">
+        <div class="house-list agent">
+            <?php
+                $cmsAgentDb= new \app\admin\model\CmsAgent();
+                $list=$cmsAgentDb->where(['show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(4)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li class="mod-house-item">
+                <a target="_blank" href="{:url('index/agentone/showAgent',['id'=>$v.id])}?lang={$lang}" class="link-block">
+                    <div class="mod-house-item-top">
+                        <img class="house-item-pic" src="{:thumb($v.thumb,280,280)}" alt="">
+                        <div class="qr">
+                            <img src="{$v.qr}" alt="">
+                            <!--<p>微信扫一扫</p>-->
+                            <p>{:lang('Sweepaway')}</p>
+                        </div>
+                    </div>
+                    <div class="mod-house-item-bottom">
+                        <div class="house-item-title">
+                            {$v.title}
+                        </div>
+                        <div class="house-item-subtext">
+                            {$v.description}
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+        </div>
+    </div>
+    <div class="page-national-more-btn"><a class="link-btn" href="{:url('index/agentone/listAgent')}?lang={$lang}" title="查看经纪人">
+        <!--查看经纪人-->
+        {:lang('CheckBrokers')}
+    </a></div>
+</div>
+
+
+<div class="checkin-big-wapper">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main"><!--美国开发商-->{:lang('AmericanDeveloper')}  </h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>8,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(6)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li>
+                <a target="_Blank" href="javascript:;">
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+<div class="page-national-guide">
+    <div class="guide-title">
+        <div class="title-modify-left"></div>
+        <div class="title-info">
+            <h5 class="info-main">{:lang('Realestateinformation')}  </h5>
+            <div class="info-sub">{:lang('LifetourismimmigrationeducationetcYouwanttoknowthereare')} </div>
+        </div>
+        <div class="title-modify-right"></div>
+    </div>
+    <div class="content-block">
+        <div class="guide-pic-list">
+            <?php
+                $cmsArticleDb= new \app\admin\model\CmsArticle();
+                $list=$cmsArticleDb->where(['show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(7)->select();
+            ?>
+            {volist name="list" id="v" length='3'}
+            <a target="_blank" class="list-item" href="{:url('index/agentone/showArticle',['id'=>$v.id])}?lang={$lang}">
+                <img src="{:thumb($v.thumb,385,205)}" alt="{$v.title}">
+                <div class="item-desc">
+                    <div class="desc-inner">{$v.title}</div>
+                </div>
+            </a>
+            {/volist}
+        </div>
+        <div class="guide-text-list">
+            {volist name="list" id="v" offset='3'}
+            <div class="list-item">
+                <a target="_blank" class="item-pic" href="{:url('index/agentone/showArticle',['id'=>$v.id])}?lang={$lang}"><img src="{:thumb($v.thumb,165,115)}" alt="{$v.title}"></a>
+                <div class="item-info">
+                    <a class="info-title" href="{:url('index/agentone/showArticle',['id'=>$v.id])}?lang={$lang}">{$v.title}</a>
+                    <div class="info-desc">{$v.description}</div>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <div class="page-national-more-btn"><a target="_blank" class="link-btn" href="{:url('index/agentone/listArticle')}?lang={$lang}" title="查看更多资讯">{:lang('Viewmoreinformation')} </a></div>
+    </div>
+</div>
+<div class="index-remark">
+    <div class="content-block">
+        <div class="page-national-title" style="color: #ffffff;">
+            <span>{:lang('Userevaluation')} </span>
+        </div>
+        <div class="remark-swiper-container">
+            <!-- Slider main container -->
+            <div class="swiper-container remark-swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <?php
+                        $list=db('ads_data')->where(['aid'=>2,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
+                    ?>
+                    {volist name="list" id="v"}
+                    <div class="swiper-slide remark-slide">
+                        <a href="javascript:;"><img class="remark-house-pic" src="{$v.thumb}" alt=""></a>
+                        <div class="remark-user">
+                            <div class="remark-info">
+                                <img src="__RES__/images/avatar/{$key}.gif" alt="" class="remark-avartar">
+                                <div class="remark-user-info">
+                                    <div class="remark-username">&nbsp; </div>
+                                    <div class="remark-review">{$v.title}</div>
+                                </div>
+                            </div>
+                            <div class="remark-comment">
+                                {$v.content|raw}
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <!-- If we need navigation buttons -->
+            <div class="remark-button_prev">
+                <span class="iconfont icon-youluPC_common_arrow_th"></span>
+            </div>
+            <div class="remark-button_next">
+                <span class="iconfont icon-youluPC_common_arrow_th1"></span>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination remark-swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+<div class="page-national-guide">
+    <div class="site_layout">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">{:lang('Purchaseprocess')} </h5>
+                <div class="info-sub">{:lang('OnestopOverseasHomeEstateCompanyescortsyou')} </div>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <div class="content-block">
+            <img src="__RES__/images/guide-process.jpg">
+        </div>
+    </div>
+</div>
+{if !empty($hide)}
+<div class="checkin-big-wapper">
+    <div class="content-block checkin">
+        <div class="guide-title">
+            <div class="title-modify-left"></div>
+            <div class="title-info">
+                <h5 class="info-main">{:lang('Cooperativebrand')} </h5>
+            </div>
+            <div class="title-modify-right"></div>
+        </div>
+        <ul class="checkin-wappers">
+            <?php
+                $list=db('ads_data')->where(['aid'=>3,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(6)->select();
+            ?>
+            {volist name="list" id="v"}
+            <li>
+                <a target="_Blank" href="javascript:;">
+                    <div class="checkin-img-wapper">
+                        <img src="{$v.thumb}">
+                    </div>
+                    <p>{$v.title}</p>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+{/if}
+
+{include file="public/agentone_footer" /}

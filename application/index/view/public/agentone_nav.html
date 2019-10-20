@@ -1,0 +1,87 @@
+<div class="white-navbar">
+    <div class="content-block clearfix">
+        <div class="index-nav_left" style="margin-left: 28px;">
+            <div class="index-nav-item_logo">
+                <a href="/"><span class="nav-logo"></span></a>
+            </div>
+            <div class="index-nav-item">
+                <a class="link-nav" href="{:url('index/agentone/index')}?lang={$lang}" title="首页">{:lang('home')}</a>
+            </div>
+            <div class="index-nav-item hover-show {if $ac=='house'}active{/if}">
+                <a href="{:url('index/agentone/listHouse')}?lang={$lang}">{:lang('SelectedHouses')}</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="/agentonehouse____%E6%96%B0%E6%88%BF_.html?lang={$lang}" class="link-block">{:lang('NewHousingSources')}</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="/agentonehouse____%E4%BA%8C%E6%89%8B%E6%88%BF_.html?lang={$lang}" class="link-block">{:lang('SecondhandhHousing')}</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="/agentonehouse____%E5%9C%9F%E5%9C%B0_.html?lang={$lang}" class="link-block">{:lang('Landinvestment')}</a>
+                    </li>
+                </ul>
+            </div>
+            <!--<div class="index-nav-item {if $ac=='agent'}active{/if}">-->
+                <!--<a href="{:url('index/agentone/listAgent')}?lang={$lang}">{:lang('Estatemanager')}</a>-->
+            <!--</div>-->
+            <!--<div class="index-nav-item {if $ac=='butlerCompany'}active{/if}">-->
+                <!--<a href="{:url('index/agentone/butlerCompany')}?lang={$lang}">{:lang('Housingmanagement')}</a>-->
+            <!--</div>-->
+            <!--<div class="index-nav-item hover-show {if $ac=='decoration'}active{/if}">-->
+                <!--<a href="javascript:;">{:lang('Housedecoration')}</a>-->
+                <!--<span class="iconfont icon-youluPC_common_arrow_bo1"></span>-->
+                <!--<ul class="index-dropdown">-->
+                    <!--<li class="index-dropdown-item ">-->
+                        <!--<a href="{:url('index/agentone/decorationCompany')}?lang={$lang}" class="link-block">{:lang('DecorationofHolidayHouse')}</a>-->
+                    <!--</li>-->
+                    <!--<li class="index-dropdown-item ">-->
+                        <!--<a href="{:url('index/agentone/listDecorator')}?lang={$lang}" class="link-block">{:lang('Decorator')}</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="index-nav-item hover-show {if $ac=='article'}active{/if}">
+                <a href="{:url('index/agentone/listArticle')}?lang={$lang}">{:lang('Realestateinformation')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    {volist name="articleTag" id="v"}
+                    <li class="index-dropdown-item"><a href="{:url('index/agentone/listArticle',['tag'=>$v])}?lang={$lang}">{$v}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show {if $ac=='help'}active{/if}">
+                <a href="javascript:;">{:lang('Lifeassistant')}</a>
+                <span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/orlando_page?id=49')}?lang={$lang}" class="link-block">{:lang('Briefintroduction')}</a>
+                    </li>
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/orlando_page?id=50')}?lang={$lang}" class="link-block">{:lang('StreetView')}</a>
+                    </li>
+                    <!--<li class="index-dropdown-item ">-->
+                        <!--<a href="javascript:;" class="link-block">奥兰多航拍</a>-->
+                    <!--</li>-->
+                    <!--<li class="index-dropdown-item ">-->
+                        <!--<a href="javascript:;" class="link-block">奥兰多华人餐馆</a>-->
+                    <!--</li>-->
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/developerCompany')}?lang={$lang}" class="link-block">{:lang('AmericanDeveloper')}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="index-nav-item hover-show {if $ac=='page'}active{/if}">
+                <a href="javascript:;">{:lang('Aboutus')}</a><span class="iconfont icon-youluPC_common_arrow_bo1"></span>
+                <ul class="index-dropdown">
+                    <?php
+                        $list=db('ads_data')->where('aid',11)->where('show',1)->select();
+                    ?>
+                    {volist name="list" id="v"}
+                    <li class="index-dropdown-item ">
+                        <a href="{:url('index/agentone/page?id='.$v['id'])}?lang={$lang}" class="link-block">{$v.title}</a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

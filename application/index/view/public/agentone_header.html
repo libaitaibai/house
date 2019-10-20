@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="referrer" content="never">
+    <meta http-equiv="mobile-agent" content="format=wml; url=http://m.{:request()->rootDomain()}{:request()->url()}">
+    <meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.{:request()->rootDomain()}{:request()->url()}">
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.{:request()->rootDomain()}{:request()->url()}">
+    <meta charset="UTF-8">
+    <title>{$SEO.title|default=''}</title>
+    <meta name="keywords" content="{$SEO.keywords|default=''}">
+    <meta name="description" content="{$SEO.description|default=''}">
+    <link rel="stylesheet" href="__RES__/css/main.css">
+    <link rel="stylesheet" href="__RES__/css/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+    <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
+    <script>
+        if (device.mobile()) {
+            window.location.href="http://m.{:request()->rootDomain()}{:request()->url()}"
+        }
+    </script>
+</head>
+<!--<body oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false">-->
