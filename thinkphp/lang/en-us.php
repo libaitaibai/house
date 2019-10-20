@@ -99,23 +99,14 @@ return [
     "address" => "Address",
     "detailedinformation" => "detailed information",
     "OrlandoHouseproperty"=>"Orlando Houseproperty",
-    "noData" => "no data"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "noData" => "no data",
+    'NewHousingSourcess' => 'New housing sources',
+    'SecondhandhHousings' => 'Second-hand housing',
+    'Landinvestments' => 'Land investment',
+    'OrlandoRealestateinformation' => 'Orlando Realestate information',
+    'AmericanRealestateinformation'=>'American Realestate information',
+    'Travelinformation'=>'Travel information',
+    'Contact'=>'Contact'
 
 
 

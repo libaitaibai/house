@@ -1,0 +1,113 @@
+{include file="public/m_header" /}
+<div id="index-banner" class="swiper-container">
+    <div class="swiper-wrapper">
+        {volist name="ads" id="v"}
+        <div class="swiper-slide">
+            <a {if $v.url}href="{$v.url}"{/if}>
+                <img data-src="{$v.thumb}" src="__RES__/m/images/nopic750_400.png" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </a>
+        </div>
+        {/volist}
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+   <!-- <img class="banner-radius" src="__RES__/m/images/banner-radius.png">-->
+</div>
+<div class="agentBox">
+        <img src="http://lisa.kylin66.com/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentQr" alt="微信二维码">
+    <img src="http://lisa.kylin66.com/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentThumb" alt="头像">
+    <div class="info">
+        <h1> Lisa Ma 马琳</h1>
+        <h5>微信号sunlisa888</h5>
+        <h5>SL3087301</h5>
+    </div>
+    <p class="mobile">4077016598</p>
+</div>
+
+{include file="public/m_agent_nav" /}
+<section class="section-card">
+    <div class="section-title">
+        <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}">
+            <div class="title-info">{:lang('Recommendagoodroom')}</div>
+            <div class="title-desc">
+                <div class="desc-info">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
+                <div class="desc-arrow"><img src="__RES__/m/images/title-arrow.png" alt=""></div>
+            </div>
+        </a>
+    </div>
+    <div id="index-house" class="swiper-container">
+        <div class="swiper-wrapper">
+            <?php
+                $houseDb= new \app\admin\model\CmsHouse();
+                $list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
+            ?>
+            {volist name="list" id="v"}
+            <div class="swiper-slide list-item">
+                <a href="{:url('index/magents/showHouse?id='.$v['id'])}?lang={$lang}">
+                    <div class="item-img">
+                        <img data-src="{:thumb($v.thumb,300,200)}" src="__RES__/m/images/nopic300_200.png" class="swiper-lazy">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                    <div class="item-info">
+                        <div class="info-title">{$v.title}</div>
+                        <div class="info-desc">{$v.sub_title}</div>
+                        <div class="info-price">
+                            <span class="price-unit">￥</span>
+                            <span class="price-num">{:round($v.price*$rate,1)} {:lang('tenthousand')}</span>
+                            <span class="price-label">{:lang('rise')}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</section>
+<?php
+    $tab=['奥兰多房产资讯', '美国房产资讯', '佛州旅游'];
+?>
+<section class="section-card">
+    <div class="section-tab">
+        {volist name="tab" id="name"}
+        <div class="tab-item {if $i==1}on{/if}">{$name}</div>
+        {/volist}
+    </div>
+    <div class="section-tab-content">
+        {volist name="tab" id="name"}
+        <div class="list-inner">
+            <?php
+                    $list = db('cms_article')->where([
+                        ['tag', 'like', '%"'.$name.'"%'],
+                        ['show','=',1]
+                    ])->order(['sort' => 'desc', 'id' => 'desc'])->limit(10)->select();
+            ?>
+            {volist name="list" id="v"}
+            <div class="list-item">
+                <a href="{:url('index/magents/showArticle?id='.$v['id'])}?lang={$lang}">
+                    <div class="item-pic"><img src="{:thumb($v.thumb,300,200)}" alt="{$v.title}"></div>
+                    <div class="item-info">
+                        <div class="info-title">{$v.title}</div>
+                        <div class="item-desc">
+                            <div class="desc-info">
+                                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M512 346.112c-91.136 0-165.376 74.24-165.376 165.376s74.24 165.376 165.376 165.376 165.376-74.24 165.376-165.376-74.24-165.376-165.376-165.376z m0 269.312c-57.344 0-103.936-46.592-103.936-103.936 0-57.344 46.592-103.936 103.936-103.936s103.936 46.592 103.936 103.936-46.592 103.936-103.936 103.936z m437.76-119.296c-73.728-139.776-247.296-281.088-437.76-281.088s-364.032 141.312-437.248 281.088l-8.704 15.872 8.704 15.872c73.216 139.776 246.784 281.088 437.248 281.088s364.032-141.824 437.76-281.088l8.192-15.872-8.192-15.872z m-437.76 247.296c-156.672 0-305.664-116.736-373.248-231.424 68.096-115.2 216.576-231.424 373.248-231.424s305.664 116.224 373.248 231.424c-67.584 114.688-216.576 231.424-373.248 231.424z"></path>
+                                </svg>
+                                <i>{$v.hits}</i>
+                            </div>
+                            <div class="desc-info">{:date('Y-m-d',$v.addtime)}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {/volist}
+            {notempty name="list"}
+            <div class="more">
+                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}">{:lang('Checkoutmorehousingsources')}</a>
+            </div>
+            {/notempty}
+        </div>
+        {/volist}
+    </div>
+</section>
+{include file="public/m_agent_footer" /}

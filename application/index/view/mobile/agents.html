@@ -114,36 +114,92 @@
         }
     </style>
 </head>
-<body><nav id="menu" class="mm-menu mm-effect-slide-menu mm-pageshadow mm-offcanvas mm-hassearch"><div class="mm-search"><h3 id="logo1"></h3></div><div class="mm-panel mm-opened mm-current" id="mm-1"><div class="mm-noresultsmsg">No results found.</div><ul class="mm-listview mm-first mm-last">
-    <li>
-        <a class="active" href="/">首页</a>
-    </li>
-    <li><em class="mm-counter">4</em>
-        <a class="mm-next" href="#mm-2" data-target="#mm-2"></a><a href="javascript:;" class="">佛州房产</a>
+<body>
+<nav id="menu" class="mm-menu mm-effect-slide-menu mm-pageshadow mm-offcanvas mm-hassearch">
+    <div class="mm-search"><h3 id="logo1"></h3></div><div class="mm-panel mm-opened mm-current" id="mm-1"><div class="mm-noresultsmsg">No results found.</div>
+    <ul class="mm-listview mm-first mm-last">
 
-    </li>
-    <li><em class="mm-counter">5</em>
-        <a class="mm-next" href="#mm-3" data-target="#mm-3"></a><a href="javascript:;" class="">房产资讯</a>
+        {empty name="navlist"}
 
-    </li>
-    <li>
-        <a href="http://lisa.kylin66.com/articletype/7.html" class="">房产管理</a>
-    </li>
-    <li>
-        <a href="http://lisa.kylin66.com/contact.html" class="">联系方式</a>
-    </li>
-</ul></div><div class="mm-panel mm-hasnavbar mm-hidden" id="mm-2"><div class="mm-navbar"><a class="mm-btn mm-prev" href="#mm-1" data-target="#mm-1"></a><a class="mm-title">佛州房产</a></div><ul class="subnav mm-listview mm-first mm-last">
-    <li><a href="http://lisa.kylin66.com/housetype/2.html" target="_self">坦帕房产</a></li>
-    <li><a href="http://lisa.kylin66.com/housetype/3.html" target="_self">棕榈滩房产</a></li>
-    <li><a href="http://lisa.kylin66.com/housetype/4.html" target="_self">迈阿密房产</a></li>
-    <li><a href="http://lisa.kylin66.com/housetype/5.html" target="_self">奥兰多房产</a></li>
-</ul></div><div class="mm-panel mm-hasnavbar mm-hidden" id="mm-3"><div class="mm-navbar"><a class="mm-btn mm-prev" href="#mm-1" data-target="#mm-1"></a><a class="mm-title">房产资讯</a></div><ul class="subnav mm-listview mm-first mm-last">
-    <li><a href="http://lisa.kylin66.com/articletype/2.html" target="_self">生活资讯</a></li>
-    <li><a href="http://lisa.kylin66.com/articletype/3.html" target="_self">旅游信息</a></li>
-    <li><a href="http://lisa.kylin66.com/articletype/4.html" target="_self">移民资讯</a></li>
-    <li><a href="http://lisa.kylin66.com/articletype/5.html" target="_self">教育资讯</a></li>
-    <li><a href="http://lisa.kylin66.com/articletype/6.html" target="_self">房产资讯</a></li>
-</ul></div></nav>
+            <li>
+                <a class="active" href="/">首页</a>
+            </li>
+            <li><em class="mm-counter">3</em>
+                <a class="mm-next" href="#mm-2" data-target="#mm-2"></a><a href="javascript:;" class="">佛州房产</a>
+
+            </li>
+            <li><em class="mm-counter">3</em>
+                <a class="mm-next" href="#mm-3" data-target="#mm-3"></a><a href="javascript:;" class="">房产资讯</a>
+
+            </li>
+            <li>
+                <a href="http://lisa.kylin66.com/articletype/7.html" class="">房产管理</a>
+            </li>
+            <li>
+                <a href="http://lisa.kylin66.com/contact.html" class="">联系方式</a>
+            </li>
+
+        {else /}
+
+            {volist name="navlist" id="item" key="k" }
+            <li>
+
+                {if $item.childs_num>0}
+                <em class="mm-counter">{$item.childs_num}</em>
+                <a class="mm-next" href="#mm-{$k+1}" data-target="#mm-{$k+1}"></a><a href="{$item.url}" class="">{$item.name}</a>
+                {else /}
+                <a {if $current==$item.key}class="active"{/if} href="{$item.url}">{$item.name}</a>
+                {/if}
+
+
+            </li>
+            {/volist}
+        {/empty}
+
+
+
+</ul></div>
+
+    {empty name="navlist"}
+
+        <div class="mm-panel mm-hasnavbar mm-hidden" id="mm-2">
+            <div class="mm-navbar"><a class="mm-btn mm-prev" href="#mm-1" data-target="#mm-1"></a><a class="mm-title">佛州房产</a></div>
+            <ul class="subnav mm-listview mm-first mm-last">
+                <li><a href="http://lisa.kylin66.com/housetype/2.html" target="_self">坦帕房产</a></li>
+                <li><a href="http://lisa.kylin66.com/housetype/3.html" target="_self">棕榈滩房产</a></li>
+                <li><a href="http://lisa.kylin66.com/housetype/4.html" target="_self">迈阿密房产</a></li>
+                <li><a href="http://lisa.kylin66.com/housetype/5.html" target="_self">奥兰多房产</a></li>
+            </ul>
+        </div>
+        <div class="mm-panel mm-hasnavbar mm-hidden" id="mm-3">
+            <div class="mm-navbar"><a class="mm-btn mm-prev" href="#mm-1" data-target="#mm-1"></a><a class="mm-title">房产资讯</a></div>
+            <ul class="subnav mm-listview mm-first mm-last">
+                <li><a href="http://lisa.kylin66.com/articletype/2.html" target="_self">生活资讯</a></li>
+                <li><a href="http://lisa.kylin66.com/articletype/3.html" target="_self">旅游信息</a></li>
+                <li><a href="http://lisa.kylin66.com/articletype/4.html" target="_self">移民资讯</a></li>
+                <li><a href="http://lisa.kylin66.com/articletype/5.html" target="_self">教育资讯</a></li>
+                <li><a href="http://lisa.kylin66.com/articletype/6.html" target="_self">房产资讯</a></li>
+            </ul>
+        </div>
+
+    {else /}
+        {volist name="navlist" id="item" key="k"}
+        {if $item.childs_num>0}
+        <div class="mm-panel mm-hasnavbar mm-hidden" id="mm-{$k+1}">
+            <div class="mm-navbar"><a class="mm-btn mm-prev" href="#mm-1" data-target="#mm-1"></a><a class="mm-title">{$item.name}</a></div>
+            <ul class="subnav mm-listview mm-first mm-last">
+                {volist name="item.childs" id="childs"}
+                <li><a href="http://lisa.kylin66.com/housetype/2.html" target="_self">{$childs.name}</a></li>
+                {/volist}
+            </ul>
+
+        </div>
+        {/if}
+        {/volist}
+    {/empty}
+
+
+</nav>
 <div id="mm-0" class="mm-page mm-slideout" style=""><div id="sitecontent" style="overflow:hidden;" class="">
 
     <div class="content indexPage">
@@ -173,14 +229,14 @@
                 </li></ul></div><div class="bx-controls bx-has-pager bx-has-controls-direction"><div class="bx-pager bx-default-pager"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div></div><div class="bx-controls-direction"><a class="bx-prev disabled" href=""><i class="fa fa-angle-left"></i></a><a class="bx-next disabled" href=""><i class="fa fa-angle-right"></i></a></div></div></div>
         </div>
         <div class="agentBox">
-            <img src="/uploads/20180730/50766477f8d191522400580330c580bb.jpg" class="agentQr" alt="微信二维码">
-            <img src="/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentThumb" alt="头像">
+            <img src="{$d.qr}" class="agentQr" alt="微信二维码">
+            <img src="{$d.thumb}" class="agentThumb" alt="头像">
             <div class="info">
-                <h1> Lisa Ma 马琳</h1>
-                <h5>微信号sunlisa888</h5>
-                <h5>SL3087301</h5>
+                <h1>{$d.name}</h1>
+                <h5>{$d.email}</h5>
+                <h5>{$d.license}</h5>
             </div>
-            <p class="mobile">4077016598</p>
+            <p class="mobile">{$d.phone}</p>
         </div>
         <div class="mlist project module">
             <div class="bgmask">
