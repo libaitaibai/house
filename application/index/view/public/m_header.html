@@ -10,11 +10,12 @@
     <meta name="description" content="{$SEO.description|default=''}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
     <link rel="stylesheet" href="__RES__/m/css/main.css">
+    <link rel="stylesheet" href="/static/mobile_agent/css/lib.css"/>
     <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
     <script>
-        if (device.desktop()) {
-            window.location.href="http://www.{:request()->rootDomain()}{:request()->url()}"
-        }
+        // if (device.desktop()) {
+        //     window.location.href="http://www.{:request()->rootDomain()}{:request()->url()}"
+        // }
     </script>
 </head>
 <body>

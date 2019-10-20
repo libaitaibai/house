@@ -231,7 +231,14 @@ return [
     "address" => "地址",
     "detailedinformation" => "详细信息",
     "OrlandoHouseproperty"=>"奥兰多房产",
-    "noData"=>"暂无数据"
+    "noData"=>"暂无数据",
+    'NewHousingSourcess' => '奥兰多新房源',
+    'SecondhandhHousings' => '奥兰多二手房源',
+    'Landinvestments' => '奥兰多土地投资',
+    'OrlandoRealestateinformation'=>'奥兰多房产资讯',
+    'AmericanRealestateinformation'=>'美国房产资讯',
+    'Travelinformation'=>'旅游资讯',
+    'Contact'=>'联系方式'
 
 
 

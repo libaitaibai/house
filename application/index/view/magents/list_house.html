@@ -1,0 +1,63 @@
+{include file="public/m_header" /}
+{include file="public/m_agent_page_header" /}
+
+<section class="search">
+    <a href="" class="back">
+        <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path d="M328.555136 515.587823l364.265028-364.265028c20.07399-20.049007 20.07399-52.553369 0-72.577393-20.024024-20.049007-52.528386-20.049007-72.577393 0L220.992263 477.971128c-20.024024 20.024024-20.024024 52.528386 0 72.577393 1.578929 1.578929 3.383306 2.83188 5.112534 4.160179 0.300796 0.325779 0.526243 0.701724 0.827039 1.027503l389.877663 389.877663c19.57293 19.57293 51.300418 19.57293 70.873148 0s19.57293-51.300418 0-70.873148L328.555136 515.587823z" p-id="45683"></path>
+        </svg>
+    </a>
+    <div class="search-inner">
+        <form action="">
+            <input type="text" name="q" placeholder="搜索房源">
+            <svg class="search-icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M430.4 25.6C217.6 25.6 44.8 198.4 44.8 411.2s172.8 385.6 385.6 385.6S816 624 816 411.2 643.2 25.6 430.4 25.6z m-4.8 697.6c-172.8 0-312-139.2-312-312S252.8 99.2 425.6 99.2s312 139.2 312 312-139.2 312-312 312zM916.8 988.8s104 32 83.2-72L716.8 633.6l-80 89.6 280 265.6z" p-id="47777"></path>
+            </svg>
+        </form>
+    </div>
+    <div class="filter">
+        <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="57501">
+            <path d="M859.02 234.524l0.808-0.756 0.749-0.813c27.047-29.356 33.876-70.34 17.823-106.957-15.942-36.366-50.416-58.957-89.968-58.957H163.604c-38.83 0-73.043 22.012-89.29 57.444-16.361 35.683-10.632 76.301 14.949 106.004l0.97 1.126 280.311 266.85 2.032 312.074c0.107 16.502 13.517 29.805 29.995 29.805l0.2-0.001c16.568-0.107 29.912-13.626 29.804-30.194l-2.198-337.564-296.478-282.241c-9.526-11.758-11.426-26.933-5.044-40.851 6.446-14.059 19.437-22.452 34.75-22.452h624.828c15.6 0 28.69 8.616 35.017 23.047 6.31 14.391 3.924 29.831-6.354 41.497l-304.13 284.832 1.302 458.63c0.047 16.54 13.469 29.916 29.998 29.915h0.087c16.568-0.047 29.962-13.517 29.915-30.085L573.04 502.36l285.98-267.836z"></path>
+            <path d="M657.265 595.287c0 16.498 13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.498 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997H687.262c-16.498 0-29.997 13.499-29.997 29.997z m273.894 138.882H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z m0 168.878H687.262c-16.498 0-29.997 13.499-29.997 29.997s13.499 29.997 29.997 29.997h243.897c16.498 0 29.997-13.499 29.997-29.997 0-16.498-13.499-29.997-29.997-29.997z"></path>
+        </svg>
+        <span>{:lang('screen')}</span>
+    </div>
+</section>
+<section class="filter-inner">
+    {volist name="filter" id="v"}
+    <div class="title">{$v.name}</div>
+    <div class="radio" data-name="{$v.key}">
+        {volist name="v.child" id="vv"}
+        <a>{$vv}</a>
+        {/volist}
+    </div>
+    {/volist}
+    <div class="bottom">
+        <a class="clearFilter"> {:lang('clear')} </a>
+        <a class="subFilter"> {:lang('Determine')} </a>
+    </div>
+</section>
+<section class="house-list-inner">
+    <div class="house-list dropload" data-url="{:url('index/api/listHouse')}?lang={$lang}">
+        <div class="ajax-box">
+            {volist name="listHouse" id="v"}
+            <a class="link" href="{:url('index/mobile/showHouse?id='.$v['id'])}?lang={$lang}">
+                <div class="img">
+                    <img class="img-bg" src="{:thumb($v.thumb,300,200)}">
+                </div>
+                <div class="right">
+                    <div class="title">{$v.title}</div>
+                    <div class="node">{$v.sub_title}</div>
+                    <div class="price">总价 ￥ <span class="price1"><span class="price2">{:round($v.price*$rate,1)}万</span>起</span></div>
+                    <div class="text">
+                        <span>{:lang('Housingpricesinthepastyear')}{$v.rent}</span>
+                        <span>{:lang('Averagerentalincome')} {$v.gain}</span>
+                    </div>
+                </div>
+            </a>
+            {/volist}
+        </div>
+    </div>
+</section>
+
+{include file="public/m_agent_footer" /}

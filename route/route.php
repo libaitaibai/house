@@ -17,7 +17,6 @@ if(request()->subDomain()=='m'){
     Route::rule('house_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>','index/mobile/listHouse')->pattern(['jg'=>'.*']);
     Route::rule('house/:id','index/mobile/showHouse');
     Route::rule('agent/:id','index/mobile/showAgent');
-    Route::rule("agents/:id",'index/mobile/getAgent');
     Route::rule('agent','index/mobile/listAgent');
     Route::rule('article_<tag?>','index/mobile/listArticle');
     Route::rule('article/:id','index/mobile/showArticle');
@@ -30,6 +29,8 @@ if(request()->subDomain()=='m'){
     Route::rule('contact','index/mobile/page?id=37');  //联系我们
     Route::rule('orlando', 'index/mobile/orlando_page?id=49');  //奥兰多介绍
     Route::rule('jiejing', 'index/mobile/orlando_page?id=50');  //奥兰多街景
+
+    Route::rule("agents/index/:id",'index/magents/index');
 }else{
     //前端
     Route::rule('/','index/index/index');

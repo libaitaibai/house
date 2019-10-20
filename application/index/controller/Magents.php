@@ -8,7 +8,7 @@ use app\admin\model\CmsArticle;
 use app\admin\model\CmsDecorator;
 use app\admin\model\CmsHouse;
 
-class Mobile extends Base
+class Magents extends Base
 {
 
     public $SEO, $articleTag;
@@ -23,14 +23,31 @@ class Mobile extends Base
             'keywords' => '奥兰多房产,奥兰多房地产,奥兰多房地产经纪,奥兰多度假屋,奥兰多房屋管理公司,奥兰多装修公司,美国房产,佛罗里达房产,奥兰多房产,奥兰多管理公司,佛罗里达地产,佛罗里达经纪,美国房产服务平台',
             'description' => '我们是专为海外房东设立的奥兰多房地产服务平台，主推奥兰多房产，奥兰多度假屋、奥兰多经纪、美国房产等服务，为投资人提供一条龙的专业化服务，解决海外购房的一切难题。根据不同的投资需求，我们将为投资人筛选对接合适的持牌地产经纪、贷款经纪及房屋管理公司。除了奥兰多房屋买卖和出租管理以外，我们还会实时更新当地专业化的装修公司资讯，让您的房屋免除后顾之忧，轻松当美国房东！',
         ];
+        //底部友情链接
+        $ylink=db('ads_data')->where('aid',11)->where('show',1)->select();
+        $this->assign('ylink',$ylink);
         $this->domain = request()->domain();
-        $this->articleTag = ['奥兰多房产资讯', '美国房产资讯', '佛州旅游'];
+        $this->articleTag = [lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), lang('Travelinformation')];
         $this->assign('articleTag', $this->articleTag);
     }
 
     public function index()
     {
+
+        //获取经纪人
+        $id = input('id',0);
+        $db = new CmsAgent();
+        $agent = $db->where('id', $id)->find();
+        if (empty($agent)) $this->error('经纪人不存在');
+
+        $ads=db('ads_data')->where(['aid'=>12,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
+
+
+
+        $this->assign('ads', $ads);
+        $this->assign('agent',$agent);
         $this->assign('SEO', $this->SEO);
+
         return $this->tpl();
     }
 
@@ -160,7 +177,6 @@ class Mobile extends Base
         $this->assign('pageName', '奥兰多房产经纪人');
         return $this->tpl();
     }
-
 
 
     //文章列表
