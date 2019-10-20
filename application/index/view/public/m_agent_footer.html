@@ -1,25 +1,25 @@
 <div class="agentbot col-100">
-    <a href="/" class="external">
-        <img src="/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" alt="" class="loading-img">
+    <a href="/index/magents/index.html?aid={$agent_id}" class="external">
+        <img src="{$agent.thumb}" alt="" class="loading-img">
         <div class="loading2">
         </div>
         <span class="loading-span">首页</span>
     </a>
     <div class="lefttext color-white">
 		<span class="display-block textover">
-		<a href="/" class="external"> Lisa Ma 马琳</a>
+		<a href="/" class="external"> {$agent.title}</a>
 		</span>
-        <a href="/" class="external color-white">4077016598</a>
+        <a href="/" class="external color-white">{$agent.phone}</a>
     </div>
     <ul class="rightbtn pull-right">
         <li>
             <span class="alert-weixin pointer"><img src="http://lisa.kylin66.com/res/static/images/wechat.png" alt=""></span>
         </li>
         <li>
-            <a href="tel:4077016598" class="external"><img src="http://lisa.kylin66.com/res/static/images/call.png" alt=""></a>
+            <a href="tel:{$agent.phone}" class="external"><img src="http://lisa.kylin66.com/res/static/images/call.png" alt=""></a>
         </li>
         <li>
-            <a href="sms:4077016598" class="open-info"><img src="http://lisa.kylin66.com/res/static/images/sms.png" alt=""></a>
+            <a href="sms:{$agent.email}" class="open-info"><img src="http://lisa.kylin66.com/res/static/images/sms.png" alt=""></a>
         </li>
     </ul>
 </div>
@@ -27,7 +27,7 @@
 <div class="wxbox">
     <div class="msk"></div>
     <div id="wx">
-        <img src="/uploads/20180730/50766477f8d191522400580330c580bb.jpg" alt="微信二维码">
+        <img src="{$agent.qr}" alt="微信二维码">
         <p>长按添加微信</p>
         <button>关闭</button>
     </div>

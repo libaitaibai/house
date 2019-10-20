@@ -1,10 +1,10 @@
 {include file="public/m_header" /}
 {include file="public/m_page_header" /}
 <section class="house-list-inner" style="margin-top: 15px;">
-    <div class="house-list dropload" data-url="{:url('index/api/listAgent')}?{:lang('home')}">
+    <div class="house-list dropload" data-url="{:url('index/api/listAgent')}">
         <div class="ajax-box">
             {volist name="listAgent" id="v"}
-            <a class="link" href="{:url('index/mobile/showAgent?id='.$v['id'])}?{:lang('home')}">
+            <a class="link" href="{:url('index/magents/index?aid='.$v['id'])}">
                 <div class="img" style="width: 100px">
                     <img class="img-bg" src="{:thumb($v.thumb,300,300)}">
                 </div>

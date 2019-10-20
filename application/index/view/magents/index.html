@@ -15,20 +15,20 @@
    <!-- <img class="banner-radius" src="__RES__/m/images/banner-radius.png">-->
 </div>
 <div class="agentBox">
-        <img src="http://lisa.kylin66.com/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentQr" alt="微信二维码">
-    <img src="http://lisa.kylin66.com/uploads/20180730/160c4721b03be10c1d23da1fc0255a0e.jpg" class="agentThumb" alt="头像">
+        <img src="{$agent.qr}" class="agentQr" alt="微信二维码">
+    <img src="{$agent.thumb}" class="agentThumb" alt="头像">
     <div class="info">
-        <h1> Lisa Ma 马琳</h1>
-        <h5>微信号sunlisa888</h5>
-        <h5>SL3087301</h5>
+        <h1>{$agent.title}</h1>
+        <h5>{$agent.email}</h5>
+        <h5>{$agent.license}</h5>
     </div>
-    <p class="mobile">4077016598</p>
+    <p class="mobile">{$agent.phone}</p>
 </div>
 
 {include file="public/m_agent_nav" /}
 <section class="section-card">
     <div class="section-title">
-        <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}">
+        <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}&aid={$agent_id}">
             <div class="title-info">{:lang('Recommendagoodroom')}</div>
             <div class="title-desc">
                 <div class="desc-info">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
@@ -44,7 +44,7 @@
             ?>
             {volist name="list" id="v"}
             <div class="swiper-slide list-item">
-                <a href="{:url('index/magents/showHouse?id='.$v['id'])}?lang={$lang}">
+                <a href="{:url('index/magents/showHouse?id='.$v['id'])}?lang={$lang}&aid={$agent_id}">
                     <div class="item-img">
                         <img data-src="{:thumb($v.thumb,300,200)}" src="__RES__/m/images/nopic300_200.png" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
@@ -84,7 +84,7 @@
             ?>
             {volist name="list" id="v"}
             <div class="list-item">
-                <a href="{:url('index/magents/showArticle?id='.$v['id'])}?lang={$lang}">
+                <a href="{:url('index/magents/showArticle?id='.$v['id'])}?lang={$lang}&aid={$agent_id}">
                     <div class="item-pic"><img src="{:thumb($v.thumb,300,200)}" alt="{$v.title}"></div>
                     <div class="item-info">
                         <div class="info-title">{$v.title}</div>
@@ -103,7 +103,7 @@
             {/volist}
             {notempty name="list"}
             <div class="more">
-                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}">{:lang('Checkoutmorehousingsources')}</a>
+                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{:lang('Checkoutmorehousingsources')}</a>
             </div>
             {/notempty}
         </div>
