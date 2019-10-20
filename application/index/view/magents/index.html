@@ -28,7 +28,7 @@
 {include file="public/m_agent_nav" /}
 <section class="section-card">
     <div class="section-title">
-        <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}">
+        <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}&aid={$agent_id}">
             <div class="title-info">{:lang('Recommendagoodroom')}</div>
             <div class="title-desc">
                 <div class="desc-info">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
@@ -44,7 +44,7 @@
             ?>
             {volist name="list" id="v"}
             <div class="swiper-slide list-item">
-                <a href="{:url('index/magents/showHouse?id='.$v['id'])}?lang={$lang}">
+                <a href="{:url('index/magents/showHouse?id='.$v['id'])}?lang={$lang}&aid={$agent_id}">
                     <div class="item-img">
                         <img data-src="{:thumb($v.thumb,300,200)}" src="__RES__/m/images/nopic300_200.png" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
@@ -84,7 +84,7 @@
             ?>
             {volist name="list" id="v"}
             <div class="list-item">
-                <a href="{:url('index/magents/showArticle?id='.$v['id'])}?lang={$lang}">
+                <a href="{:url('index/magents/showArticle?id='.$v['id'])}?lang={$lang}&aid={$agent_id}">
                     <div class="item-pic"><img src="{:thumb($v.thumb,300,200)}" alt="{$v.title}"></div>
                     <div class="item-info">
                         <div class="info-title">{$v.title}</div>
@@ -103,7 +103,7 @@
             {/volist}
             {notempty name="list"}
             <div class="more">
-                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}">{:lang('Checkoutmorehousingsources')}</a>
+                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{:lang('Checkoutmorehousingsources')}</a>
             </div>
             {/notempty}
         </div>
