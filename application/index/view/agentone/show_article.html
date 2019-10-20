@@ -1,0 +1,39 @@
+{include file="public/agentone_header" /}
+{include file="public/agentone_nav" /}
+<div class="content-block">
+    <div class="housing-detail-col-2 clearfix event_content mt10 mb10">
+        <div class="col-2-left left-menu">
+            <div class="m-title">{:lang('Realestateinformation')}</div>
+            <ul>
+                {volist name="articleTag" id="v"}
+                <li><a href="{:url('index/agentone/listArticle',['tag'=>$v])}?lang={$lang}">{$v}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="col-2-left left-news">
+            <div class="news-box">
+                <h1>{$d.title}</h1>
+                <div class="copyform">
+                    <img src="{$d.logo}" style="background: #ccc;border-radius: 50%;width: 60px;height: 60px" >
+                    <div class="forminfo">
+                        <div class="formname">{$d.form}</div>
+                        <div class="mini-tit">
+                            {volist name="d.tag" id="tag"}
+                            <span class="card" style="margin-right: 5px">{$tag}</span>
+                            {/volist}
+                            <span class="hot">{:lang('temperature')}：<span class="c1">{$d.hits}℃</span></span>
+                            <span class="time">{$d.addtime}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-content">
+                    {$d.content|raw}
+                </div>
+            </div>
+        </div>
+        <div class="col-2-right">
+            {include file="public/side" /}
+        </div>
+    </div>
+</div>
+{include file="public/agentone_footer" /}

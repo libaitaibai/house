@@ -40,7 +40,7 @@
                     <ul class="nav movedx">
                         <li class="navitem"><a class="active" href="{:url('index/agent/index',['id'=>$agentData.id])}" target="_self"><span data-title="首页">首页</span></a></li>
                         <li class="navitem">
-                            <a class="" href="http://lisa.kylin66.com/housetype/1.html" target="_self">
+                            <a class="" href="{:url('index/agent/house',array_merge(['lx'=>1],['id'=>$agentData['id']]))}"  target="_self">
                                 <span data-title="佛州房产">精选房源</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -51,7 +51,7 @@
                             </ul>
                         </li>
                         <li class="navitem">
-                            <a class="" href="http://lisa.kylin66.com/articletype/1.html" target="_self">
+                            <a class="" href="{:url('index/agent/article',['id'=>$agentData.id,'article'=>1])}" target="_self">
                                 <span data-title="房产资讯">房产资讯</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>

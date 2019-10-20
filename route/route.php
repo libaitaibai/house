@@ -36,7 +36,8 @@ if(request()->subDomain()=='m'){
     Route::rule('/','index/index/index');
     Route::rule('house_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>', 'index/index/listHouse')->pattern(['jg' => '.*']);
     Route::rule('house/:id', 'index/index/showHouse');
-    Route::rule('agent/:id', 'index/index/showAgent');
+//    Route::rule('agent/:id', 'index/index/showAgent');
+    Route::rule('agent/:id', 'index/index/showAgentone');
     Route::rule('agent', 'index/index/listAgent');
     Route::rule('article_<tag?>', 'index/index/listArticle');
     Route::rule('article/:id', 'index/index/showArticle');
@@ -49,6 +50,25 @@ if(request()->subDomain()=='m'){
     Route::rule('contact', 'index/index/page?id=37');  //联系我们
     Route::rule('orlando', 'index/index/orlando_page?id=49');  //奥兰多介绍
     Route::rule('jiejing', 'index/index/orlando_page?id=50');  //奥兰多街景
+
+    Route::rule('agentone/:agentid', 'index/agentone/showAgentone');
+    Route::rule('agentone', 'index/agentone/showAgentone');
+    Route::rule('agentonehouse_<jg?>_<zy?>_<wy?>_<lx?>_<ws?>', 'index/agentone/listHouse')->pattern(['jg' => '.*']);
+//    Route::rule('house/:id', 'index/index/showHouse');
+////    Route::rule('agent/:id', 'index/index/showAgent');
+//    Route::rule('agent/:id', 'index/index/showAgentone');
+//    Route::rule('agent', 'index/index/listAgent');
+/*    Route::rule('article_<tag?>', 'index/index/listArticle');*/
+//    Route::rule('article/:id', 'index/index/showArticle');
+//    Route::rule('developer', 'index/index/developerCompany');    //开发商
+//    Route::rule('butler', 'index/index/butlerCompany');  //管理公司
+//    Route::rule('decoration', 'index/index/decorationCompany');  //度假屋装修
+//    Route::rule('decorator/:id', 'index/index/showDecorator');  //装修工人
+//    Route::rule('decorator', 'index/index/listDecorator');  //装修工人
+//    Route::rule('about', 'index/index/page?id=36');  //关于我们
+//    Route::rule('contact', 'index/index/page?id=37');  //联系我们
+//    Route::rule('orlando', 'index/index/orlando_page?id=49');  //奥兰多介绍
+//    Route::rule('jiejing', 'index/index/orlando_page?id=50');  //奥兰多街景
 
 
     Route::rule('newagent/:id', 'index/agent/index');

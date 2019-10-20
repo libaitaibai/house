@@ -1,0 +1,14 @@
+{include file="public/agentone_header" /}
+{include file="public/agentone_nav" /}
+<div class="content-block">
+    <div class="uoolu-housing-detail-crumbs mt15">
+        <a class="crumbs-item" href="/" title="产首页">{:lang('home')}</a>
+        <a class="crumbs-item" href="javascript:;" title="{$d.title}">{$d.title}</a>
+    </div>
+    <div class="agent-content">
+        <div class="agent-introduce" style="border: none">
+            {$d.content|raw}
+        </div>
+    </div>
+</div>
+{include file="public/agentone_footer" /}
