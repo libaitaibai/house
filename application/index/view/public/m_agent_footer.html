@@ -1,13 +1,13 @@
 <div class="agentbot col-100">
     <a href="/index/magents/index.html?aid={$agent_id}" class="external">
-        <img src="{$agent.thumb}" alt="" class="loading-img">
+        <img src="{$agent.photo}" alt="" class="loading-img">
         <div class="loading2">
         </div>
         <span class="loading-span">首页</span>
     </a>
     <div class="lefttext color-white">
 		<span class="display-block textover">
-		<a href="/" class="external"> {$agent.title}</a>
+		<a href="/" class="external"> {$agent.name}</a>
 		</span>
         <a href="/" class="external color-white">{$agent.phone}</a>
     </div>
@@ -27,7 +27,7 @@
 <div class="wxbox">
     <div class="msk"></div>
     <div id="wx">
-        <img src="{$agent.qr}" alt="微信二维码">
+        <img src="/uploads/20190212/63a416632242310bd0aeb95950a5608b.jpg" alt="微信二维码">
         <p>长按添加微信</p>
         <button>关闭</button>
     </div>

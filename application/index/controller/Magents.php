@@ -7,6 +7,7 @@ use app\admin\model\CmsAgent;
 use app\admin\model\CmsArticle;
 use app\admin\model\CmsDecorator;
 use app\admin\model\CmsHouse;
+use app\admin\model\Agent;
 
 class Magents extends Base
 {
@@ -38,7 +39,7 @@ class Magents extends Base
 
         $aid = intval(input('aid',2));
         //获取经纪人
-        $db = new CmsAgent();
+        $db = new Agent();
         $agent = $db->where('id', $aid)->find();
 
         //if (empty($agent)) $this->error('经纪人不存在');
