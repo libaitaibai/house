@@ -29,9 +29,9 @@
 <section class="section-card">
     <div class="section-title">
         <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}&aid={$agent_id}">
-            <div class="title-info">{:lang('Recommendagoodroom')}</div>
+            <div class="title-info">{$lang.Recommendagoodroom}</div>
             <div class="title-desc">
-                <div class="desc-info">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
+                <div class="desc-info">{$lang.Licensedbrokersselectcarefullyforyou}</div>
                 <div class="desc-arrow"><img src="__RES__/m/images/title-arrow.png" alt=""></div>
             </div>
         </a>
@@ -54,8 +54,8 @@
                         <div class="info-desc">{$v.sub_title}</div>
                         <div class="info-price">
                             <span class="price-unit">￥</span>
-                            <span class="price-num">{:round($v.price*$rate,1)} {:lang('tenthousand')}</span>
-                            <span class="price-label">{:lang('rise')}</span>
+                            <span class="price-num">{:round($v.price*$rate,1)} {$lang.tenthousand}</span>
+                            <span class="price-label">{$lang.rise}</span>
                         </div>
                     </div>
                 </a>
@@ -103,7 +103,7 @@
             {/volist}
             {notempty name="list"}
             <div class="more">
-                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{:lang('Checkoutmorehousingsources')}</a>
+                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{$lang.Checkoutmorehousingsources}</a>
             </div>
             {/notempty}
         </div>
