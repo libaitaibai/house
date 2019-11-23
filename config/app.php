@@ -146,6 +146,16 @@ return [
     'http_exception_template'    =>  [
         // 定义404错误的模板文件地址
         404 =>  Env::get('app_path') . '404.html',
+    ],
+    'mail_config'=>[
+
+        'mail_host'=>'smtp.163.com',  //邮件服务器
+        'mail_username'=>'liuyunzuiwan@163.com', //邮箱账号
+        'mail_password'=>'abc888888', //smtp授权码
+        'mail_port'=>'465', //邮件端口 465 或 25
+        'send_name'=>'ysy', //发件人姓名
+        'send_email'=>'liuyunzuiwan@163.com' //发件人邮箱
     ]
+
 
 ];
