@@ -14,7 +14,7 @@ class Magents extends Base
 
     public $SEO, $articleTag;
     protected $domain='';
-    protected $id = 0;
+    protected $aid = 0;
 
     public function initialize()
     {
@@ -25,8 +25,9 @@ class Magents extends Base
             'keywords' => '奥兰多房产,奥兰多房地产,奥兰多房地产经纪,奥兰多度假屋,奥兰多房屋管理公司,奥兰多装修公司,美国房产,佛罗里达房产,奥兰多房产,奥兰多管理公司,佛罗里达地产,佛罗里达经纪,美国房产服务平台',
             'description' => '我们是专为海外房东设立的奥兰多房地产服务平台，主推奥兰多房产，奥兰多度假屋、奥兰多经纪、美国房产等服务，为投资人提供一条龙的专业化服务，解决海外购房的一切难题。根据不同的投资需求，我们将为投资人筛选对接合适的持牌地产经纪、贷款经纪及房屋管理公司。除了奥兰多房屋买卖和出租管理以外，我们还会实时更新当地专业化的装修公司资讯，让您的房屋免除后顾之忧，轻松当美国房东！',
         ];
-         $this->getAgent();
-        //底部友情链接
+        $this->getLang();
+        $this->getAgent();
+        //底部友情链接 
         $ylink=db('ads_data')->where('aid',11)->where('show',1)->select();
         $this->assign('ylink',$ylink);
         $this->domain = request()->domain();
@@ -35,15 +36,18 @@ class Magents extends Base
 
     }
 
+
     private function getAgent(){
 
         $aid = intval(input('aid',2));
+        
         //获取经纪人
         $db = new Agent();
         $agent = $db->where('id', $aid)->find();
 
+        //显示404页面
         //if (empty($agent)) $this->error('经纪人不存在');
-
+        $this->aid = $aid;
         $this->assign('agent',$agent);
         $this->assign('agent_id',$aid);
 
@@ -51,12 +55,44 @@ class Magents extends Base
 
     public function index()
     {
+        $langs = [
+            'Recommendagoodroom'=>lang("Recommendagoodroom"),
+            'Licensedbrokersselectcarefullyforyou'=>lang('Licensedbrokersselectcarefullyforyou'),
+            'rise'=>lang('rise'),
+            'tenthousand'=>lang('tenthousand'),
+            'Checkoutmorehousingsources'=>lang('Checkoutmorehousingsources')
+ 
+         ];
 
+         $param = ['lang'=>$this->lang,'aid'=>$this->aid];
+         $urls = [
+
+             'list_house_url'=>$this->builderQuery('index/magents/listHouse',$param),
+
+
+         ];
+
+    
+         $houseDb= new \app\admin\model\CmsHouse();
+         $house_list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
+         foreach($house_list as &$v){
+             $tmp_param = array_merge($param,['id'=>$v['id'],'aid'=>$this->aid]);
+             $v['show_house_url'] = $this->builderQuery('index/magents/showHouse',$tmp_param);
+         }
+
+         //tab键切换
+         $tab=[lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), '佛州旅游'];
+        
+
+        //首页banner
         $ads=db('ads_data')->where(['aid'=>12,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
 
         $this->assign('ads', $ads);
 
         $this->assign('SEO', $this->SEO);
+        $this->assign('house_list',$house_list);
+        $this->assign('langs',$langs);
+        $this->assign('urls',$urls);
 
         return $this->tpl();
     }

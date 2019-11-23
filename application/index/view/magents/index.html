@@ -28,23 +28,20 @@
 {include file="public/m_agent_nav" /}
 <section class="section-card">
     <div class="section-title">
-        <a class="section-title-inner" href="{:url('index/magents/listHouse')}?lang={$lang}&aid={$agent_id}">
-            <div class="title-info">{:lang('Recommendagoodroom')}</div>
+        <a class="section-title-inner" href="{$urls.list_house_url}">
+            <div class="title-info">{$langs.Recommendagoodroom}</div>
             <div class="title-desc">
-                <div class="desc-info">{:lang('Licensedbrokersselectcarefullyforyou')}</div>
+                <div class="desc-info">{$langs.Licensedbrokersselectcarefullyforyou}</div>
                 <div class="desc-arrow"><img src="__RES__/m/images/title-arrow.png" alt=""></div>
             </div>
         </a>
     </div>
     <div id="index-house" class="swiper-container">
         <div class="swiper-wrapper">
-            <?php
-                $houseDb= new \app\admin\model\CmsHouse();
-                $list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
-            ?>
-            {volist name="list" id="v"}
+      
+            {volist name="house_list" id="v"}
             <div class="swiper-slide list-item">
-                <a href="{:url('index/magents/showHouse?id='.$v['id'])}?lang={$lang}&aid={$agent_id}">
+                <a href="{$v.show_house_url}">
                     <div class="item-img">
                         <img data-src="{:thumb($v.thumb,300,200)}" src="__RES__/m/images/nopic300_200.png" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
@@ -54,8 +51,8 @@
                         <div class="info-desc">{$v.sub_title}</div>
                         <div class="info-price">
                             <span class="price-unit">￥</span>
-                            <span class="price-num">{:round($v.price*$rate,1)} {:lang('tenthousand')}</span>
-                            <span class="price-label">{:lang('rise')}</span>
+                            <span class="price-num">{:round($v.price*$rate,1)} {$langs.tenthousand}</span>
+                            <span class="price-label">{$langs.rise}</span>
                         </div>
                     </div>
                 </a>
@@ -103,7 +100,7 @@
             {/volist}
             {notempty name="list"}
             <div class="more">
-                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{:lang('Checkoutmorehousingsources')}</a>
+                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{$langs.Checkoutmorehousingsources}</a>
             </div>
             {/notempty}
         </div>
