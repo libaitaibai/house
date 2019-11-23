@@ -8,7 +8,7 @@ use think\facade\Cache;
 class Base extends Controller
 {
     protected $rate = 6.7;
-
+    protected $lang = 'zh-cn';
     public function initialize()
     {
         parent::initialize();
@@ -26,5 +26,30 @@ class Base extends Controller
         }, 10);
         return $html;
     }
+
+
+    protected function getLang(){
+
+        if(input('lang')){
+             $this->lang = trim(input('lang'));
+        }else if(cookie('lang')){
+            $this->lang = trim(cookie('lang'));
+        }
+        return $this->lang;
+    }
+
+
+    protected function builderQuery($url,$param){
+
+        if(empty($param)){
+            return url($url);
+        }
+ 
+        $str = is_array($param)? http_build_query($param):$param;
+         
+        return url($url).'?'.$str;
+    }
+
+
 
 }

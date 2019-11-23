@@ -15,7 +15,6 @@ class Magents extends Base
     public $SEO, $articleTag;
     protected $domain='';
     protected $aid = 0;
-    protected $lang = 'zh-cn';
 
     public function initialize()
     {
@@ -37,16 +36,6 @@ class Magents extends Base
 
     }
 
-
-    private function getLang(){
-
-        if(input('lang')){
-             $this->lang = trim(input('lang'));
-        }else if(cookie('lang')){
-            $this->lang = trim(cookie('lang'));
-        }
-
-    }
 
     private function getAgent(){
 
@@ -75,13 +64,35 @@ class Magents extends Base
  
          ];
 
+         $param = ['lang'=>$this->lang,'aid'=>$this->aid];
+         $urls = [
+
+             'list_house_url'=>$this->builderQuery('index/magents/listHouse',$param),
+
+
+         ];
+
+    
+         $houseDb= new \app\admin\model\CmsHouse();
+         $house_list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
+         foreach($house_list as &$v){
+             $tmp_param = array_merge($param,['id'=>$v['id'],'aid'=>$this->aid]);
+             $v['show_house_url'] = $this->builderQuery('index/magents/showHouse',$tmp_param);
+         }
+
+         //tab键切换
+         $tab=[lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), '佛州旅游'];
+        
+
         //首页banner
         $ads=db('ads_data')->where(['aid'=>12,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
 
         $this->assign('ads', $ads);
 
         $this->assign('SEO', $this->SEO);
+        $this->assign('house_list',$house_list);
         $this->assign('langs',$langs);
+        $this->assign('urls',$urls);
 
         return $this->tpl();
     }
