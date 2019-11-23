@@ -1,0 +1,7 @@
+<div class="top-tool">
+    <el-breadcrumb>
+        <el-breadcrumb-item>仪表盘</el-breadcrumb-item>
+        <el-breadcrumb-item>{$POSTION|default=''}</el-breadcrumb-item>
+    </el-breadcrumb>
+    <a :href="'#'+_back" v-if="_back"><el-button class="back" size="medium" round icon="el-icon-back">返回</el-button></a>
+</div>

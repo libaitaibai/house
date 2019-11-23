@@ -1,0 +1,30 @@
+<script type="text/html">
+    <div class="main">
+        <div class="exception">
+            <div class="imgBlock">
+                <div class="imgEle e{$d.code|default='404'}"></div>
+            </div>
+            <div class="content">
+                <h1>{$d.code|default='404'}</h1>
+                <div class="desc">{$d.msg|default='抱歉，你访问的页面不存在'}</div>
+                <div class="actions"><a href="#{:url('index/dashboard')}"><button type="button" class="el-button el-button--primary"><span>返回首页</span></button></a></div>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+            }
+        },
+        methods: {
+        }
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+
