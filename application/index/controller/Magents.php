@@ -55,6 +55,11 @@ class Magents extends Base
 
     public function index()
     {
+
+        // $rst = \tool\Util::sendEmail('shangyu#1242599073@qq.com',['subject'=>'ceshi','body'=>'测试']);
+        // print_r($rst);
+
+        // exit;
         $langs = [
             'Recommendagoodroom'=>lang("Recommendagoodroom"),
             'Licensedbrokersselectcarefullyforyou'=>lang('Licensedbrokersselectcarefullyforyou'),
@@ -76,13 +81,28 @@ class Magents extends Base
          $houseDb= new \app\admin\model\CmsHouse();
          $house_list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
          foreach($house_list as &$v){
-             $tmp_param = array_merge($param,['id'=>$v['id'],'aid'=>$this->aid]);
+             $tmp_param = array_merge($param,['id'=>$v['id']]);
              $v['show_house_url'] = $this->builderQuery('index/magents/showHouse',$tmp_param);
          }
 
          //tab键切换
-         $tab=[lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), '佛州旅游'];
-        
+         $tab_data = [];
+         $tab=[lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), lang('Travelinformation')];
+         foreach($tab as $k=>$name){
+                $list = db('cms_article')->where([
+                    ['tag', 'like', '%"'.$name.'"%'],
+                    ['show','=',1]
+                ])->order(['sort' => 'desc', 'id' => 'desc'])->limit(10)->select();
+                
+                foreach($list as $kk=>&$vv){
+                       $tmp_param = array_merge($param,['id'=>$v['id']]);
+                       $vv['show_article_url'] = $this->builderQuery('index/magents/showArticle',$tmp_param);
+                }
+                $tab_data[$k] = [
+                      'name'=>$tab[$k],
+                      'list'=>$list
+                ];
+         }
 
         //首页banner
         $ads=db('ads_data')->where(['aid'=>12,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
@@ -93,6 +113,7 @@ class Magents extends Base
         $this->assign('house_list',$house_list);
         $this->assign('langs',$langs);
         $this->assign('urls',$urls);
+        $this->assign('tab_data',$tab_data);
 
         return $this->tpl();
     }
