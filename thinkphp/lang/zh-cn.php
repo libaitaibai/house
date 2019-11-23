@@ -158,6 +158,7 @@ return [
     'StreetView' => '奥兰多街景',
     'AmericanDeveloper' => '美国开发商',
     'Aboutus' => '关于我们',
+    'Contactus'=>'联系我们',
     'Reliable' => '靠谱',
     'Consultantsserveonetoonetomaximizeyourbenefits' => '顾问一对一服务最大化保障您的利益',
     'Reallistings' => '真实房源',
@@ -238,7 +239,9 @@ return [
     'OrlandoRealestateinformation'=>'奥兰多房产资讯',
     'AmericanRealestateinformation'=>'美国房产资讯',
     'Travelinformation'=>'旅游资讯',
-    'Contact'=>'联系方式'
+    'Contact'=>'联系方式',
+    'Close'=>'关闭',
+    'Longpresstoadd'=>'长按添加微信'
 
 
 

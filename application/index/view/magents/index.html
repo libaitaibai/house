@@ -72,7 +72,7 @@
         {volist name="tab_data" id="tab"}
         <div class="list-inner">
      
-            {volist name="list" id="v"}
+            {volist name="tab.list" id="v"}
             <div class="list-item">
                 <a href="{$v.show_article_url}">
                     <div class="item-pic"><img src="{:thumb($v.thumb,300,200)}" alt="{$v.title}"></div>
@@ -91,9 +91,9 @@
                 </a>
             </div>
             {/volist}
-            {notempty name="tab.children"}
+            {notempty name="tab.list"}
             <div class="more">
-                <a href="{:url('index/magents/listArticle',['tag'=>$name])}?lang={$lang}&aid={$agent_id}">{$langs.Checkoutmorehousingsources}</a>
+                <a href="{$tab.url}">{$langs.Checkoutmorehousingsources}</a>
             </div>
             {/notempty}
         </div>

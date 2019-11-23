@@ -27,9 +27,7 @@ class Magents extends Base
         ];
         $this->getLang();
         $this->getAgent();
-        //底部友情链接 
-        $ylink=db('ads_data')->where('aid',11)->where('show',1)->select();
-        $this->assign('ylink',$ylink);
+        $this->getFooter();
         $this->domain = request()->domain();
         $this->articleTag = [lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), lang('Travelinformation')];
         $this->assign('articleTag', $this->articleTag);
@@ -53,13 +51,28 @@ class Magents extends Base
 
     }
 
+    //底部footer
+    protected function getFooter(){
+
+        $contact_list=db('ads_data')->where(['aid'=>13,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(1)->select();
+        $wechat_info =  $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(1)->select();
+     
+        $links = [
+            ['title'=>lang('home'),'url'=>'/'],
+            ['title'=>lang('Aboutus'),'url'=>'/about.html'],
+            ['title'=>lang('Contactus'),'url'=>'/contact.html'],
+            ['title'=>lang('Landlordlogin'),'url'=>'/']
+        ];
+        //底部友情链接 
+        //$links=db('ads_data')->where('aid',11)->where('show',1)->select();
+        $this->assign('ylink',$links);
+        $this->assign('contact_list',$contact_list);
+        $this->assign('wechat_info',$wechat_info);
+
+    }
+
     public function index()
     {
-
-        // $rst = \tool\Util::sendEmail('shangyu#1242599073@qq.com',['subject'=>'ceshi','body'=>'测试']);
-        // print_r($rst);
-
-        // exit;
         $langs = [
             'Recommendagoodroom'=>lang("Recommendagoodroom"),
             'Licensedbrokersselectcarefullyforyou'=>lang('Licensedbrokersselectcarefullyforyou'),
@@ -70,14 +83,11 @@ class Magents extends Base
          ];
 
          $param = ['lang'=>$this->lang,'aid'=>$this->aid];
+    
          $urls = [
-
-             'list_house_url'=>$this->builderQuery('index/magents/listHouse',$param),
-
-
+             'list_house_url'=>$this->builderQuery('index/magents/listHouse',$param)
          ];
 
-    
          $houseDb= new \app\admin\model\CmsHouse();
          $house_list=$houseDb->where(['show'=>1,'release'=>0])->order(['sort'=>'desc','id'=>'desc'])->limit(10)->select();
          foreach($house_list as &$v){
@@ -100,6 +110,7 @@ class Magents extends Base
                 }
                 $tab_data[$k] = [
                       'name'=>$tab[$k],
+                      'url'=> $this->builderQuery('index/magents/listArticle',array_merge($param,['tag'=>$tab[$k]])),
                       'list'=>$list
                 ];
          }

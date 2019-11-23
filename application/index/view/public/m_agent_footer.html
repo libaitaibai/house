@@ -3,7 +3,7 @@
         <img src="{$agent.photo}" alt="" class="loading-img">
         <div class="loading2">
         </div>
-        <span class="loading-span">首页</span>
+        <span class="loading-span">{:lang('home')}</span>
     </a>
     <div class="lefttext color-white">
 		<span class="display-block textover">
@@ -28,16 +28,12 @@
     <div class="msk"></div>
     <div id="wx">
         <img src="/uploads/20190212/63a416632242310bd0aeb95950a5608b.jpg" alt="微信二维码">
-        <p>长按添加微信</p>
-        <button>关闭</button>
+        <p>{:lang('Longpresstoadd')}</p>
+        <button>{:lang('Close')}</button>
     </div>
 </div>
 
-
-<?php
-$list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(1)->select();
-?>
-{volist name="list" id="v"}
+{volist name="wechat_info" id="v"}
 <div class="wechatInfo">
     <div class="mask"></div>
     <div class="inner">
@@ -51,24 +47,19 @@ $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>
     <div class="top">
         <a href="" class="top-logo"><img src="__RES__/m/images/logo-s.png" alt=""></a>
         <div class="top-info">
-            <?php
-            $list=db('ads_data')->where(['aid'=>13,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(1)->select();
-            ?>
-            {volist name="list" id="v"}
+            {volist name="contact_list" id="v"}
             {$v.code|raw}
             {/volist}
         </div>
     </div>
     <div class="copyright">
         <div class="footer-quick">
-            <a class="quick-item" href="/">{:lang('home')}</a>
-
             {volist name="ylink" id="v"}
-            <a class="quick-item" href="{:url('index/mobile/page?id='.$v['id'])}">{$v.title}</a>
+            <a class="quick-item" href="{$v.url}">{$v.title}</a>
             {/volist}
-            <a class="quick-item" href="">{:lang('Landlordlogin')}</a>
+            
         </div>
-        <div class="copy">Copyright © 2019 {:request()->rootDomain()} Inc. All Rights Reserved.</div>
+        <div class="copy">Copyright © {:date("Y")} {:request()->rootDomain()} Inc. All Rights Reserved.</div>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>

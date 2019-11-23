@@ -22,6 +22,7 @@ return [
     'StreetView' => 'Street View',
     'AmericanDeveloper' => 'AmericanDeveloper',
     'Aboutus' => 'About us',
+    'Contactus'=>'Contact us',
     'Reliable' => 'Reliable',
 //    'Consultantsserveonetoonetomaximizeyourbenefits' => 'Consultants serve one-to-one to maximize your benefits',
     'Consultantsserveonetoonetomaximizeyourbenefits' => 'Reliable',
@@ -106,7 +107,9 @@ return [
     'OrlandoRealestateinformation' => 'Orlando Realestate information',
     'AmericanRealestateinformation'=>'American Realestate information',
     'Travelinformation'=>'Travel information',
-    'Contact'=>'Contact'
+    'Contact'=>'Contact',
+    'Close' => 'Close',
+    'Longpresstoadd'=>'Long press to add'
 
 
 
