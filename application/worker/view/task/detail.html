@@ -1,0 +1,104 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="left-info">
+                                <div class="node-name">查看任务完成情况</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pics-uploader">
+                                <ul class="el-upload-list el-upload-list--picture-card">
+                                    <li class="el-upload-list__item" @click="showImg" :data-src="item.url" v-for="item in dataForm.photos">
+                                        <img :src="item.url" class="el-upload-list__item-thumbnail">
+                                        <span class="el-upload-list__item-actions">
+                                                <span class="el-upload-list__item-preview"><i class="el-icon-zoom-in"></i></span>
+                                            </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <el-collapse v-model="activeNames">
+                            <el-collapse-item title="任务信息" name="1">
+                                <div>标题:{{dataForm.title}}</div>
+                                <div>描述:{{dataForm.description}}</div>
+                                <div>单价:{{dataForm.price}}</div>
+                                <div>内容:{{dataForm.content}}</div>
+                                <div>时间:{{dataForm.addtime}}</div>
+                            </el-collapse-item>
+                            <el-collapse-item title="工人信息" name="2">
+                                <div>姓名:{{dataForm.worker.name}}</div>
+                                <div>电话:{{dataForm.worker.phone}}</div>
+                                <div>邮箱:{{dataForm.worker.email}}</div>
+                            </el-collapse-item>
+                            <el-collapse-item title="房产信息" name="3">
+                                <div>标题:{{dataForm.house.title}}</div>
+                                <div>地址:{{dataForm.house.address}}</div>
+                            </el-collapse-item>
+                            <el-collapse-item title="经纪人信息" name="4">
+                                <div>姓名:{{dataForm.agent.name}}</div>
+                                <div>电话:{{dataForm.agent.phone}}</div>
+                                <div>邮箱:{{dataForm.agent.email}}</div>
+                            </el-collapse-item>
+                            <el-collapse-item title="客户信息" name="5">
+                                <div>姓名:{{dataForm.client.name}}</div>
+                                <div>电话:{{dataForm.client.phone}}</div>
+                                <div>邮箱:{{dataForm.client.email}}</div>
+                            </el-collapse-item>
+                        </el-collapse>
+                    </el-card>
+                </el-col>
+            </el-row>
+            <el-dialog
+                    title="图片预览"
+                    :visible.sync="dialogVisible"
+                    :width="xs ? '90%' : '30%'">
+                <img :src="showSrc" style="max-width: 100%;">
+            </el-dialog>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,    //固定格式
+                loading: false, //固定格式
+                apiData: {},    //固定格式
+                dataForm: {
+                    photos: [],
+                    house: {},
+                    agent: {},
+                    client: {},
+                    worker: {},
+                },   //固定格式
+                rules: {},
+                dialogVisible: false,
+                showSrc: '',
+                activeNames: ['1', '2', '3', '4', '5']
+            }
+        },
+        methods: {
+            showImg: function (e) {
+                this.showSrc = e.currentTarget.dataset.src;
+                this.dialogVisible = true;
+            }
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

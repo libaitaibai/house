@@ -6,9 +6,6 @@
                 <el-col :span="24">
                     <el-card shadow="hover">
                         <div slot="header" class="card-header">
-                            <div class="left-info">
-                                <div class="node-name">任务统计-合计{{tongji}}美元</div>
-                            </div>
                             <div class="search">
                                 <el-form :inline="true" :model="search">
                                     <el-form-item label="">
@@ -60,7 +57,8 @@
                                             <span>{{ props.row.addtime }}</span>
                                         </el-form-item>
                                         <el-form-item label="操作">
-                                            <el-button size="mini" type="text" @click="detail(props.row)">查看</el-button>
+                                            <el-button size="mini" type="text" @click="tongji(props.row)">统计</el-button>
+                                            <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
                                         </el-form-item>
                                     </el-form>
                                 </template>
@@ -78,10 +76,17 @@
                             <el-table-column prop="agent.name" label="经纪人" width="150" v-if="!xs"></el-table-column>
                             <el-table-column prop="worker.name" label="工人" width="150" v-if="!xs"></el-table-column>
                             <el-table-column prop="description" label="描述" show-overflow-tooltip v-if="!xs"></el-table-column>
-                            <el-table-column prop="addtime" label="添加时间" width="180" v-if="!xs"></el-table-column>
-                            <el-table-column fixed="right" label="操作" width="100" v-if="!xs">
+                            <el-table-column label="任务要求" width="200" v-if="!xs">
                                 <template slot-scope="props">
-                                    <el-button size="mini" type="text" @click="detail(props.row)">查看</el-button>
+                                    <span v-if="props.row.type==1">{{ props.row.task_date }}进行</span>
+                                    <span>每月 {{ props.row.num }} 次</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="addtime" label="添加时间" width="180" v-if="!xs"></el-table-column>
+                            <el-table-column fixed="right" label="操作" width="160" v-if="!xs">
+                                <template slot-scope="props">
+                                    <el-button size="mini" type="text" @click="tongji(props.row)">统计</el-button>
+                                    <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -110,7 +115,6 @@
             return {
                 xs: _xs,
                 total: 0,
-                tongji:0,
                 search: {
                     q: ''
                 },
@@ -121,11 +125,29 @@
             }
         },
         methods: {
-            detail: function (row) {
-                window.location.hash = '{:url("task/detail")}?id=' + row.id;
+            tongji: function (row) {
+                window.location.hash = '{:url("task/tongji")}?task_id=' + row.id;
             },
-            download: function (row) {
-                window.location.href = '{:url("down/downloadtongji")}';
+            edit: function (row) {
+                window.location.hash = '{:url("task/edit")}?id=' + row.id;
+            },
+            del: function (row) {
+                var _this = this;
+                this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function (res) {
+                    axios.post('{:url("task/del")}', {
+                        id: row.id
+                    }).then(function (res) {
+                        if (res.code == 1) {
+                            _this.currentPage = 1;
+                            _this.getList();
+                        }
+                    });
+                }).catch(function () {
+                });
             },
         },
         beforeMount: function () {
