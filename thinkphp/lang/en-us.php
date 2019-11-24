@@ -109,7 +109,9 @@ return [
     'Travelinformation'=>'Travel information',
     'Contact'=>'Contact',
     'Close' => 'Close',
-    'Longpresstoadd'=>'Long press to add'
+    'Longpresstoadd'=>'Long press to add',
+    'Recommend' => 'Recommend',
+    'Searchhousingsources' => 'search housing sources'
 
 
 

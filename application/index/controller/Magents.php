@@ -27,7 +27,10 @@ class Magents extends Base
         ];
         $this->getLang();
         $this->getAgent();
+        $this->getNav();
+        $this->getRecommand();
         $this->getFooter();
+        
         $this->domain = request()->domain();
         $this->articleTag = [lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), lang('Travelinformation')];
         $this->assign('articleTag', $this->articleTag);
@@ -69,6 +72,35 @@ class Magents extends Base
         $this->assign('contact_list',$contact_list);
         $this->assign('wechat_info',$wechat_info);
 
+    }
+
+
+    public function getNav(){
+
+        $param = ['lang'=>$this->lang,'aid'=>$this->aid];
+        $Houseproperty_url = $this->builderQuery('index/magents/listHouse',$param);
+        $Agent_url = $this->builderQuery('index/magents/listArticle',$param);
+        $Realestateinformation = $this->builderQuery('index/magents/listArticle',$param);
+        $Landlordlogin = 'javascript:void(0)';
+
+        $this->assign('Houseproperty_url',$Houseproperty_url);
+        $this->assign('Agent_url',$Agent_url);
+        $this->assign('Realestateinformation_url',$Realestateinformation);
+        $this->assign('Landlordlogin_url',$Landlordlogin);
+    }
+
+    public function getRecommand(){
+        $param = ['lang'=>$this->lang,'aid'=>$this->aid];
+        $recommands = db('cms_article')->where(['show'=>1])->order(['sort' => 'desc', 'id' => 'desc'])->limit(5)->select();
+        foreach($recommands as &$v){
+            $v['url'] = $this->builderQuery('index/magents/showArticle',array_merge($param,['id'=>$v['id']]));
+        }
+        $is_recommand = 0;
+        if($this->lang!='zh-cn'){
+            $is_recommand = 1;
+        }
+        $this->assign('is_recommand',$is_recommand);
+        $this->assign('recommands',$recommands);
     }
 
     public function index()

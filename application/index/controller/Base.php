@@ -32,9 +32,8 @@ class Base extends Controller
 
         if(input('lang')){
              $this->lang = trim(input('lang'));
-        }else if(cookie('lang')){
-            $this->lang = trim(cookie('lang'));
         }
+        
         return $this->lang;
     }
 

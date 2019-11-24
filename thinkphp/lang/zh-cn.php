@@ -241,7 +241,9 @@ return [
     'Travelinformation'=>'旅游资讯',
     'Contact'=>'联系方式',
     'Close'=>'关闭',
-    'Longpresstoadd'=>'长按添加微信'
+    'Longpresstoadd'=>'长按添加微信',
+    'Recommend'=>'推荐',
+    'Searchhousingsources'=>'搜索房源'
 
 
 
