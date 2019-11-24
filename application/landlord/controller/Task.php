@@ -262,5 +262,19 @@ class Task extends Base
         return $worker;
     }
 
-
+    public function email()
+    {
+        if ($this->request->isPost()) {
+            $cdb = new \app\admin\model\Client();
+            $Client = $cdb->where([['id','=',session('Client.id')]])->find();
+            $body = "客户 :{$Client['name']} 手机号 : {$Client['phone']} 邮箱 : {$Client['email']} ".'<br>';
+            $body .= "有一下建议和意见".'<br>';
+            $body .= input('content');
+            $mail = "info@usahousecenter.com";
+            $rst = \tool\Util::sendEmail('客户'.'#'.$mail,['subject'=>'意见与建议','body'=>$body]);
+            $this->succ(1, '发送成功!非常感谢你的意见!');
+        }else{
+            return $this->vue();
+        }
+    }
 }

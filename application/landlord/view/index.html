@@ -33,14 +33,9 @@
 
                     <el-submenu>
                         <template slot="title"><i class="fas fa-newspaper"></i>房产任务</template>
-                        <a href="#{:url('task/runing')}">
-                            <el-menu-item index="{:url('task/runing')}">
-                                <span slot="title">进行中的</span>
-                            </el-menu-item>
-                        </a>
                         <a href="#{:url('task/stop')}">
                             <el-menu-item index="{:url('task/stop')}">
-                                <span slot="title">已停止的</span>
+                                <span slot="title">已完成</span>
                             </el-menu-item>
                         </a>
                         <a href="#{:url('task/tongji')}">
@@ -54,7 +49,12 @@
                             </el-menu-item>
                         </a>
                     </el-submenu>
-
+                    <a href="#{:url('task/email')}">
+                        <el-menu-item index="{:url('task/email')}">
+                            <i class="fas fa-home"></i>
+                            <span slot="title">留言信箱</span>
+                        </el-menu-item>
+                    </a>
                 </el-menu>
             </el-scrollbar>
         </el-aside>

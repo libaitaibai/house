@@ -9,6 +9,8 @@ namespace app\admin\controller;
 
 use app\admin\model\House;
 use app\admin\model\TaskData;
+use app\admin\model\Worker;
+use app\admin\model\Client;
 
 class Task extends Base
 {
@@ -143,6 +145,13 @@ class Task extends Base
                     $post['client_id'] = $house['client_id'];
                 }
             }
+
+            if($post['worker_id']){
+                $worker = (new Worker())->where('id', $post['worker_id'])->find();
+                $body = '您有新的任务待领取!任务名称 : '.$post['title'].'.任务内容:'.$post['description'];
+                $rst = \tool\Util::sendEmail($worker['name'].'#'.$worker['email'],['subject'=>'任务通知','body'=>$body]);
+            }
+
 
             $db->allowField(true)->save($post);
             $this->succ(1, '任务添加成功');
