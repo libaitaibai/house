@@ -111,7 +111,18 @@ return [
     'Close' => 'Close',
     'Longpresstoadd'=>'Long press to add',
     'Recommend' => 'Recommend',
-    'Searchhousingsources' => 'search housing sources'
+    'Searchhousingsources' => 'search housing sources',
+    'Invest' => 'Invest',
+    'Educationabroad'=>'Education abroad',
+    'Housingemigration'=>'Housinge migration',
+    'Livealone'=>'Live alone',
+    'Totalhouseprice'=>'Total house price',
+    'Homepurchasepurpose'=>'Home purchase purpose',
+    'Propertytype'=>'Property type',
+    'Detachedvilla'=>'Detached villa',
+    'Townhouse'=>'Townhouse',
+    'Land'=>'Land',
+    'Commercialestate'=>'commercial estate'
 
 
 

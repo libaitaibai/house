@@ -243,7 +243,20 @@ return [
     'Close'=>'关闭',
     'Longpresstoadd'=>'长按添加微信',
     'Recommend'=>'推荐',
-    'Searchhousingsources'=>'搜索房源'
+    'Searchhousingsources'=>'搜索房源',
+    'Invest' => '投资',
+    'Educationabroad'=>'教育留学',
+    'Housingemigration'=>'购房移民',
+    'Livealone'=> '自住',
+    'Totalhouseprice'=>'房屋总价',
+    'Homepurchasepurpose' => '置业目的',
+    'Propertytype'=>'物业类型',
+    'Detachedvilla'=>'独栋别墅',
+    'Townhouse'=>'联排别墅',
+    'Land'=>'土地',
+    'Commercialestate'=>'商业地产',
+    ''=>''
+
 
 
 

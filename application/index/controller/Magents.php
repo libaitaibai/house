@@ -105,6 +105,9 @@ class Magents extends Base
 
     public function index()
     {
+
+
+
         $langs = [
             'Recommendagoodroom'=>lang("Recommendagoodroom"),
             'Licensedbrokersselectcarefullyforyou'=>lang('Licensedbrokersselectcarefullyforyou'),
@@ -167,18 +170,18 @@ class Magents extends Base
         $filter = [
             [
                 'key' => 'jg',
-                'name' => '房屋总价',
+                'name' => lang('Totalhouseprice'),
                 'child' => ['50万以下', '50-100万', '100-200万', '200-300万', '300-500万', '500-700万', '700-1000万', '1000万以上']
             ],
             [
                 'key' => 'zy',
-                'name' => '置业目的',
-                'child' => ['投资', '教育留学', '购房移民', '自住']
+                'name' => lang('Homepurchasepurpose'),
+                'child' => [lang("Invest"), lang('Educationabroad'), lang('Housingemigration'), lang('自住')]
             ],
             [
                 'key' => 'wy',
-                'name' => '物业类型',
-                'child' => ['独栋别墅', '公寓', '联排别墅', '土地', '商业地产']
+                'name' => lang('Propertytype'),
+                'child' => [lang('Detachedvilla'), lang('Apartment'), lang('Townhouse'), lang('land'), lang('Commercialestate')]
             ],
             [
                 'key' => 'lx',
