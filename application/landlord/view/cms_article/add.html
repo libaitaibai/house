@@ -1,0 +1,111 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <el-form :model="dataForm" :rules="rules" ref="dataForm" label-width="100px">
+                            <el-form-item label="微信URL" prop="wxurl">
+                                <el-input v-model="dataForm.wxurl">
+                                    <template slot="append">
+                                        <el-button type="primary" @click="getWechatArticle()">获取内容</el-button>
+                                    </template>
+                                </el-input>
+                            </el-form-item>
+                            <el-form-item label="标题" prop="title">
+                                <el-input v-model="dataForm.title"></el-input>
+                            </el-form-item>
+                            <el-form-item label="缩略图" prop="thumb">
+                                <el-upload
+                                        class="avatar-uploader"
+                                        action="{:url('sys/upImg')}"
+                                        :show-file-list="false"
+                                        :on-success="function(res, file, fileList){return handleUploadImgSuccess(res, file, fileList,'thumb')}"
+                                        :before-upload="function(file){return beforeUploadImg(file, 2)}"
+                                        accept="image/*">
+                                    <img v-if="dataForm.thumb" :src="dataForm.thumb" class="avatar">
+                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                </el-upload>
+                            </el-form-item>
+                            <el-form-item label="描述" prop="description">
+                                <el-input type="textarea" v-model="dataForm.description"></el-input>
+                            </el-form-item>
+                            <el-form-item label="标签" prop="tag">
+                                <el-select v-model="dataForm.tag" multiple filterable allow-create placeholder="请选择">
+                                    <el-option v-for="item in apiData.tag" :key="item" :label="item" :value="item">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="外链" prop="url">
+                                <el-input v-model="dataForm.url"></el-input>
+                            </el-form-item>
+                            <el-form-item label="内容" prop="content" style="position: relative;z-index: 2000">
+                                <div ref="content" class="editor"></div>
+                            </el-form-item>
+                            <el-form-item label="隐藏" prop="show">
+                                <el-switch v-model="dataForm.show" :inactive-value="1" :active-value="0"></el-switch>
+                            </el-form-item>
+                            <el-form-item label="权重" prop="sort">
+                                <el-slider v-model="dataForm.sort"></el-slider>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="postForm(1)">提交</el-button>
+                                <el-button @click="resetForm()">重置</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                loading: false,
+                wxurl: '',
+                apiData: {},    //固定格式
+                dataForm: {},
+                rules: {
+                    title: [
+                        {required: true, message: '请输入标题', trigger: 'blur'},
+                    ],
+                }
+            }
+        },
+        methods: {
+            getWechatArticle: function () {
+                var _this = this;
+                if (_this.dataForm.wxurl) {
+                    axios.get('{:url("sys/getWechatArticle")}', {
+                        params: {
+                            url: _this.dataForm.wxurl
+                        }
+                    }).then(function (res) {
+                        for (var _i in res.data) {
+                            _this.$set(_this.dataForm, _i, res.data[_i]);
+                            if (_this.editors[_i]) {
+                                _this.editors[_i].txt.html(_this.dataForm[_i]);
+                            }
+                        }
+                    });
+                }
+            }
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

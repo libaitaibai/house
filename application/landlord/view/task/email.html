@@ -1,0 +1,93 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <el-form :model="dataForm" :rules="rules" ref="dataForm" label-width="100px">
+                            <el-form-item label="意见与建议" prop="content">
+                                <el-input type="textarea" :rows="8" v-model="dataForm.content"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="postForm(1)">提交</el-button>
+                                <el-button @click="resetForm()">重置</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,    //固定格式
+                loading: false, //固定格式
+                apiData: {},    //固定格式
+                dataForm: {},   //固定格式
+                rules: {
+                    title: [
+                        {required: true, message: '必填', trigger: 'blur'},
+                    ],
+                    type: [
+                        {required: true, message: '必选', trigger: 'change'},
+                    ],
+                    status: [
+                        {required: true, message: '必选', trigger: 'change'},
+                    ],
+                },
+            }
+        },
+        methods: {
+            getHouse: function (query) {
+                var _this = this;
+                if (query !== '') {
+                    _this.loading = true;
+                    axios.get(vm.hash, {
+                        params: {
+                            ac: 'getClient',
+                            q: query
+                        }
+                    }).then(function (res) {
+                        _this.loading = false;
+                        _this.apiData.clientHouse = res.data.apiData.clientHouse;
+                    });
+                } else {
+                    _this.apiData.clientHouse = [];
+                }
+            },
+            getWorker: function (query) {
+                var _this = this;
+                if (query !== '') {
+                    _this.loading = true;
+                    axios.get(vm.hash, {
+                        params: {
+                            ac: 'getWorker',
+                            q: query
+                        }
+                    }).then(function (res) {
+                        _this.loading = false;
+                        _this.apiData.worker = res.data.apiData.worker;
+                    });
+                } else {
+                    _this.apiData.worker = [];
+                }
+            }
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getData()
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

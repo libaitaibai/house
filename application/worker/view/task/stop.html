@@ -1,0 +1,155 @@
+<script type="text/html">
+    <el-scrollbar class="main-scrollbar">
+        {include file="public/breadcrumb" /}
+        <div class="main">
+            <el-row>
+                <el-col :span="24">
+                    <el-card shadow="hover">
+                        <div slot="header" class="card-header">
+                            <div class="search">
+                                <el-form :inline="true" :model="search">
+                                    <el-form-item label="">
+                                        <el-input v-model="search.q" placeholder="任务名"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="onSearch">查询</el-button>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                        </div>
+
+                        <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                            <el-table-column type="expand" v-if="_xs">
+                                <template slot-scope="props">
+                                    <el-form label-position="left" inline class="table-expand">
+                                        <el-form-item label="任务名">
+                                            <span>{{ props.row.title }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="描述">
+                                            <span>{{ props.row.description }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="单价">
+                                            <span>{{ props.row.price }}</span>
+                                        </el-form-item>
+                                        <el-form-item label="类型">
+                                            <span v-if="props.row.type==1">单任务</span>
+                                            <span v-else>持续任务</span>
+                                        </el-form-item>
+                                        <el-form-item label="客户">
+                                            <span>{{ props.row.client.name }} [{{ props.row.client.id }}]</span>
+                                        </el-form-item>
+                                        <el-form-item label="经纪人">
+                                            <span>{{ props.row.agent.name }} [{{ props.row.agent.id }}]</span>
+                                        </el-form-item>
+                                        <el-form-item label="工人">
+                                            <span>{{ props.row.worker.name }} [{{ props.row.worker.id }}]</span>
+                                        </el-form-item>
+                                        <el-form-item label="任务要求">
+                                            <span v-if="props.row.type==1">{{ props.row.task_date }}进行</span>
+                                            <span>每月 {{ props.row.num }} 次</span>
+                                        </el-form-item>
+                                        <el-form-item label="状态">
+                                            <el-tag size="small" v-if="props.row.status==1" type="success">运行中</el-tag>
+                                            <el-tag size="small" v-if="props.row.status==9" type="danger">已停止</el-tag>
+                                            <el-tag size="small" v-else type="info">等待中</el-tag>
+                                        </el-form-item>
+                                        <el-form-item label="添加时间">
+                                            <span>{{ props.row.addtime }}</span>
+                                        </el-form-item>
+                                    </el-form>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                            <el-table-column prop="title" label="任务名" :width="xs ? '' : 150"></el-table-column>
+                            <el-table-column prop="price" label="单价" width="120" v-if="!xs"></el-table-column>
+                            <el-table-column prop="type" label="类型" width="120" v-if="!xs">
+                                <template slot-scope="props">
+                                    <span v-if="props.row.type==1">单任务</span>
+                                    <span v-else>持续任务</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="client.name" label="客户" width="150" v-if="!xs"></el-table-column>
+                            <el-table-column prop="agent.name" label="经纪人" width="150" v-if="!xs"></el-table-column>
+                            <el-table-column prop="worker.name" label="工人" width="150" v-if="!xs"></el-table-column>
+                            <el-table-column prop="description" label="描述" show-overflow-tooltip v-if="!xs"></el-table-column>
+                            <el-table-column label="任务要求" width="200" v-if="!xs">
+                                <template slot-scope="props">
+                                    <span v-if="props.row.type==1">{{ props.row.task_date }}进行</span>
+                                    <span>每月 {{ props.row.num }} 次</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="addtime" label="添加时间" width="180" v-if="!xs"></el-table-column>
+                        </el-table>
+                        <div id="pages" v-if="total">
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page="currentPage"
+                                    :page-sizes="pageConfig.pageSizes"
+                                    :page-size="pageConfig.pageSize"
+                                    :pager-count="pageConfig.pageCount"
+                                    :layout="pageConfig.layout"
+                                    :total="total">
+                            </el-pagination>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </el-scrollbar>
+</script>
+<script>
+    var __component__ = {
+        template: '__TEMPLATE__',
+        data: function () {
+            return {
+                xs: _xs,
+                total: 0,
+                search: {
+                    q: ''
+                },
+                pageConfig: _pageConfig,
+                currentPage: 1,
+                list: [],
+                multipleSelection: []
+            }
+        },
+        methods: {
+            tongji: function (row) {
+                window.location.hash = '{:url("task/tongji")}?task_id=' + row.id;
+            },
+            edit: function (row) {
+                window.location.hash = '{:url("task/edit")}?id=' + row.id;
+            },
+            del: function (row) {
+                var _this = this;
+                this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function (res) {
+                    axios.post('{:url("task/del")}', {
+                        id: row.id
+                    }).then(function (res) {
+                        if (res.code == 1) {
+                            _this.currentPage = 1;
+                            _this.getList();
+                        }
+                    });
+                }).catch(function () {
+                });
+            },
+        },
+        beforeMount: function () {
+            _init(this);
+            this.getList();
+        },
+        mounted: function () {
+        },
+    };
+    vm.APP = __component__;
+    NProgress.done();
+</script>
+
+
+

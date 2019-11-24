@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/head" /}
+    <script src="__STATIC__/echarts@4.2.0/echarts.min.js"></script>
+    <link rel="stylesheet" href="__STATIC__/v-charts@1.19.0/style.min.css">
+    <script src="__STATIC__/v-charts@1.19.0/index.min.js"></script>
+    <script src="__STATIC__/wangeditor@3.1.1/wangEditor.js"></script>
+    <link rel="stylesheet" href="__STATIC__/app_css/admin.css">
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-aside width="" class="sidebar-container">
+            <el-scrollbar>
+                <el-menu class="menu" :default-active="hash" :background-color="color" text-color="#bfcbd9" unique-opened="true" :collapse="isCollapse">
+                    <div class="logo">
+                        <img src="__STATIC__/app_images/logo.png">
+                        <h1>后台管理</h1>
+                    </div>
+                    <a href="#{:url('index/dashboard')}">
+                        <el-menu-item index="{:url('index/dashboard')}">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span slot="title">仪表盘</span>
+                        </el-menu-item>
+                    </a>
+
+
+                    <el-submenu>
+                        <template slot="title"><i class="fas fa-newspaper"></i>房产任务</template>
+                        <a href="#{:url('task/stop')}">
+                            <el-menu-item index="{:url('task/stop')}">
+                                <span slot="title">已完成</span>
+                            </el-menu-item>
+                        </a>
+                        <a href="#{:url('task/wait')}">
+                            <el-menu-item index="{:url('task/wait')}">
+                                <span slot="title">任务</span>
+                            </el-menu-item>
+                        </a>
+                    </el-submenu>
+
+                </el-menu>
+            </el-scrollbar>
+        </el-aside>
+        <el-container>
+            <el-header>
+                <div class="header-left">
+                    <span v-if="screenWidth<768" class="menu-trigger" @click="menuTrigger"><i class="fas" :class="isCollapseBody ? 'fa-indent' : 'fa-outdent'"></i></span>
+                    <span v-else class="menu-trigger" @click="menuTrigger"><i class="fas" :class="isCollapse ? 'fa-indent' : 'fa-outdent'"></i></span>
+                </div>
+                <div class="header-right">
+                    <el-dropdown class="action user"  trigger="click">
+                        <div class="el-dropdown-link">
+                            <i class="fas fa-user-circle"></i><span class="username">{$Think.session.Worker.username}<i class="el-icon-arrow-down el-icon--right"></i></span>
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <a href="#{:url('index/resetPwd')}"><el-dropdown-item><i class="fas fa-edit dropdown"></i>修改密码</el-dropdown-item></a>
+                            <a href="#{:url('index/myinfo')}"><el-dropdown-item><i class="fas fa-list-ul dropdown"></i>个人资料</el-dropdown-item></a>
+                            <a href="{:url('passport/out')}">
+                                <el-dropdown-item divided><i class="fas fa-sign-out-alt dropdown"></i>退出</el-dropdown-item>
+                            </a>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                    <el-dropdown class="action help"  trigger="click">
+                        <div class="el-dropdown-link">帮助</div>
+                        <el-dropdown-menu slot="dropdown">
+                            <img src="__STATIC__/app_images/WeChat.jpg" style="margin: 0 10px;width: 120px;"/>
+                            <a href="http://wpa.qq.com/msgrd?v=3&uin=941120299&site=qq&menu=yes" target="_blank">
+                                <el-dropdown-item divided><i class="fab fa-qq" style="margin-right: 5px"></i>在线沟通</el-dropdown-item>
+                            </a>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
+            </el-header>
+            <el-main v-loading="componentLoading">
+                <component :is="APP"></component>
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+<script src="__STATIC__/app_js/worker.js"></script>
+</body>
+</html>

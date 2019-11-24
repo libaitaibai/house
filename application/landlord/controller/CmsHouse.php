@@ -7,8 +7,6 @@
 
 namespace app\agent_admin\controller;
 
-use app\agent_admin\model\Agent;
-
 class CmsHouse extends Base
 {
     private $apiData;
@@ -101,23 +99,5 @@ class CmsHouse extends Base
         $this->succ(1, '删除成功');
     }
 
-
-    public function sendmail()
-    {
-        $ids = input('param.ids', []);
-        $mail = input('param.mail', []);
-        $db = new \app\agent_admin\model\CmsHouse();
-
-        $data = $db->whereIn('id', $ids)->where('release', $this->aid)->select()->toArray();
-        $Agent = Agent::find(['id'=>$this->aid]);
-
-        $body = '您专注的房子有更新欢迎查看 '."<br>";
-        foreach ($data as $val){
-            $body .= $val['title']."<br>";
-        }
-        $body .= "来自 {$Agent['name']} 手机号 : {$Agent['phone']} 联系邮箱 :{$Agent['email']}";
-        $rst = \tool\Util::sendEmail('尊敬的客户'.'#'.$mail,['subject'=>'房产通知','body'=>$body]);
-        $this->succ(1, '发送成功!');
-    }
 }
 

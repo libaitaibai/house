@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/head" /}
+    <link rel="stylesheet" href="__STATIC__/app_css/passport.css">
+</head>
+<body>
+<div id="app" class="login">
+    <el-row :gutter="0" justify="center" type="flex">
+        <el-col :xs="20" :sm="12" :md="10" :lg="6" :xl="4">
+            <div class="title">后台管理</div>
+            <el-form ref="form" :model="login" ref="login" label-width="0">
+                <el-form-item>
+                    <el-input v-model="login.username" placeholder="用户名" prefix-icon="fas fa-user"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-input v-model="login.password" type="password" placeholder="密码" prefix-icon="fas fa-lock"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-input v-model="login.code" placeholder="验证码" prefix-icon="fas fa-eye">
+                        <img slot="append" :src="'{:url('passport/verify')}?random='+random" @click="invisibility" style="height: 38px;display: block;" alt="验证码">
+                    </el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" icon="fas fa-sign-in-alt" @click="onSubmit" style="width: 100%;"> 登录</el-button>
+                </el-form-item>
+            </el-form>
+        </el-col>
+    </el-row>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            random: Math.random(),
+            login: {
+                username: '',
+                password: '',
+                code: ''
+            }
+        },
+        methods: {
+            invisibility: function () {
+                this.random = Math.random();
+            },
+            onSubmit: function () {
+                var _this = this;
+                var loading = this.$loading({
+                    lock: true,
+                    text: 'Loading',
+                });
+                axios.post(window.location.href, this.login).then(function (res) {
+                    var _data = res.data;
+                    if (_data.code == 0) {
+                        _this.$message.error(_data.msg);
+                    } else {
+                        _this.$message({
+                            message: _data.msg,
+                            type: 'success',
+                            duration: _data.wait * 1000,
+                            onClose: function () {
+                                window.location.href = _data.url;
+                            }
+                        });
+                    }
+                    loading.close();
+                }).catch(function (error) {
+                    console.log(error);
+                    loading.close();
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>
