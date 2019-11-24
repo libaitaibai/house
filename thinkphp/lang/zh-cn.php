@@ -247,7 +247,7 @@ return [
     'Invest' => '投资',
     'Educationabroad'=>'教育留学',
     'Housingemigration'=>'购房移民',
-    'Livealone'=> '自住',
+    'Selfresidence'=> '自住',
     'Totalhouseprice'=>'房屋总价',
     'Homepurchasepurpose' => '置业目的',
     'Propertytype'=>'物业类型',
@@ -255,7 +255,10 @@ return [
     'Townhouse'=>'联排别墅',
     'Land'=>'土地',
     'Commercialestate'=>'商业地产',
-    ''=>''
+    'Housingtype'=>'房源类型',
+    'Newhouse'=>'新房',
+    'Secondhandhouse'=>'二手房',
+    'Numberofbedrooms'=>'卧室数量'
 
 
 

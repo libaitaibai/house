@@ -111,18 +111,22 @@ return [
     'Close' => 'Close',
     'Longpresstoadd'=>'Long press to add',
     'Recommend' => 'Recommend',
-    'Searchhousingsources' => 'search housing sources',
+    'Searchhousingsources' => 'Search housing sources',
     'Invest' => 'Invest',
     'Educationabroad'=>'Education abroad',
-    'Housingemigration'=>'Housinge migration',
-    'Livealone'=>'Live alone',
+    'Housingemigration'=>'Housing emigration',
+    'Selfresidence'=>'Self residence',
     'Totalhouseprice'=>'Total house price',
     'Homepurchasepurpose'=>'Home purchase purpose',
     'Propertytype'=>'Property type',
     'Detachedvilla'=>'Detached villa',
     'Townhouse'=>'Townhouse',
     'Land'=>'Land',
-    'Commercialestate'=>'commercial estate'
+    'Commercialestate'=>'Commercial estate',
+    'Housingtype'=>'Housing type',
+    'Newhouse'=>'New house',
+    'Secondhandhouse'=>'Second hand house',
+    'Numberofbedrooms'=>'Number of bedrooms'
 
 
 

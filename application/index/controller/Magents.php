@@ -167,16 +167,23 @@ class Magents extends Base
     //房源列表
     public function listHouse()
     {
+
+        $en_price = ['0.5m below', '0.5m-1m', '1m-2m', '2m-300m', '3m-5m', '5m-7m', '7m-10m', '10m above'];
+        $zh_price = ['50万以下', '50-100万', '100-200万', '200-300万', '300-500万', '500-700万', '700-1000万', '1000万以上'];
+        
+        $zh_beds = ['1居', '2居', '3居', '4居', '5居', '5居以上'];
+        $en_beds = ['1','2','3','4','5','5 above'];
+        
         $filter = [
             [
                 'key' => 'jg',
                 'name' => lang('Totalhouseprice'),
-                'child' => ['50万以下', '50-100万', '100-200万', '200-300万', '300-500万', '500-700万', '700-1000万', '1000万以上']
+                'child' => $this->lang=='zh-cn'?$zh_price:$en_price
             ],
             [
                 'key' => 'zy',
                 'name' => lang('Homepurchasepurpose'),
-                'child' => [lang("Invest"), lang('Educationabroad'), lang('Housingemigration'), lang('自住')]
+                'child' => [lang("Invest"), lang('Educationabroad'), lang('Housingemigration'), lang('Selfresidence')]
             ],
             [
                 'key' => 'wy',
@@ -185,13 +192,13 @@ class Magents extends Base
             ],
             [
                 'key' => 'lx',
-                'name' => '房源类型',
-                'child' => ['新房', '二手房', '土地']
+                'name' => lang('Housingtype'),
+                'child' => [lang('Newhouse'), lang('Secondhandhouse'), lang('Land')]
             ],
             [
                 'key' => 'ws',
-                'name' => '卧室数量',
-                'child' => ['1居', '2居', '3居', '4居', '5居', '5居以上']
+                'name' => lang('Numberofbedrooms'),
+                'child' => $this->lang=='zh-cn'?$zh_beds:$en_beds
             ],
         ];
         $this->assign('filter', $filter);
@@ -222,9 +229,9 @@ class Magents extends Base
         if ($wy) $where[] = ['type', 'like', '%"' . $wy . '"%'];
         $lx = input('param.lx', '');
         if ($lx) {
-            if ($lx == '新房') $where[] = ['cattype', '=', 1];
-            if ($lx == '二手房') $where[] = ['cattype', '=', 2];
-            if ($lx == '土地') $where[] = ['cattype', '=', 3];
+            if ($lx == lang('Newhouse')) $where[] = ['cattype', '=', 1];
+            if ($lx == lang('Secondhandhouse')) $where[] = ['cattype', '=', 2];
+            if ($lx == lang('Land')) $where[] = ['cattype', '=', 3];
         }
         $ws = input('param.ws', '');
         if ($ws) $where[] = ['room', 'like', '%"' . $ws . '"%'];
