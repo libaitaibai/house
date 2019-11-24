@@ -40,7 +40,7 @@ class Task extends Base
             $where = [];
             $q = input('param.q', '', 'trim');
             if ($q) $where[] = ['title', 'like', '%' . $q . '%'];
-            $where[] = ['client_id', '=', session('Worker.id')];
+            $where[] = ['worker_id', '=', session('Worker.id')];
             $limit = input('param.limit', 20, 'intval');
             $list = $db->with(['Agent', 'Client', 'Worker'])->where($where)->where('status',9)->order('id', 'desc')->paginate($limit);
             $this->succ(1, '', [
@@ -160,6 +160,13 @@ class Task extends Base
             $list = $Task->where($where)->order('id', 'desc')->select()->toArray();
 
             $task = $list[0];
+            //单次任务标记已完成
+            if($task['type'] == 1){
+                $Task->allowField(true)->save(['status'=>9],[
+                    'id' => $task_id,
+                ]);
+            }
+
             $data['photos'] = json_encode($data['imgs']);
             $data = array_merge($data,$task);
             $data['addtime'] = time();

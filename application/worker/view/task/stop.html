@@ -6,11 +6,6 @@
                 <el-col :span="24">
                     <el-card shadow="hover">
                         <div slot="header" class="card-header">
-                            <div class="left-info">
-                                <a href="#{:url('task/add')}">
-                                    <el-button type="primary" icon="el-icon-plus">添加任务</el-button>
-                                </a>
-                            </div>
                             <div class="search">
                                 <el-form :inline="true" :model="search">
                                     <el-form-item label="">
@@ -61,10 +56,6 @@
                                         <el-form-item label="添加时间">
                                             <span>{{ props.row.addtime }}</span>
                                         </el-form-item>
-                                        <el-form-item label="操作">
-                                            <el-button size="mini" type="text" @click="tongji(props.row)">统计</el-button>
-                                            <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
-                                        </el-form-item>
                                     </el-form>
                                 </template>
                             </el-table-column>
@@ -88,12 +79,6 @@
                                 </template>
                             </el-table-column>
                             <el-table-column prop="addtime" label="添加时间" width="180" v-if="!xs"></el-table-column>
-                            <el-table-column fixed="right" label="操作" width="160" v-if="!xs">
-                                <template slot-scope="props">
-                                    <el-button size="mini" type="text" @click="tongji(props.row)">统计</el-button>
-                                    <el-button size="mini" type="text" @click="edit(props.row)">编辑</el-button>
-                                </template>
-                            </el-table-column>
                         </el-table>
                         <div id="pages" v-if="total">
                             <el-pagination

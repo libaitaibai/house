@@ -125,6 +125,14 @@ class Task extends Base
             if (empty($post['house_id'])) $post['status'] = 0;
             if ($post['type'] == 1) $post['num'] = 0;
             if ($post['type'] == 2) $post['task_date'] = 0;
+            if(isset($post['task_date'])){
+                $dir = strpos($post['task_date'],'T');
+                if($dir){
+                    $post['task_date'] = substr($post['task_date'],0,strpos($post['task_date'],'T',$dir));
+                }else{
+                    $post['task_date'] = date('Y-m-d');
+                }
+            }
 
             //获取经纪人ID,客户ID
             if (!empty($post['house_id'])) {
@@ -174,7 +182,14 @@ class Task extends Base
             if (empty($post['house_id'])) $post['status'] = 0;
             if ($post['type'] == 1) $post['num'] = 0;
             if ($post['type'] == 2) $post['task_date'] = 0;
-
+            if(isset($post['task_date'])){
+                $dir = strpos($post['task_date'],'T');
+                if($dir){
+                    $post['task_date'] = substr($post['task_date'],0,strpos($post['task_date'],'T',$dir));
+                }else{
+                    $post['task_date'] = date('Y-m-d');
+                }
+            }
             //获取经纪人ID,客户ID
             if (!empty($post['house_id'])) {
                 $houseDb = new House();
