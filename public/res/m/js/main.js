@@ -115,12 +115,14 @@ var _dropload = $('.dropload').dropload({
     scrollArea: window,
     loadDownFn: function (me) {
         var _url = $('.dropload').data('url');
+        var url_link = window.location.search?( _url + "&page=" + _page):(_url+'?page='+_page);
         $.ajax({
-            url: _url + "?page=" + _page,
+            url:url_link,
             data: _formData,
             type: "GET",
             dataType: "json",
         }).done(function (_res) {
+        
             _page++;
             if (_res.code == 1) {
                 if (_res.data.html == "") {

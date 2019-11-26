@@ -173,6 +173,11 @@ class Magents extends Base
         
         $zh_beds = ['1居', '2居', '3居', '4居', '5居', '5居以上'];
         $en_beds = ['1','2','3','4','5','5 above'];
+
+        $args = ['lang'=>$this->lang,'aid'=>$this->aid];
+        $urls = [
+            'list_house_url'=>$this->builderQuery('index/magents/listHouse',$args)
+        ];
         
         $filter = [
             [
@@ -237,17 +242,36 @@ class Magents extends Base
         if ($ws) $where[] = ['room', 'like', '%"' . $ws . '"%'];
         $q = input('param.q', '');
         if ($q) $where[] = ['title', 'like', '%' . $q . '%'];
-
+       
         $db = new CmsHouse();
         if (!empty($param['page'])) unset($param['page']);
+
         $listHouse = $db->where($where)->where('show',1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(10, false, [
             'path' => url('index/index/listHouse', $param),
         ]);
+
+        foreach($listHouse as $k=>$v){
+            $v->show_house_url = $this->builderQuery('index/magents/showHouse',array_merge($args,['id'=>$v->id]));
+        }
+
+
+
         $this->assign('listHouse', $listHouse);
         $this->assign('ac', 'house');
+        $this->assign('urls',$urls);
 
         $this->SEO['title'] = '奥兰多精选房源-' . $this->SEO['page-title'];
         $this->assign('SEO', $this->SEO);
+        if(request()->isAjax()){
+            return json([
+                'code' => 1,
+                'data' => [
+                    'html' => $this->fetch('list_house_section'),
+                ]
+            ]);
+        }
+
+
         return $this->tpl();
     }
 

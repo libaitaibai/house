@@ -1,0 +1,16 @@
+{volist name="listHouse" id="v"}
+<a class="link" href="{:url('index/mobile/showHouse?id='.$v['id'])}">
+    <div class="img">
+        <img class="img-bg" src="{:thumb($v.thumb,300,200)}">
+    </div>
+    <div class="right">
+        <div class="title">{$v.title}</div>
+        <div class="node">{$v.sub_title}</div>
+        <div class="price">{:lang('Totalprice')} ￥ <span class="price1"><span class="price2">{:round($v.price*$rate,1)}万</span>起</span></div>
+        <div class="text">
+            <span>{:lang('Housingpricesinthepastyear')} {$v.rent}</span>
+            <span>{:lang('Averagerentalincome')} {$v.gain}</span>
+        </div>
+    </div>
+</a>
+{/volist}
