@@ -258,7 +258,8 @@ return [
     'Housingtype'=>'房源类型',
     'Newhouse'=>'新房',
     'Secondhandhouse'=>'二手房',
-    'Numberofbedrooms'=>'卧室数量'
+    'Numberofbedrooms'=>'卧室数量',
+    'Pulluptoloadmore'=>'上拉加载更多'
 
 
 

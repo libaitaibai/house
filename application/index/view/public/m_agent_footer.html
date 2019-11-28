@@ -52,8 +52,8 @@
             {/volist}
         </div>
     </div>
-    <div class="copyright">
-        <div class="footer-quick">
+    <div class="copyright" style="padding-left:10px;padding-right:10px">
+        <div class="footer-quick" >
             {volist name="ylink" id="v"}
             <a class="quick-item" href="{$v.url}">{$v.title}</a>
             {/volist}
@@ -74,6 +74,8 @@
     $("#wx button").click(function () {
         $(".wxbox").hide();
     });
+   
+    $('.dropload-refresh').html('↑{:lang("Pulluptoloadmore")}');
 </script>
 </body>
 </html>

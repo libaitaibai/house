@@ -126,7 +126,8 @@ return [
     'Housingtype'=>'Housing type',
     'Newhouse'=>'New house',
     'Secondhandhouse'=>'Second hand house',
-    'Numberofbedrooms'=>'Number of bedrooms'
+    'Numberofbedrooms'=>'Number of bedrooms',
+    'Pulluptoloadmore'=>'Pull up to load more'
 
 
 

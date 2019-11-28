@@ -61,10 +61,10 @@ class Magents extends Base
         $wechat_info =  $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(1)->select();
      
         $links = [
-            ['title'=>lang('home'),'url'=>'/'],
-            ['title'=>lang('Aboutus'),'url'=>'/about.html'],
-            ['title'=>lang('Contactus'),'url'=>'/contact.html'],
-            ['title'=>lang('Landlordlogin'),'url'=>'/']
+            ['title'=>lang('home'),'url'=>$this->builderQuery('/',['lang'=>$this->lang])],
+            ['title'=>lang('Aboutus'),'url'=>$this->builderQuery('/about',['lang'=>$this->lang])],
+            ['title'=>lang('Contactus'),'url'=>$this->builderQuery('/contact',['lang'=>$this->lang])],
+            ['title'=>lang('Landlordlogin'),'url'=>$this->builderQuery('/',['lang'=>$this->lang])]
         ];
         //底部友情链接 
         //$links=db('ads_data')->where('aid',11)->where('show',1)->select();
@@ -178,7 +178,7 @@ class Magents extends Base
         $urls = [
             'list_house_url'=>$this->builderQuery('index/magents/listHouse',$args)
         ];
-        
+
         $filter = [
             [
                 'key' => 'jg',
@@ -254,8 +254,6 @@ class Magents extends Base
             $v->show_house_url = $this->builderQuery('index/magents/showHouse',array_merge($args,['id'=>$v->id]));
         }
 
-
-
         $this->assign('listHouse', $listHouse);
         $this->assign('ac', 'house');
         $this->assign('urls',$urls);
@@ -270,7 +268,6 @@ class Magents extends Base
                 ]
             ]);
         }
-
 
         return $this->tpl();
     }

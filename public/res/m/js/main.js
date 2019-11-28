@@ -128,6 +128,8 @@ var _dropload = $('.dropload').dropload({
                 if (_res.data.html == "") {
                     me.lock();
                     me.noData();
+                    alert( $('.dropload').find('.dropload-noData').length);
+                    $('.dropload-noData').html('{:lang("noData")}');
                 }else{
                     $('.ajax-box').append(_res.data.html);
                 }
