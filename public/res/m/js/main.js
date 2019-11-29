@@ -110,8 +110,34 @@ new Swiper('.house-swiper', {
 });
 
 
+
+var Pulluptoloadmore = ['上拉加载更多','Pull up to load more'];
+var Loading = ['加载中','Loading'];
+var noData = ['暂无数据','No Data'];
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+var lang = getQueryVariable('lang');
+!lang && (lang = 'zh-cn');
+
 //下拉加载
 var _dropload = $('.dropload').dropload({
+    domDown:{
+        domClass : 'dropload-down',
+        //滑动到底部显示内容
+        domRefresh : '<div class="dropload-refresh">↑'+(lang=='zh-cn'?Pulluptoloadmore[0]:Pulluptoloadmore[1])+'</div>',
+        //内容加载过程中显示内容
+        domLoad :  '<div class="dropload-load"><span class="loading"></span>'+(lang=='zh-cn'?Loading[0]:Loading[1])+'...</div>',
+        // 没有更多内容
+        domNoData : '<div class="dropload-noData">'+(lang=='zh-cn'?noData[0]:noData[1])+'</div>'
+    },
     scrollArea: window,
     loadDownFn: function (me) {
         var _url = $('.dropload').data('url');
@@ -128,8 +154,7 @@ var _dropload = $('.dropload').dropload({
                 if (_res.data.html == "") {
                     me.lock();
                     me.noData();
-                    alert( $('.dropload').find('.dropload-noData').length);
-                    $('.dropload-noData').html('{:lang("noData")}');
+                
                 }else{
                     $('.ajax-box').append(_res.data.html);
                 }

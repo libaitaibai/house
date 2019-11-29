@@ -30,6 +30,7 @@ class Magents extends Base
         $this->getNav();
         $this->getRecommand();
         $this->getFooter();
+        $this->assign('Pulluptoloadmore','加载更多');
         
         $this->domain = request()->domain();
         $this->articleTag = [lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), lang('Travelinformation')];
@@ -106,8 +107,6 @@ class Magents extends Base
     public function index()
     {
 
-
-
         $langs = [
             'Recommendagoodroom'=>lang("Recommendagoodroom"),
             'Licensedbrokersselectcarefullyforyou'=>lang('Licensedbrokersselectcarefullyforyou'),
@@ -140,12 +139,12 @@ class Magents extends Base
                 ])->order(['sort' => 'desc', 'id' => 'desc'])->limit(10)->select();
                 
                 foreach($list as $kk=>&$vv){
-                       $tmp_param = array_merge($param,['id'=>$v['id']]);
+                       $tmp_param = array_merge($param,['id'=>$vv['id']]);
                        $vv['show_article_url'] = $this->builderQuery('index/magents/showArticle',$tmp_param);
                 }
                 $tab_data[$k] = [
                       'name'=>$tab[$k],
-                      'url'=> $this->builderQuery('index/magents/listArticle',array_merge($param,['tag'=>$tab[$k]])),
+                      'url'=> $this->builderQuery('index/magents/listArticle',array_merge($param,['tag'=>$k])),
                       'list'=>$list
                 ];
          }
@@ -323,11 +322,17 @@ class Magents extends Base
     //文章列表
     public function listArticle()
     {
+        $tags = ['奥兰多房产资讯','美国房产资讯','旅游资讯'];
         $db = new CmsArticle();
         $where = [];
-        $tag = input('param.tag', '');
-        if ($tag) $where[] = ['tag', 'like', '%"' . $tag . '"%'];
+        $tag = input('param.tag', 0);
+        if ($tag) $where[] = ['tag', 'like', '%"' . $tags[$tag] . '"%'];
         $listArticle = $db->where($where)->where('show', 1)->order(['sort' => 'desc', 'id' => 'desc'])->paginate(10);
+        foreach($listArticle as $k=>&$item){
+           $item['list_article_url']=$this->builderQuery('index/magents/showArticle',['id'=>$item['id'],'lang'=>$this->lang]);
+        }
+
+
         $this->assign('listArticle', $listArticle);
         $this->assign('ac', 'article');
 

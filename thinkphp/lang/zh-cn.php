@@ -259,7 +259,8 @@ return [
     'Newhouse'=>'新房',
     'Secondhandhouse'=>'二手房',
     'Numberofbedrooms'=>'卧室数量',
-    'Pulluptoloadmore'=>'上拉加载更多'
+    'Pulluptoloadmore'=>'上拉加载更多',
+    'Loading'=>'加载中'
 
 
 
