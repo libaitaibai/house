@@ -49,7 +49,7 @@ $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>
 {/volist}
 <footer class="footer">
     <div class="top">
-        <a href="" class="top-logo"><img src="__RES__/m/images/logo-s.png" alt=""></a>
+        <a href="" class="top-logo"><img src="/res/m/images/logo-a.png" alt=""></a>
         <div class="top-info">
             <?php
             $list=db('ads_data')->where(['aid'=>13,'show'=>1])->order(['sort'=>'desc','id'=>'desc'])->limit(1)->select();
@@ -78,5 +78,6 @@ $list=db('ads_data')->where(['aid'=>15,'show'=>1])->order(['sort'=>'desc','id'=>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>
 <script src="__RES__/m/js/dropload.min.js"></script>
 <script src="__RES__/m/js/main.js"></script>
+</div>
 </body>
 </html>

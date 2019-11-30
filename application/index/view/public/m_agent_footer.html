@@ -45,7 +45,7 @@
 {/volist}
 <footer class="footer">
     <div class="top">
-        <a href="" class="top-logo"><img src="__RES__/m/images/logo-s.png" alt=""></a>
+        <a href="" class="top-logo"><img src="/res/m/images/logo-a.png" alt=""></a>
         <div class="top-info">
             {volist name="contact_list" id="v"}
             {$v.code|raw}
@@ -67,6 +67,7 @@
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>
 <script src="__RES__/m/js/dropload.min.js"></script>
 <script src="__RES__/m/js/main.js"></script>
+
 <script>
     $(".alert-weixin").click(function () {
         $(".wxbox").show();
@@ -77,5 +78,6 @@
    
     $('.dropload-refresh').html('↑{:lang("Pulluptoloadmore")}');
 </script>
+</div>
 </body>
 </html>

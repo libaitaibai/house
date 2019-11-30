@@ -1,10 +1,28 @@
 {include file="public/m_header" /}
+<script type="text/javascript">
+        window.onbeforeunload = function(){
+                    document.documentElement.scrollTop = 0;  //ie下
+                    document.body.scrollTop = 0;  //非ie
+        }
+
+     document.getElementById('body_container').style.opacity = '0';
+     document.getElementById('index_cover').style.display = 'block';
+     document.body.parentNode.style.overflowY = "hidden";
+     window.setTimeout(function(){
+        document.getElementById('index_cover').style.display = 'none';
+        document.body.parentNode.style.overflowY = "auto";
+        document.getElementById('body_container').style.opacity = '1';
+
+     },3000);
+</script>
+
+
 <div id="index-banner" class="swiper-container">
     <div class="swiper-wrapper">
         {volist name="ads" id="v"}
         <div class="swiper-slide">
             <a {if $v.url}href="{$v.url}"{/if}>
-                <img data-src="{$v.thumb}" src="__RES__/m/images/nopic750_400.png" class="swiper-lazy">
+                <img data-src="{$v.thumb}" src="{$v.thumb}" class="swiper-lazy">
                 <div class="swiper-lazy-preloader"></div>
             </a>
         </div>
@@ -100,4 +118,5 @@
         {/volist}
     </div>
 </section>
+
 {include file="public/m_agent_footer" /}
