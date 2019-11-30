@@ -1,4 +1,17 @@
 {include file="public/header" /}
+<script type="text/javascript">
+   
+    document.getElementById('body_container').style.opacity = '0';
+    document.getElementById('index_cover').style.display = 'block';
+    document.body.parentNode.style.overflowY = "hidden";
+    window.setTimeout(function(){
+        document.getElementById('index_cover').style.display = 'none';
+        document.body.parentNode.style.overflowY = "auto";
+        document.getElementById('body_container').style.opacity = '1';
+
+    },3000);
+</script>
+
 <div class="transparent-navbar">
     <div class="content-block clearfix" style="width: 98%!important;margin: 0 auto">
         <div class="index-nav_left" style="margin-left: 28px;">
