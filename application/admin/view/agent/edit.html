@@ -27,6 +27,21 @@
                             <el-form-item label="联系电话" prop="phone">
                                 <el-input v-model="dataForm.phone"></el-input>
                             </el-form-item>
+                            <el-form-item label="微信号" prop="wechat">
+                                <el-input v-model="dataForm.wechat"></el-input>
+                            </el-form-item>
+                            <el-form-item label="微信二维码" prop="wechatimg">
+                                <el-upload
+                                        class="avatar-uploader"
+                                        action="{:url('sys/upImg')}"
+                                        :show-file-list="false"
+                                        :on-success="function(res, file, fileList){return handleUploadImgSuccess(res, file, fileList,'wechatimg')}"
+                                        :before-upload="function(file){return beforeUploadImg(file, 2)}"
+                                        accept="image/*">
+                                    <img v-if="dataForm.wechatimg" :src="dataForm.wechatimg" class="avatar">
+                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                </el-upload>
+                            </el-form-item>
                             <el-form-item label="Email" prop="email">
                                 <el-input v-model="dataForm.email"></el-input>
                             </el-form-item>
@@ -157,6 +172,9 @@
                     ],
                     email: [
                         {required: true, type: 'email', message: '请输入email', trigger: 'blur'}
+                    ],
+                    wechat: [
+                        {required: true, message: '请输入微信号', trigger: 'blur'}
                     ],
                 }
             }

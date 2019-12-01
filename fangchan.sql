@@ -752,3 +752,8 @@ INSERT INTO `boume_worker` (`id`, `username`, `password`, `name`, `photo`, `phon
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/*2019 12-1新加数据*/
+
+alter table boume_agent add column   `wechat` varchar(255) DEFAULT NULL COMMENT '微信号';
+alter table boume_agent add column   `wechatimg` varchar(255) DEFAULT NULL COMMENT '微信二维码';
