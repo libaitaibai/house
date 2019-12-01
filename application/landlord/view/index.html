@@ -7,6 +7,7 @@
     <script src="__STATIC__/v-charts@1.19.0/index.min.js"></script>
     <script src="__STATIC__/wangeditor@3.1.1/wangEditor.js"></script>
     <link rel="stylesheet" href="__STATIC__/app_css/admin.css">
+    <link rel="stylesheet" href="__STATIC__/app_css/phonemain.css">
 </head>
 <body>
 <div id="app">
@@ -30,25 +31,27 @@
                             <span slot="title">我的房产</span>
                         </el-menu-item>
                     </a>
-
-                    <el-submenu>
-                        <template slot="title"><i class="fas fa-newspaper"></i>房产任务</template>
+                    <!--<el-submenu>-->
+                        <!--<template slot="title"><i class="fas fa-newspaper"></i>房产任务</template>-->
                         <a href="#{:url('task/stop')}">
                             <el-menu-item index="{:url('task/stop')}">
+                                <i class="fas fa-universal-access"></i>
                                 <span slot="title">已完成</span>
                             </el-menu-item>
                         </a>
                         <a href="#{:url('task/tongji')}">
                             <el-menu-item index="{:url('task/tongji')}">
+                                <i class="fas fa-braille"></i>
                                 <span slot="title">任务统计</span>
                             </el-menu-item>
                         </a>
                         <a href="#{:url('task/wait')}">
                             <el-menu-item index="{:url('task/wait')}">
+                                <i class="fas fa-newspaper"></i>
                                 <span slot="title">待处理</span>
                             </el-menu-item>
                         </a>
-                    </el-submenu>
+                    <!--</el-submenu>-->
                     <a href="#{:url('task/email')}">
                         <el-menu-item index="{:url('task/email')}">
                             <i class="fas fa-home"></i>

@@ -45,6 +45,9 @@ class Index extends Base
                 'agent_news' => db('cms_article')->where('release', $aid)->count(),
                 'house' => db('cms_house')->where('release', 0)->count(),
                 'agent_house' => db('house')->where('client_id', $aid)->count(),
+                'run_task' => db('task')->where(['client_id'=>$aid,'status'=>1])->count(),
+                'finash_task' => db('task')->where(['client_id'=>$aid,'status'=>9])->count(),
+                'start_task' => db('task')->where(['client_id'=>$aid,'status'=>0])->count(),
             ]
         ]);
     }

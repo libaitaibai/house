@@ -35,7 +35,8 @@ var vm = new Vue({
     methods: {
         menuTrigger: function () {
             if (window.screen.width < 768) {
-                this.isCollapse = false;
+                this.isCollapse = true;
+                // this.isCollapse = false;
                 if (this.isCollapseBody) {
                     this.isCollapseBody = false;
                 } else {
@@ -43,12 +44,17 @@ var vm = new Vue({
                 }
                 return;
             }
-            if (this.isCollapse) {
-                this.isCollapse = false;
-            } else {
-                this.isCollapse = true;
-            }
+
+            this.isCollapse = !this.isCollapse;
+
+            console.log(11111111111111,this.isCollapse ,window.screen.width)
+
         },
+    },
+    created :function(){
+        if (window.screen.width < 768) {
+            this.isCollapse = true;
+        }
     },
     mounted: function () {
         var _this = this;
@@ -124,7 +130,7 @@ var vm = new Vue({
             if (_is) {
                 document.body.style = null;
             } else {
-                document.body.style = 'transform: translateX(200px);';
+                document.body.style = 'transform: translateX(64px);';
             }
         }
     }

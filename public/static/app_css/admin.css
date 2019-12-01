@@ -92,6 +92,7 @@ el-container {
 
 .sidebar-container .menu:not(.el-menu--collapse) {
     width: 200px;
+    min-height: 400px;
 }
 
 .sidebar-container .el-menu {
@@ -124,7 +125,7 @@ el-container {
 
 @media screen and (max-width: 767px) {
     .sidebar-container {
-        margin-left: -200px;
+        margin-left: -64px;
     }
 }
 
