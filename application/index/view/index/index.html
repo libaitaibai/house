@@ -1,17 +1,42 @@
 {include file="public/header" /}
+
 <script type="text/javascript">
-   
-    document.getElementById('body_container').style.opacity = '0';
-    document.getElementById('index_cover').style.display = 'block';
-    document.body.parentNode.style.overflowY = "hidden";
-    window.setTimeout(function(){
-        document.getElementById('index_cover').style.display = 'none';
-        document.body.parentNode.style.overflowY = "auto";
-        document.getElementById('body_container').style.opacity = '1';
 
-    },3000);
+layui.use(['layer'],function(){
+   var layer = layui.layer;
+
+        //  layer.open({
+        //     type: 1
+        //     ,title:false
+        //     ,area:['auto']
+        //     ,content:'<div style="background:url(/res/images/bg-a.jpg)" >333sss </div>'
+        //     ,closeBtn:0
+        //      ,shadeClose:true
+        //    // ,time:5000
+        //     ,anim:-1,
+        //     scrollbar:false
+        // });
+
+        layer.open({
+            type: 1,
+            title: false,
+            anim:-1,
+            closeBtn: 0,
+            skin: 'index_covers_skin',
+            area:['100%','100%'],
+            shadeClose: true,
+            scrollbar:false,
+            content:'<div id="index_covers" ><img src="/res/images/bg-a.jpg" width="100%" height="100%"/> </div>',
+            offset:'t',
+            resize:false,
+            time:4000
+        });
+
+   });
+
+
+
 </script>
-
 <div class="transparent-navbar">
     <div class="content-block clearfix" style="width: 98%!important;margin: 0 auto">
         <div class="index-nav_left" style="margin-left: 28px;">

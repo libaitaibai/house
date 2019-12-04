@@ -1524,19 +1524,20 @@ img.img_m{display:block}
     margin-left: 20px;
 }
 
-#index_cover{
-    position:absolute;
-    left:0px;
-    right:0px;
-    top:0px;
-    bottom:0px;
-    z-index:9999;
-    background-image:url('/res/m/images/bg-a.jpg');
-    background-repeat: no-repeat;
-    background-attachment:fixed;
-    background-position:center;
-    background-size:cover;
-    display:none;
-   
-   
+#index_covers{
+    height:100%;
+   width:100%;
+   position:absolute;
+   left:0;
+   right:0;
+   top:0;
+   bottom:0;
+}
+
+body .index_covers_skin{
+    left:0px !important;
+}
+body .index_covers_skin .layui-layer-content{
+    width:100% !important;
+    height:100% !important;
 }

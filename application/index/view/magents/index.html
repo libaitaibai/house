@@ -1,21 +1,15 @@
 {include file="public/m_header" /}
-<script type="text/javascript">
-        window.onbeforeunload = function(){
-                    document.documentElement.scrollTop = 0;  //ie下
-                    document.body.scrollTop = 0;  //非ie
-        }
 
-     document.getElementById('body_container').style.opacity = '0';
-     document.getElementById('index_cover').style.display = 'block';
-     document.body.parentNode.style.overflowY = "hidden";
-     window.setTimeout(function(){
-        document.getElementById('index_cover').style.display = 'none';
-        document.body.parentNode.style.overflowY = "auto";
-        document.getElementById('body_container').style.opacity = '1';
-
-     },3000);
-</script>
-
+    <script type="text/javascript">
+        var lay_index = layer.open({
+            type: 1
+            ,content:'<div id="index_covers" ><img src="/res/m/images/bg-mobile.jpg" width="100%" height="100%"/> </div>'
+            ,anim: false
+            ,shadeClose:false
+            ,time:4
+            ,style: 'position:fixed; left:0; top:0; width:100%; height:100%; border: none;'
+        });
+    </script>
 
 <div id="index-banner" class="swiper-container">
     <div class="swiper-wrapper">

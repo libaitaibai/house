@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="__RES__/css/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
     <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/layui/layui.js"></script>
     <script>
-        if (device.mobile()) {
-            window.location.href="http://m.{:request()->rootDomain()}{:request()->url()}"
-        }
+        // if (device.mobile()) {
+        //     window.location.href="http://m.{:request()->rootDomain()}{:request()->url()}"
+        // }
     </script>
 </head>
 <!--<body oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false">-->
-<div id="index_cover"></div>
-<div id="body_container">
