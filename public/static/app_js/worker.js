@@ -35,7 +35,8 @@ var vm = new Vue({
     methods: {
         menuTrigger: function () {
             if (window.screen.width < 768) {
-                this.isCollapse = false;
+                this.isCollapse = true;
+                // this.isCollapse = false;
                 if (this.isCollapseBody) {
                     this.isCollapseBody = false;
                 } else {
@@ -43,11 +44,8 @@ var vm = new Vue({
                 }
                 return;
             }
-            if (this.isCollapse) {
-                this.isCollapse = false;
-            } else {
-                this.isCollapse = true;
-            }
+
+            this.isCollapse = !this.isCollapse;
         },
     },
     mounted: function () {
@@ -104,6 +102,11 @@ var vm = new Vue({
             return Promise.reject(error);
         });
     },
+    created :function(){
+        if (window.screen.width < 768) {
+            this.isCollapse = true;
+        }
+    },
     watch: {
         hash: function (_url, _history) {
             var _this = this;
@@ -124,7 +127,7 @@ var vm = new Vue({
             if (_is) {
                 document.body.style = null;
             } else {
-                document.body.style = 'transform: translateX(200px);';
+                document.body.style = 'transform: translateX(64px);';
             }
         }
     }

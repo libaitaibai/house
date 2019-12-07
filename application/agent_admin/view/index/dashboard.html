@@ -1,6 +1,21 @@
 <script type="text/html">
     <el-scrollbar class="main-scrollbar">
         <div class="main dashboard">
+            <el-row :gutter="20" style="margin-bottom: 20px">
+                <div class="hidden-md-and-up">
+                    <el-carousel height="12rem">
+                        <el-carousel-item v-for="item,index in imgs" :key="index">
+                            <!--<img :src="item.url" class="el-upload-list__item-thumbnail">-->
+                            <!--<div style="background:url({{item.src}})"></div>-->
+                            <!--<div id="el-carousel-img">-->
+                            <img class="el-carousel-item__img" :src ="item.src">
+                            <!--</div>-->
+
+                            <!--<h3 class="small">{{ item }}</h3>-->
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+            </el-row>
             <el-row :gutter="xs ? 5 : 20">
                 <el-col :span="8" :xs="12" :sm="12" :lg="8">
                     <el-card shadow="hover">
@@ -103,6 +118,11 @@
                     info: [],
                     data: []
                 },
+                imgs:[
+                    {src:"__STATIC__/app_images/agent/4.jpg"},
+                    {src:"__STATIC__/app_images/agent/2.jpg"},
+                    {src:"__STATIC__/app_images/agent/5.jpg"},
+                ]
             }
         },
         methods: {},

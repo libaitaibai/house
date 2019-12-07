@@ -94,7 +94,14 @@ el-container {
     width: 200px;
     min-height: 400px;
 }
-
+.el-tooltip__popper{
+    position: absolute;
+    max-width:30%;
+    left: 0px !important;
+}
+.el-menu--vertical{
+    left: 0px !important;
+}
 .sidebar-container .el-menu {
     height: 100%;
     border: none;

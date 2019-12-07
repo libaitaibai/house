@@ -27,15 +27,15 @@
 
 
                     <el-submenu>
-                        <template slot="title"><i class="fas fa-newspaper"></i>房产任务</template>
+                        <template slot="title"><i class="fas fa-newspaper"></i><span>房产任务</span></template>
                         <a href="#{:url('task/stop')}">
                             <el-menu-item index="{:url('task/stop')}">
-                                <span slot="title">已完成</span>
+                                <span slot="title">已完成任务</span>
                             </el-menu-item>
                         </a>
                         <a href="#{:url('task/wait')}">
                             <el-menu-item index="{:url('task/wait')}">
-                                <span slot="title">任务</span>
+                                <span slot="title">进行中任务</span>
                             </el-menu-item>
                         </a>
                     </el-submenu>
