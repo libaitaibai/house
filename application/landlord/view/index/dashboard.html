@@ -5,13 +5,7 @@
                 <div class="hidden-md-and-up">
                     <el-carousel height="12rem">
                         <el-carousel-item v-for="item,index in imgs" :key="index">
-                            <!--<img :src="item.url" class="el-upload-list__item-thumbnail">-->
-                            <!--<div style="background:url({{item.src}})"></div>-->
-                            <!--<div id="el-carousel-img">-->
-                                <img class="el-carousel-item__img" :src ="item.src">
-                            <!--</div>-->
-
-                            <!--<h3 class="small">{{ item }}</h3>-->
+                            <img class="el-carousel-item__img" :src ="item.src">
                         </el-carousel-item>
                     </el-carousel>
                 </div>
