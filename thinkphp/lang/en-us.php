@@ -16,7 +16,7 @@ return [
     'Housedecoration' => 'decoration',
     'DecorationofHolidayHouse' => 'Decoration of Holiday House',
     'Decorator' => 'Decorator',
-    'Realestateinformation' => 'information',
+    'Realestateinformation' => 'Information',
     'Lifeassistant' => 'assistant',
     'Briefintroduction' => 'Brief introduction',
     'StreetView' => 'Street View',
@@ -128,7 +128,12 @@ return [
     'Secondhandhouse'=>'Second hand house',
     'Numberofbedrooms'=>'Number of bedrooms',
     'Pulluptoloadmore'=>'Pull up to load more',
-    'Loading'=>'loading'
+    'Loading'=>'loading',
+    'Choosy'=>'Choosy',
+    'BetterHouse'=>'Recommended House',
+    'OrlRealestate'=>'ORL Realestate',
+    'UsaRealestate'=>'USA Realestate',
+    'Travelinfo'=>'Travel Info'
 
 
 

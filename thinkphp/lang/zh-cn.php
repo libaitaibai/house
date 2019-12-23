@@ -260,7 +260,12 @@ return [
     'Secondhandhouse'=>'二手房',
     'Numberofbedrooms'=>'卧室数量',
     'Pulluptoloadmore'=>'上拉加载更多',
-    'Loading'=>'加载中'
+    'Loading'=>'加载中',
+    'BetterHouse'=>'推荐好房',
+    'Choosy'=>'执照经纪人为您精挑细选',
+    'OrlRealestate'=>'奥兰多房产资讯',
+    'UsaRealestate'=>'美国房产资讯',
+    'Travelinfo'=>'旅游资讯'
 
 
 

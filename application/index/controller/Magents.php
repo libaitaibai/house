@@ -108,8 +108,8 @@ class Magents extends Base
     {
 
         $langs = [
-            'Recommendagoodroom'=>lang("Recommendagoodroom"),
-            'Licensedbrokersselectcarefullyforyou'=>lang('Licensedbrokersselectcarefullyforyou'),
+            'Recommendagoodroom'=>lang("BetterHouse"),
+            'Licensedbrokersselectcarefullyforyou'=>lang('Choosy'),
             'rise'=>lang('rise'),
             'tenthousand'=>lang('tenthousand'),
             'Checkoutmorehousingsources'=>lang('Checkoutmorehousingsources')
@@ -131,7 +131,7 @@ class Magents extends Base
 
          //tab键切换
          $tab_data = [];
-         $tab=[lang('OrlandoRealestateinformation'), lang('AmericanRealestateinformation'), lang('Travelinformation')];
+         $tab=[lang('OrlRealestate'), lang('UsaRealestate'), lang('Travelinfo')];
          foreach($tab as $k=>$name){
                 $list = db('cms_article')->where([
                     ['tag', 'like', '%"'.$name.'"%'],
