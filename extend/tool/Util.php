@@ -15,7 +15,7 @@ class Util{
     public static function sendEmail($receiver,$body=[],$conf=[]){
 
         if(empty($receiver)){
-            return ['code'=>0,'msg'=>'参数错误'];   
+            return ['code'=>101,'msg'=>'参数错误'];   
         }
     
         $config = config('mail_config');
