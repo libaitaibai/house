@@ -2,24 +2,29 @@
     min-height: 36px;
     padding: 0px 20px;
 }
-element.style {
-    height: 45px;
-}
 .el-header {
     padding: 0;
-    line-height: 45px;
+    line-height: 35px;
+    height: 35px !important ;
 }
 .el-card__header {
     padding: 10px 10px;
 }
+.menu-trigger {
+    line-height: 35px;
+    /*padding: 0 12px;*/
+}
 .search {
     margin-top: 10px;
+}
+.el-button {
+    padding: 6px 10px;
 }
 .el-card__body {
     padding: 10px;
 }
 .el-table {
-    font-size: 10px;
+    font-size: 13px;
 }
 .el-table td, .el-table th {
     padding: 3px 0;
@@ -28,11 +33,11 @@ element.style {
     padding: 10px 20px;
 }
 .el-form-item__label {
-    line-height: 12px;
+    line-height: 13px;
 }
 .el-form-item__content {
     line-height: 30px;
-    font-size: 12px;
+    font-size: 13px;
 }
 #pages {
     margin-top: 10px;
@@ -45,9 +50,56 @@ element.style {
 .search .el-form-item {
     margin-bottom: 0px;
 }
-
 .el-carousel-item__img{
     width: 100%;
     height: 100%;
     background: #0d46a0;
+}
+
+.logo{
+    background-color: #215190;
+}
+
+.el-menu-item.is-active {
+    background-color: #3164a5 !important;
+}
+
+/*login*/
+#app {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height:100%;
+    /*background: url("../app_images/agent/8.jpeg") no-repeat;*/
+    /*background-size: 100% 100%;*/
+    position:absolute;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+}
+
+.login_img {
+    height: 75px;
+    width: 100%;
+    background-color: #5c92e8;
+}
+
+.login_img img {
+    display: block;
+    height: 150px;
+    width: 150px;
+    background-color: rgb(246,246,246);
+    border: 20px solid rgb(246,246,246);
+    border-radius: 150px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.el-button--primary{
+    /*width:60% !important;*/
+    border-radius: 20px;
+    margin: 0 auto;
+}
+.el-form-item__content{
+    text-align: center;
 }

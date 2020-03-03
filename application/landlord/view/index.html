@@ -14,7 +14,7 @@
     <el-container>
         <el-aside width="" class="sidebar-container">
             <el-scrollbar>
-                <el-menu class="menu" :default-active="hash" :background-color="color" text-color="#bfcbd9" unique-opened="true" :collapse="isCollapse">
+                <el-menu class="menu" :default-active="hash" :background-color="color" :text-color="textcolor"  unique-opened="true" :collapse="isCollapse">
                     <div class="logo">
                         <img src="__STATIC__/app_images/logo.png">
                         <h1>后台管理</h1>
@@ -36,7 +36,7 @@
                         <a href="#{:url('task/stop')}">
                             <el-menu-item index="{:url('task/stop')}">
                                 <i class="fas fa-universal-access"></i>
-                                <span slot="title">已完成</span>
+                                <span slot="title">已完成任务</span>
                             </el-menu-item>
                         </a>
                         <a href="#{:url('task/tongji')}">
@@ -48,7 +48,7 @@
                         <a href="#{:url('task/wait')}">
                             <el-menu-item index="{:url('task/wait')}">
                                 <i class="fas fa-newspaper"></i>
-                                <span slot="title">待处理</span>
+                                <span slot="title">待处理任务</span>
                             </el-menu-item>
                         </a>
                     <!--</el-submenu>-->

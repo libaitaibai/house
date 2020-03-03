@@ -5,55 +5,51 @@
                 <div class="hidden-md-and-up">
                     <el-carousel height="12rem">
                         <el-carousel-item v-for="item,index in imgs" :key="index">
-                            <!--<img :src="item.url" class="el-upload-list__item-thumbnail">-->
-                            <!--<div style="background:url({{item.src}})"></div>-->
-                            <!--<div id="el-carousel-img">-->
                             <img class="el-carousel-item__img" :src ="item.src">
-                            <!--</div>-->
-
-                            <!--<h3 class="small">{{ item }}</h3>-->
                         </el-carousel-item>
                     </el-carousel>
                 </div>
             </el-row>
             <el-row :gutter="xs ? 5 : 20">
-                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                <el-col :span="8" :xs="6" :sm="6" :lg="8">
                     <el-card shadow="hover">
-                        <div class="box-card">
-                            <div class="icon"><i class="fas fa-users" style="color: #ed3f14"></i></div>
+                        <div class="box-card">passport
+                            <div class="icon"><i class="fas fa-users" style="color: rgb(57, 137, 206)"></i></div>
                             <div class="info">
-                                <div class="title">客户</div>
+                                <div class="title">客户信息</div>
                                 <div class="num">{{myinfo.data.client}}</div>
                             </div>
                         </div>
                     </el-card>
                 </el-col>
-                <el-col :span="8" :xs="12" :sm="12" :lg="8">
-                    <el-card shadow="hover">
-                        <div class="box-card">
-                            <div class="icon"><i class="far fa-newspaper" style="color: #ff9900"></i></div>
-                            <div class="info">
-                                <div class="title">公共文章</div>
-                                <div class="num">{{myinfo.data.news}}</div>
+                <div class="hidden-md-and-down">
+                    <el-col :span="8" :xs="6" :sm="6" :lg="8">
+                        <el-card shadow="hover">
+                            <div class="box-card">
+                                <div class="icon"><i class="far fa-newspaper" style="color: #ff9900"></i></div>
+                                <div class="info">
+                                    <div class="title">公共文章</div>
+                                    <div class="num">{{myinfo.data.news}}</div>
+                                </div>
                             </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="8" :xs="12" :sm="12" :lg="8">
-                    <el-card shadow="hover">
-                        <div class="box-card">
-                            <div class="icon"><i class="fas fa-city" style="color: #2d8cf0"></i></div>
-                            <div class="info">
-                                <div class="title">公共房源</div>
-                                <div class="num">{{myinfo.data.house}}</div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="8" :xs="6" :sm="6" :lg="8">
+                        <el-card shadow="hover">
+                            <div class="box-card">
+                                <div class="icon"><i class="fas fa-city" style="color: #2d8cf0"></i></div>
+                                <div class="info">
+                                    <div class="title">公共房源</div>
+                                    <div class="num">{{myinfo.data.house}}</div>
+                                </div>
                             </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                        </el-card>
+                    </el-col>
+                </div>
+                <el-col :span="8" :xs="6" :sm="6" :lg="8">
                     <el-card shadow="hover">
                         <div class="box-card">
-                            <div class="icon"><i class="fas fa-house-damage" style="color: #19be6b"></i></div>
+                            <div class="icon"><i class="fas fa-house-damage" style="color: rgb(68, 222, 144)"></i></div>
                             <div class="info">
                                 <div class="title">客户房源</div>
                                 <div class="num">{{myinfo.data.client_house}}</div>
@@ -61,10 +57,10 @@
                         </div>
                     </el-card>
                 </el-col>
-                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                <el-col :span="8" :xs="6" :sm="6" :lg="8">
                     <el-card shadow="hover">
                         <div class="box-card">
-                            <div class="icon"><i class="fas fa-newspaper" style="color: #e46cbb"></i></div>
+                            <div class="icon"><i class="fas fa-newspaper" style="color: rgb(241, 85, 187)"></i></div>
                             <div class="info">
                                 <div class="title">我的文章</div>
                                 <div class="num">{{myinfo.data.agent_news}}</div>
@@ -72,7 +68,7 @@
                         </div>
                     </el-card>
                 </el-col>
-                <el-col :span="8" :xs="12" :sm="12" :lg="8">
+                <el-col :span="8" :xs="6" :sm="6" :lg="8">
                     <el-card shadow="hover">
                         <div class="box-card">
                             <div class="icon"><i class="fas fa-hotel" style="color: #9a66e4"></i></div>
@@ -96,7 +92,7 @@
                                     :show-header="false"
                                     stripe
                                     style="width: 100%">
-                                <el-table-column prop="key" label="" width="120" align="right">
+                                <el-table-column prop="key" label="" width="120" >
                                 </el-table-column>
                                 <el-table-column prop="value" label="">
                                 </el-table-column>

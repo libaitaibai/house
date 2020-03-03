@@ -32,7 +32,7 @@
                         </div>
 
                         <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-                            <el-table-column type="expand" v-if="_xs">
+                            <el-table-column type="expand" v-if="_xs" width="20">
                                 <template slot-scope="props">
                                     <el-form label-position="left" inline class="table-expand">
                                         <el-form-item label="标题">
@@ -53,8 +53,8 @@
                                 </template>
                             </el-table-column>
                             <el-table-column type="selection" width="40"></el-table-column>
-                            <el-table-column prop="id" label="ID" width="80"></el-table-column>
-                            <el-table-column prop="sort" label="权重" width="80"></el-table-column>
+                            <el-table-column prop="id" label="ID" width="50"></el-table-column>
+                            <el-table-column prop="sort" label="权重" width="45"></el-table-column>
                             <el-table-column label="标题" show-overflow-tooltip>
                                 <template slot-scope="props">
                                     <a href="" target="_blank"> <span class="el-icon-picture" v-if="props.row.thumb"></span> {{ props.row.title }}</a>

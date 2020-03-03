@@ -7,13 +7,14 @@
     <script src="__STATIC__/v-charts@1.19.0/index.min.js"></script>
     <script src="__STATIC__/wangeditor@3.1.1/wangEditor.js"></script>
     <link rel="stylesheet" href="__STATIC__/app_css/admin.css">
+    <link rel="stylesheet" href="__STATIC__/app_css/phonemain.css">
 </head>
 <body>
 <div id="app">
     <el-container>
         <el-aside width="" class="sidebar-container">
             <el-scrollbar>
-                <el-menu class="menu" :default-active="hash" :background-color="color" text-color="#bfcbd9" unique-opened="true" :collapse="isCollapse">
+                <el-menu class="menu" :default-active="hash" :background-color="color" :text-color="textcolor"  unique-opened="true" :collapse="isCollapse">
                     <div class="logo">
                         <img src="__STATIC__/app_images/logo.png">
                         <h1>后台管理</h1>
@@ -26,19 +27,21 @@
                     </a>
 
 
-                    <el-submenu>
-                        <template slot="title"><i class="fas fa-newspaper"></i><span>房产任务</span></template>
+                    <!--<el-submenu>-->
+                        <!--<template slot="title"><i class="fas fa-newspaper"></i><span>房产任务</span></template>-->
                         <a href="#{:url('task/stop')}">
                             <el-menu-item index="{:url('task/stop')}">
+                                <i class="fas fa-universal-access"></i>
                                 <span slot="title">已完成任务</span>
                             </el-menu-item>
                         </a>
                         <a href="#{:url('task/wait')}">
                             <el-menu-item index="{:url('task/wait')}">
+                                <i class="fas fa-braille"></i>
                                 <span slot="title">进行中任务</span>
                             </el-menu-item>
                         </a>
-                    </el-submenu>
+                    <!--</el-submenu>-->
 
                 </el-menu>
             </el-scrollbar>

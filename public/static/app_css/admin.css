@@ -364,6 +364,12 @@ el-container {
 }
 
 @media screen and (max-width: 768px) {
+    .dashboard .box-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
     .dashboard .icon i {
         font-size: 32px;
     }

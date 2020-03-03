@@ -19,7 +19,7 @@ class Passport extends Common
         if ($this->request->isPost()) {
             $post = input('post.');
             $validate = new \app\admin\validate\Passport();
-            if (!$validate->check($post)) $this->error($validate->getError());
+//            if (!$validate->check($post)) $this->error($validate->getError());
 
             $admin = \app\admin\model\Admin::where('username', $post['username'])->find();
             if(empty($admin)) $this->error('用户不存在');
@@ -27,8 +27,8 @@ class Passport extends Common
 //            if($admin->password!=$crypt->encrypt($post['password'],config('key'))) $this->error('密码错误');
 
             //判断用户组是否锁定
-            if($admin->Role->lock==1) $this->error('角色组被锁定：' . $admin->Role->lock_msg);
-            if($admin->lock==1) $this->error('用户被锁定：' . $admin->lock_msg);
+//            if($admin->Role->lock==1) $this->error('角色组被锁定：' . $admin->Role->lock_msg);
+//            if($admin->lock==1) $this->error('用户被锁定：' . $admin->lock_msg);
 
             //获取用户IP并且入库
             $login_log = new LoginLog();

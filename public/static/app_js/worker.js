@@ -26,7 +26,8 @@ var vm = new Vue({
     data: {
         isCollapse: false,  //PC端菜单展<>缩控制
         isCollapseBody: true,   //移动端菜单展<>缩控制
-        color: '#304156',   //菜单背景色
+        color: 'rgb(60, 117, 188)',   //菜单背景色
+        textcolor:"#ffffff",
         hash: null,     //路由
         APP: {},    //远程组件
         screenWidth: window.screen.width,   //屏幕大小
