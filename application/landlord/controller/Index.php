@@ -79,6 +79,8 @@ class Index extends Base
         $db = new Client();
         if ($this->request->isPost()) {
             $post = input('post.');
+            $post['addtime']=strtotime($post['addtime']);
+            $post['edit_password_time']=strtotime($post['edit_password_time']);
             $db->allowField(true)->save($post, [
                 'id' => session('Client.id')
             ]);
