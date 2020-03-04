@@ -222,11 +222,6 @@
                 <div class="cbox" id="xmjs">
                     <div class="ctitle">项目介绍</div>
                     <div>{$d.content|raw}</div>
-                    <!--<?php-->
-                        <!--$realtor=json_decode($d['realtor'],true);-->
-                        <!--$cs=$realtor['features'];-->
-                        <!--if(!empty($realtor['features_zh'])) $cs=$realtor['features_zh'];-->
-                    <!--?>-->
                     {if !empty($realtor)}
                     <div style="margin-top: 30px">
                         {volist name="$cs" id="v"}
