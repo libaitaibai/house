@@ -757,3 +757,4 @@ INSERT INTO `boume_worker` (`id`, `username`, `password`, `name`, `photo`, `phon
 
 alter table boume_agent add column   `wechat` varchar(255) DEFAULT NULL COMMENT '微信号';
 alter table boume_agent add column   `wechatimg` varchar(255) DEFAULT NULL COMMENT '微信二维码';
+alter table `boume_cms_house` modify `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
